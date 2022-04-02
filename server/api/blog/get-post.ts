@@ -1,9 +1,9 @@
-import { createError, defineHandle, useQuery } from "h3";
+import { createError, defineHandle } from "h3";
 import blogServices from "~~/utils/BlogServices";
 
 export default defineHandle(async (req) => {
   try {
-    const { slug } = useQuery(req);
+    const slug = req.url.substring(1) as string;
 
     const pages = await blogServices.fetchBlogDatabase();
 
@@ -22,8 +22,10 @@ export default defineHandle(async (req) => {
       current.id
     );
 
-    const content = await blogServices.fetchPostContent(pageId);
+    console.log({ properties });
 
+    const content = await blogServices.fetchPostContent(pageId);
+    console.log({ content });
     return { properties, content };
   } catch (error) {
     console.log(error);

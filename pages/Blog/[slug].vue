@@ -2,16 +2,24 @@
 import LoadingView from "~~/components/Layout/LoadingView.vue";
 import Header from "~~/components/Typography/Header.vue";
 import Divider from "~~/components/Layout/Divider.vue";
+import Markdown from "~~/components/Layout/Markdown.vue";
+
 const route = useRoute();
 
 const { slug } = route.params;
-const { data, pending } = await useLazyAsyncData("post", () =>
-  $fetch(`/api/blog/get-post?slug=${slug}`)
+const { data, pending } = await useLazyAsyncData("/api/blog/get-post/", () =>
+  $fetch(`/api/blog/get-post/${slug}`)
 );
 
-definePageMeta({
-  title: `Daniel Colmenares - ${data.properties.Post}`,
-});
+console.log(pending.value);
+console.log({ check: data.value });
+
+// const { content } = data.value;
+const { properties } = data.value;
+
+// definePageMeta({
+//   title: computed(() => `Daniel Colmenares - ${data.value.properties.Post}`),
+// });
 </script>
 
 <template>
@@ -22,13 +30,13 @@ definePageMeta({
       <header class="flex flex-col space-y-4">
         <div class="w-full md:h-[40vh] overflow-hidden">
           <img
-            :src="data.properties.Image_URL"
-            :alt="`Banner ${data.properties.Post}`"
+            :src="properties.Image_URL"
+            :alt="`Banner ${properties.Post}`"
             class="object-bottom objet-cover"
           />
         </div>
-        <Header as="h1">{{ data.properties.Post }}</Header>
-        <p>Publicado el {{ data.properties.Fecha_Publicacion }}</p>
+        <Header as="h1">{{ properties.Post }}</Header>
+        <p>Publicado el {{ properties.Fecha_Publicacion }}</p>
       </header>
 
       <Divider />
@@ -36,9 +44,7 @@ definePageMeta({
       <article
         class="flex flex-col justify-start flex-1 space-y-4 text-justify"
       >
-        <p v-for="(paragraph, idx) in data.content" :key="idx">
-          {{ paragraph }}
-        </p>
+        <!-- <Markdown v-for="(item, idx) in content" :key="idx" :item="item" /> -->
       </article>
     </section>
   </NuxtLayout>

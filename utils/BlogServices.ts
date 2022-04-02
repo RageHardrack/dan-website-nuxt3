@@ -1,5 +1,5 @@
 import notion, { BLOG_ID } from "../vendors/notion";
-import { IPost, MultiSelect, PostProperties } from "~~/interfaces";
+import { IPost, IPostBlock, MultiSelect, PostProperties } from "~~/interfaces";
 
 const blogServices = {
   fetchBlogDatabase: async () => {
@@ -37,6 +37,7 @@ const blogServices = {
       Fecha_Publicacion: page.properties.Fecha_Publicacion.date.start,
       Brief: page.properties.Brief.rich_text[0].plain_text,
       Post: page.properties.Post.title[0].plain_text,
+      Prevent_Index: page.properties.Prevent_Index.checkbox,
     };
 
     return { object: page.object, id: page.id, properties } as IPost;
@@ -48,7 +49,19 @@ const blogServices = {
       page_size: 100,
     });
 
-    return results.map((block: any) => block.paragraph.rich_text[0].plain_text);
+    return results.map((block: any) => {
+      return {
+        type: block.type,
+        body:
+          block.type === "image"
+            ? block[block.type].file.url
+            : block[block.type].rich_text[0].plain_text,
+        caption:
+          block.type === "image"
+            ? block[block.type].caption[0].plain_text
+            : block[block.type].rich_text[0].plain_text,
+      } as IPostBlock;
+    });
   },
 };
 
