@@ -11,10 +11,7 @@ const { data, pending } = await useLazyAsyncData("/api/blog/get-post/", () =>
   $fetch(`/api/blog/get-post/${slug}`)
 );
 
-console.log(pending.value);
-console.log({ check: data.value });
-
-// const { content } = data.value;
+const { content } = data.value;
 const { properties } = data.value;
 
 // definePageMeta({
@@ -44,7 +41,7 @@ const { properties } = data.value;
       <article
         class="flex flex-col justify-start flex-1 space-y-4 text-justify"
       >
-        <!-- <Markdown v-for="(item, idx) in content" :key="idx" :item="item" /> -->
+        <Markdown v-for="(item, idx) in content" :key="idx" :item="item" />
       </article>
     </section>
   </NuxtLayout>

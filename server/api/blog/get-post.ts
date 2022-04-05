@@ -22,10 +22,8 @@ export default defineHandle(async (req) => {
       current.id
     );
 
-    console.log({ properties });
-
     const content = await blogServices.fetchPostContent(pageId);
-    console.log({ content });
+
     return { properties, content };
   } catch (error) {
     console.log(error);
