@@ -1,5 +1,5 @@
 import type { IncomingMessage, ServerResponse } from "http";
-import blogServices from "~~/utils/BlogServices";
+import { blogServices } from "~~/utils";
 import { createError, defineHandle } from "h3";
 
 export default defineHandle(

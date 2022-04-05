@@ -1,5 +1,5 @@
 import { createError, defineHandle } from "h3";
-import blogServices from "~~/utils/BlogServices";
+import { blogServices } from "~~/utils";
 
 export default defineHandle(async (req) => {
   try {

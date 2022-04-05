@@ -1,4 +1,4 @@
-import notion, { BLOG_ID } from "../vendors/notion";
+import { notion, BLOG_ID } from "~~/vendors";
 import { IPost, IPostBlock, MultiSelect, PostProperties } from "~~/interfaces";
 
 const blogServices = {
