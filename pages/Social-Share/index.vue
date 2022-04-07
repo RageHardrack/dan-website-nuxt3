@@ -25,7 +25,7 @@ definePageMeta({
         class="flex flex-col items-center justify-center w-full space-y-4 md:w-1/2"
       >
         <picture
-          class="flex w-48 h-48 overflow-hidden border-4 rounded-full md:w-60 md:h-60 border-gold"
+          class="flex overflow-hidden border-4 rounded-full w-52 h-52 md:w-72 md:h-72 border-gold"
         >
           <img
             src="~~/assets/img/perfil.jpg"
