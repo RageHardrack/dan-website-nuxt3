@@ -26,7 +26,7 @@ export default defineHandle(async (req) => {
 
     return { properties, content };
   } catch (error) {
-    console.log(error);
+    console.error(error);
     createError({
       statusCode: 500,
       message: "No se pudo obtener el contenido de la Publicación",

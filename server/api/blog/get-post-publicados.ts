@@ -15,7 +15,7 @@ export default defineHandle(
 
       return { posts };
     } catch (error) {
-      console.log(error);
+      console.error(error);
       createError({
         statusCode: 500,
         message: "No se pudieron obtener las publicaciones",

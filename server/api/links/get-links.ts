@@ -7,7 +7,7 @@ export default defineHandle(async (req) => {
 
     return { linksPages };
   } catch (error) {
-    console.log(error);
+    console.error(error);
     createError({
       statusCode: 500,
       message: "No se pudo obtener el contenido de la Publicación",
