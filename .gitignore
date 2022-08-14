@@ -5,5 +5,6 @@ requests
 nuxt.d.ts
 .output
 .env
+*.local
 .vscode
 .vercel
