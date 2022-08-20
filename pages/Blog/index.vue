@@ -10,7 +10,7 @@ definePageMeta({
 
 <template>
   <NuxtLayout>
-    <UILoadingView loadMessage="Cargando Publicaciones" v-if="pending" />
+    <LoadingPage loadMessage="Cargando Publicaciones" v-if="pending" />
 
     <section v-else class="flex flex-col justify-center space-y-4 md:space-y-8">
       <UIHeader as="h1" customClass="text-primary">Última publicación</UIHeader>

@@ -8,7 +8,7 @@ defineProps<Props>();
 
 <template>
   <section class="flex flex-col items-center justify-center space-y-4 h-[60vh]">
-    <UILoading color="primary" />
+    <Loading color="primary" />
     <UIHeader as="h2" customClass="text-primary">{{ loadMessage }}</UIHeader>
   </section>
 </template>

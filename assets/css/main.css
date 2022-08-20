@@ -17,7 +17,7 @@ textarea {
 }
 
 .router-link-active {
-  @apply text-gold font-semibold;
+  @apply text-gold font-bold;
 }
 
 /* Transitions */

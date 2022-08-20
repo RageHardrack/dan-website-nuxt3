@@ -4,13 +4,13 @@ const { data, pending } = await useLazyAsyncData("links", () =>
 );
 
 definePageMeta({
-  title: "Daniel Colmenares - Links",
+  title: "Daniel Colmenares - Social Links",
 });
 </script>
 
 <template>
   <NuxtLayout name="social">
-    <UILoadingView loadMessage="Cargando" v-if="pending" />
+    <LoadingPage loadMessage="Loading" v-if="pending" />
 
     <section
       class="container flex flex-col items-center justify-center min-h-screen space-y-4 md:space-y-8"
@@ -31,7 +31,7 @@ definePageMeta({
 
         <UIHeader as="h1" customClass="text-gold">Daniel Colmenares</UIHeader>
         <UIHeader as="h3" customClass="text-black-coffee">
-          Desarrollador Web Junior
+          Web Developer
         </UIHeader>
 
         <UIDivider />
@@ -48,11 +48,12 @@ definePageMeta({
       </ul>
 
       <p class="text-center text-black-coffee">
-        Para contactarme, enviar un email a <br />
+        Contact me email: <br />
         <a
           href="mailto:dacolmenares93@gmail.com"
           target="_blank"
           class="font-bold text-primary"
+          rel="nofollow"
         >
           dacolmenares93@gmail.com
         </a>

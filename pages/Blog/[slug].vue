@@ -14,7 +14,7 @@ const { data, pending } = await useLazyAsyncData("/api/blog/get-post/", () =>
 
 <template>
   <NuxtLayout>
-    <UILoadingView loadMessage="Cargando Publicación" v-if="pending" />
+    <LoadingPage loadMessage="Cargando Publicación" v-if="pending" />
 
     <section v-else class="flex flex-col justify-center space-y-8">
       <header class="flex flex-col space-y-4">

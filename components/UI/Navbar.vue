@@ -29,9 +29,3 @@ const toggleSideNav = inject<() => boolean>("toggleSideNav");
     </nav>
   </header>
 </template>
-
-<style scoped>
-.nuxt-link-active {
-  @apply font-bold text-gold;
-}
-</style>
