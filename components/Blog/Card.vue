@@ -2,10 +2,10 @@
 import BaseCard from "~~/components/UI-kit/Cards/BaseCard.vue";
 import Header from "~~/components/Typography/Header.vue";
 import Pill from "~~/components/UI-kit/Pills/Pill.vue";
-import { PostResponseProperties } from "~~/interfaces";
+import { IPostProperties } from "~~/interfaces";
 
 interface Props {
-  post: PostResponseProperties;
+  post: IPostProperties;
 }
 
 const { post } = defineProps<Props>();
@@ -17,7 +17,11 @@ const { Image_URL, Tags, Fecha_Publicacion, Slug, Post, Brief } = post;
   <NuxtLink :to="`/blog/${Slug}`">
     <BaseCard :isLink="true">
       <template #header>
-        <img :src="Image_URL" :alt="`${Post} cover`" class="aspect-square" />
+        <img
+          :src="String(Image_URL)"
+          :alt="`${Post} cover`"
+          class="aspect-square"
+        />
       </template>
 
       <template #content>

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Logo from "./Logo.vue";
 import { SOCIAL_MEDIA_LINKS } from "../../constantes";
 </script>
 
@@ -8,7 +7,7 @@ import { SOCIAL_MEDIA_LINKS } from "../../constantes";
     <article
       class="container flex flex-col items-center justify-center py-8 space-y-4 text-bone"
     >
-      <Logo />
+      <UILogo />
       <!-- TODO: Make my name a CTA -->
       <h2>
         Created by ⚡

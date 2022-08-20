@@ -1,9 +1,4 @@
 <script setup lang="ts">
-import LoadingView from "~~/components/Layout/LoadingView.vue";
-import Header from "~~/components/Typography/Header.vue";
-import Divider from "~~/components/Layout/Divider.vue";
-import Markdown from "~~/components/Layout/Markdown.vue";
-
 const route = useRoute();
 
 const { slug } = route.params;
@@ -19,7 +14,7 @@ const { data, pending } = await useLazyAsyncData("/api/blog/get-post/", () =>
 
 <template>
   <NuxtLayout>
-    <LoadingView loadMessage="Cargando Publicación" v-if="pending" />
+    <UILoadingView loadMessage="Cargando Publicación" v-if="pending" />
 
     <section v-else class="flex flex-col justify-center space-y-8">
       <header class="flex flex-col space-y-4">
@@ -30,13 +25,13 @@ const { data, pending } = await useLazyAsyncData("/api/blog/get-post/", () =>
             class="object-center objet-fill"
           />
         </picture>
-        <Header as="h1">{{ data.properties.Post }}</Header>
+        <UIHeader as="h1">{{ data.properties.Post }}</UIHeader>
         <p>Publicado el {{ data.properties.Fecha_Publicacion }}</p>
       </header>
 
-      <Divider />
+      <UIDivider />
 
-      <Markdown :content="data.content" />
+      <UIMarkdown :content="data.content" />
     </section>
   </NuxtLayout>
 </template>

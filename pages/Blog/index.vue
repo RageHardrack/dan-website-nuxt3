@@ -1,9 +1,5 @@
 <script setup lang="ts">
-import MainBlogCard from "~~/components/Pages/Blog/MainBlogCard.vue";
-import LoadingView from "~~/components/Layout/LoadingView.vue";
-import BlogCard from "~~/components/Pages/Blog/BlogCard.vue";
-import Header from "~~/components/Typography/Header.vue";
-import Grid from "~~/components/Layout/Grid.vue";
+import { IPostProperties } from "~~/interfaces";
 
 const { data, pending } = await useLazyAsyncData("posts", () =>
   $fetch("/api/blog/get-post-publicados")
@@ -16,24 +12,26 @@ definePageMeta({
 
 <template>
   <NuxtLayout>
-    <LoadingView loadMessage="Cargando Publicaciones" v-if="pending" />
+    <UILoadingView loadMessage="Cargando Publicaciones" v-if="pending" />
 
     <section v-else class="flex flex-col justify-center space-y-4 md:space-y-8">
-      <Header as="h1" customClass="text-primary">Última publicación</Header>
+      <UIHeader as="h1" customClass="text-primary">Última publicación</UIHeader>
 
-      <MainBlogCard :post="data.posts.slice(0, 1)[0].properties" />
+      <BlogMainCard
+        :post="(data.posts.slice(0, 1)[0].properties as IPostProperties)"
+      />
 
-      <Header as="h2" customClass="text-black-coffee">
+      <UIHeader as="h2" customClass="text-black-coffee">
         Publicaciones anteriores
-      </Header>
+      </UIHeader>
 
-      <Grid>
+      <UIGrid>
         <BlogCard
           v-for="{ properties, id } in data.posts.slice(1)"
-          :post="properties"
+          :post="(properties as IPostProperties)"
           :key="id"
         />
-      </Grid>
+      </UIGrid>
     </section>
   </NuxtLayout>
 </template>

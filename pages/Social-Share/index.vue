@@ -1,9 +1,4 @@
 <script setup lang="ts">
-import LoadingView from "~~/components/Layout/LoadingView.vue";
-import Header from "~~/components/Typography/Header.vue";
-import Divider from "~~/components/Layout/Divider.vue";
-import LinkButton from "~~/components/Pages/SocialShare/LinkButton.vue";
-
 const { data, pending } = await useLazyAsyncData("links", () =>
   $fetch("/api/links/get-links")
 );
@@ -15,7 +10,7 @@ definePageMeta({
 
 <template>
   <NuxtLayout name="social">
-    <LoadingView loadMessage="Cargando" v-if="pending" />
+    <UILoadingView loadMessage="Cargando" v-if="pending" />
 
     <section
       class="container flex flex-col items-center justify-center min-h-screen space-y-4 md:space-y-8"
@@ -34,22 +29,22 @@ definePageMeta({
           />
         </picture>
 
-        <Header as="h1" customClass="text-gold">Daniel Colmenares</Header>
-        <Header as="h3" customClass="text-black-coffee">
+        <UIHeader as="h1" customClass="text-gold">Daniel Colmenares</UIHeader>
+        <UIHeader as="h3" customClass="text-black-coffee">
           Desarrollador Web Junior
-        </Header>
+        </UIHeader>
 
-        <Divider />
+        <UIDivider />
       </header>
 
       <ul class="flex flex-col items-center justify-center w-full space-y-4">
-        <LinkButton
+        <UIButtonLinkExternal
           v-for="{ Link, Name, Orden } in data.linksPages"
           :key="Orden"
           :enlace="Link"
         >
           {{ Name }}
-        </LinkButton>
+        </UIButtonLinkExternal>
       </ul>
 
       <p class="text-center text-black-coffee">

@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import MenuButton from "../UI-kit/Buttons/MenuButton.vue";
 import { ROUTES_LINKS } from "../../constantes";
-import Logo from "./Logo.vue";
 
 const toggleSideNav = inject<() => boolean>("toggleSideNav");
 </script>
@@ -10,7 +8,7 @@ const toggleSideNav = inject<() => boolean>("toggleSideNav");
   <header class="flex items-center h-24 bg-primary">
     <nav class="container flex items-center justify-between py-2">
       <NuxtLink to="/">
-        <Logo />
+        <UILogo />
       </NuxtLink>
 
       <ul
@@ -27,7 +25,7 @@ const toggleSideNav = inject<() => boolean>("toggleSideNav");
         </li>
       </ul>
 
-      <MenuButton @pressButton="toggleSideNav" class="flex md:hidden" />
+      <UIButtonMenu @pressButton="toggleSideNav" class="flex md:hidden" />
     </nav>
   </header>
 </template>

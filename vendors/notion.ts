@@ -1,5 +1,5 @@
 import { Client } from "@notionhq/client";
-import { HttpAdapter } from "../interfaces/HttpAdapter";
+import { HttpAdapter } from "~~/interfaces";
 
 export const DATABASES_ID = {
   HOME_ID: process.env.NOTION_HOME_ID as string,

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import CrossSvg from "../UI-kit/Icons/CrossSvg.vue";
 import { ROUTES_LINKS } from "../../constantes";
 
 const toggleSideNav = inject<() => boolean>("toggleSideNav");
@@ -12,7 +11,7 @@ const toggleSideNav = inject<() => boolean>("toggleSideNav");
         @click="toggleSideNav"
         class="flex items-center justify-center rounded-full bg-black-coffee"
       >
-        <CrossSvg customClass="text-gold w-8 h-8" />
+        <UIIconCrossSvg customClass="text-gold w-8 h-8" />
       </button>
     </header>
 

@@ -1,8 +1,4 @@
 <script setup lang="ts">
-import Navbar from "~~/components/Layout/Navbar.vue";
-import SideNav from "~~/components/Layout/SideNav.vue";
-import Footer from "~~/components/Layout/Footer.vue";
-
 const route = useRoute();
 const sideNav = ref<boolean>(false);
 
@@ -18,16 +14,16 @@ useMeta({
 
 <template>
   <section class="flex flex-col justify-between min-h-screen">
-    <Navbar />
+    <UINavbar />
 
     <transition name="left">
-      <SideNav v-if="sideNav" />
+      <UISideNav v-if="sideNav" />
     </transition>
 
     <main class="container flex-1 py-8">
       <slot />
     </main>
 
-    <Footer />
+    <UIFooter />
   </section>
 </template>

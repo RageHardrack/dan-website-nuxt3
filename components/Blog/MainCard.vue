@@ -1,12 +1,9 @@
 <script setup lang="ts">
-import WideCard from "../../UI-kit/Cards/WideCard.vue";
-import Header from "../../Typography/Header.vue";
-import Pill from "../../UI-kit/Pills/Pill.vue";
-import { PostResponseProperties } from "~~/interfaces";
+import { IPostProperties } from "~~/interfaces";
 // import { DateTime } from "luxon";
 
 interface Props {
-  post: PostResponseProperties;
+  post: IPostProperties;
 }
 
 const { post } = defineProps<Props>();
@@ -16,29 +13,29 @@ const { Image_URL, Tags, Fecha_Publicacion, Slug, Post, Brief } = post;
 
 <template>
   <NuxtLink :to="`/blog/${Slug}`">
-    <WideCard :isLink="true">
+    <CardWide :isLink="true">
       <template #aside>
         <img
-          :src="Image_URL"
+          :src="String(Image_URL)"
           :alt="`${Post} cover`"
           class="object-cover w-full rounded-lg aspect-square"
         />
       </template>
 
       <template #header>
-        <Pill v-for="(name, idx) in Tags" :key="idx" customClass="mr-2 mb-2">
-          {{ name }}</Pill
+        <UIPill v-for="(name, idx) in Tags" :key="idx" customClass="mr-2 mb-2">
+          {{ name }}</UIPill
         >
       </template>
 
       <template #content>
-        <Header as="h2" customClass="text-gold">{{ Post }}</Header>
+        <UIHeader as="h2" customClass="text-gold">{{ Post }}</UIHeader>
         <p class="text-black-coffee">{{ Brief }}</p>
       </template>
 
       <template #footer>
         <p class="text-black-coffee">Publicado el {{ Fecha_Publicacion }}</p>
       </template>
-    </WideCard>
+    </CardWide>
   </NuxtLink>
 </template>

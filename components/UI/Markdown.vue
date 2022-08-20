@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { BLOCK_ENUM } from "~~/constantes";
 import { IPostBlock } from "~~/interfaces";
-import Header from "../Typography/Header.vue";
 
 interface Props {
   content: IPostBlock[];
@@ -15,13 +14,13 @@ const { content } = defineProps<Props>();
     <template v-for="({ type, body, caption }, idx) in content" :key="idx">
       <!-- HEADERS -->
       <template v-if="type === 'heading_1'">
-        <Header as="h1">{{ body }}</Header>
+        <UIHeader as="h1">{{ body }}</UIHeader>
       </template>
       <template v-if="type === 'heading_2'">
-        <Header as="h2">{{ body }}</Header>
+        <UIHeader as="h2">{{ body }}</UIHeader>
       </template>
       <template v-if="type === 'heading_3'">
-        <Header as="h3">{{ body }}</Header>
+        <UIHeader as="h3">{{ body }}</UIHeader>
       </template>
 
       <!-- PARAGRAPH -->
