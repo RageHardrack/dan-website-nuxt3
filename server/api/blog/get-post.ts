@@ -8,9 +8,7 @@ export default defineHandle(async (req, res) => {
 
     const pages = await BlogService.findAll();
 
-    const current = pages.find(
-      (r: IPost) => r.properties.Slug["rich_text"][0]["plain_text"] == slug
-    );
+    const current = pages.find((page: IPost) => page.properties.Slug == slug);
 
     if (!current) {
       return sendError(
