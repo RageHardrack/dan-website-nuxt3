@@ -29,12 +29,10 @@ definePageMeta({
           />
         </picture>
 
-        <UIHeader as="h1" customClass="text-gold">Daniel Colmenares</UIHeader>
-        <UIHeader as="h3" customClass="text-black-coffee">
-          Web Developer
-        </UIHeader>
+        <Heading1 customClass="text-gold">Daniel Colmenares</Heading1>
+        <Heading3 customClass="text-black-coffee"> Web Developer </Heading3>
 
-        <UIDivider />
+        <Divider />
       </header>
 
       <ul class="flex flex-col items-center justify-center w-full space-y-4">

@@ -14,13 +14,13 @@ const { content } = defineProps<Props>();
     <template v-for="({ type, body, caption }, idx) in content" :key="idx">
       <!-- HEADERS -->
       <template v-if="type === 'heading_1'">
-        <UIHeader as="h1">{{ body }}</UIHeader>
+        <UIHeading as="h1">{{ body }}</UIHeading>
       </template>
       <template v-if="type === 'heading_2'">
-        <UIHeader as="h2">{{ body }}</UIHeader>
+        <UIHeading as="h2">{{ body }}</UIHeading>
       </template>
       <template v-if="type === 'heading_3'">
-        <UIHeader as="h3">{{ body }}</UIHeader>
+        <UIHeading as="h3">{{ body }}</UIHeading>
       </template>
 
       <!-- PARAGRAPH -->

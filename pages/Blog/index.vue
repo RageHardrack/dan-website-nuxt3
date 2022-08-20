@@ -13,13 +13,13 @@ definePageMeta({
     <LoadingPage loadMessage="Cargando Publicaciones" v-if="pending" />
 
     <section v-else class="flex flex-col justify-center space-y-4 md:space-y-8">
-      <UIHeader as="h1" customClass="text-primary">Última publicación</UIHeader>
+      <Heading1 customClass="text-primary">Última publicación</Heading1>
 
       <BlogMainCard :post="data.posts.slice(0, 1)[0].properties" />
 
-      <UIHeader as="h2" customClass="text-black-coffee">
+      <Heading2 customClass="text-black-coffee">
         Publicaciones anteriores
-      </UIHeader>
+      </Heading2>
 
       <UIGrid>
         <BlogCard

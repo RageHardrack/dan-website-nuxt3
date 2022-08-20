@@ -18,7 +18,7 @@ const { Image_URL, Tags, Fecha_Publicacion, Slug, Post, Brief } = post;
       </template>
 
       <template #content>
-        <UIHeader as="h2" customClass="text-gold">{{ Post }}</UIHeader>
+        <Heading2 customClass="text-gold">{{ Post }}</Heading2>
         <p class="text-gray-400">Publicado el {{ Fecha_Publicacion }}</p>
         <p class="text-bone">{{ Brief }}</p>
       </template>

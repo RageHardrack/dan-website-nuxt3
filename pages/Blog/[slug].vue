@@ -25,13 +25,13 @@ const { data, pending } = await useLazyAsyncData("/api/blog/get-post/", () =>
             class="object-center objet-fill"
           />
         </picture>
-        <UIHeader as="h1">{{ data.properties.Post }}</UIHeader>
+        <Heading1>{{ data.properties.Post }}</Heading1>
         <p>Publicado el {{ data.properties.Fecha_Publicacion }}</p>
       </header>
 
-      <UIDivider />
+      <Divider />
 
-      <UIMarkdown :content="data.content" />
+      <Markdown :content="data.content" />
     </section>
   </NuxtLayout>
 </template>

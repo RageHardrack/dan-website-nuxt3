@@ -27,11 +27,11 @@ class BlogServices {
       }
     );
 
-    const pages = results.map((item: PostResponse) => {
+    const pages = results.map((page: PostResponse) => {
       return {
-        object: item.object,
-        id: item.id,
-        properties: postPropertiesTransformer(item.properties),
+        object: page.object,
+        id: page.id,
+        properties: postPropertiesTransformer(page.properties),
       };
     });
 
