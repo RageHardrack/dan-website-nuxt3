@@ -2,10 +2,10 @@
 import BaseCard from "~~/components/UI-kit/Cards/BaseCard.vue";
 import Header from "~~/components/Typography/Header.vue";
 import Pill from "~~/components/UI-kit/Pills/Pill.vue";
-import { PostProperties } from "~~/interfaces";
+import { PostResponseProperties } from "~~/interfaces";
 
 interface Props {
-  post: PostProperties;
+  post: PostResponseProperties;
 }
 
 const { post } = defineProps<Props>();

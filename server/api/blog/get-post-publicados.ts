@@ -1,25 +1,20 @@
-import type { IncomingMessage, ServerResponse } from "http";
-import { blogServices } from "~~/services";
+import { BlogService } from "~~/services";
 import { createError, defineHandle } from "h3";
 
-export default defineHandle(
-  async (req: IncomingMessage, res: ServerResponse) => {
-    try {
-      const pages = await blogServices.fetchBlogDatabase();
+export default defineHandle(async (_req, _res) => {
+  try {
+    const pages = await BlogService.findAll();
 
-      const promises = pages.map((page) => {
-        return blogServices.fetchPostById(page.id);
-      });
+    const promises = pages.map((page) => BlogService.findOne(page.id));
 
-      const posts = await Promise.all(promises);
+    const posts = await Promise.all(promises);
 
-      return { posts };
-    } catch (error) {
-      console.error(error);
-      createError({
-        statusCode: 500,
-        message: "No se pudieron obtener las publicaciones",
-      });
-    }
+    return { posts };
+  } catch (error) {
+    console.error(error);
+    createError({
+      statusCode: 500,
+      message: error.message,
+    });
   }
-);
+});

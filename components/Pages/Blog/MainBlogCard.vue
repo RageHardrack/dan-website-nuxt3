@@ -2,11 +2,11 @@
 import WideCard from "../../UI-kit/Cards/WideCard.vue";
 import Header from "../../Typography/Header.vue";
 import Pill from "../../UI-kit/Pills/Pill.vue";
-import { PostProperties } from "~~/interfaces";
+import { PostResponseProperties } from "~~/interfaces";
 // import { DateTime } from "luxon";
 
 interface Props {
-  post: PostProperties;
+  post: PostResponseProperties;
 }
 
 const { post } = defineProps<Props>();

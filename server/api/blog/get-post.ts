@@ -1,11 +1,11 @@
 import { createError, defineHandle } from "h3";
-import { blogServices } from "~~/services";
+import { BlogService } from "~~/services";
 
 export default defineHandle(async (req) => {
   try {
     const slug = req.url.substring(1) as string;
 
-    const pages = await blogServices.fetchBlogDatabase();
+    const pages = await BlogService.findAll();
 
     const current = pages.find(
       (r: any) => r.properties.Slug["rich_text"][0]["plain_text"] == slug
@@ -18,11 +18,9 @@ export default defineHandle(async (req) => {
       });
     }
 
-    const { properties, id: pageId } = await blogServices.fetchPostById(
-      current.id
-    );
+    const { properties, id: pageId } = await BlogService.findOne(current.id);
 
-    const content = await blogServices.fetchPostContent(pageId);
+    const content = await BlogService.getPostContent(pageId);
 
     return { properties, content };
   } catch (error) {

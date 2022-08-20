@@ -1,34 +1,27 @@
-import { Link } from "~~/interfaces";
-import { notion, LINK_TREE_ID } from "~~/vendors";
+import { Notion, DATABASES_ID, NotionClient } from "~~/vendors";
+import { Link, LinkProperties } from "~~/interfaces";
 
 class LinkServices {
   constructor(
-    private readonly databaseId: string,
-    private readonly NotionClient: any
+    private readonly NotionClient: NotionClient,
+    private readonly databaseId: string
   ) {}
 
-  private async queryDatabase() {
-    const { results } = await this.NotionClient.databases.query({
-      database_id: this.databaseId,
+  async findAll() {
+    const res = await this.NotionClient.getDatabase<Link[]>(this.databaseId, {
       sorts: [{ property: "Orden", direction: "ascending" }],
     });
 
-    return results as Link[];
-  }
-
-  async findAll() {
-    const res = await this.queryDatabase();
-
     return res
-      .map((link: any) => link.properties)
-      .map((property) => {
+      .map((link: Link) => link.properties)
+      .map((property: LinkProperties) => {
         return {
-          Link: property.Link.url as string,
-          Orden: property.Orden.number as string,
-          Name: property.Name.title[0].plain_text as string,
+          Link: property.Link.url,
+          Orden: property.Orden.number,
+          Name: property.Name.title[0].plain_text,
         };
       });
   }
 }
 
-export const LinkService = new LinkServices(LINK_TREE_ID, notion);
+export const LinkService = new LinkServices(Notion, DATABASES_ID.LINK_TREE_ID);

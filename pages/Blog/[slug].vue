@@ -11,9 +11,9 @@ const { data, pending } = await useLazyAsyncData("/api/blog/get-post/", () =>
   $fetch(`/api/blog/get-post/${slug}`)
 );
 
-// definePageMeta({
-//   title: computed(() => `Daniel Colmenares - ${data.value.properties.Post}`),
-// });
+definePageMeta({
+  title: computed(() => `Daniel Colmenares - ${data.value.properties.Post}`),
+});
 </script>
 
 <template>
@@ -22,13 +22,13 @@ const { data, pending } = await useLazyAsyncData("/api/blog/get-post/", () =>
 
     <section v-else class="flex flex-col justify-center space-y-8">
       <header class="flex flex-col space-y-4">
-        <div class="w-full md:h-[400px] overflow-hidden">
+        <picture class="w-full md:h-[400px] overflow-hidden">
           <img
             :src="data.properties.Image_URL"
             :alt="`Banner ${data.properties.Post}`"
-            class="object-bottom objet-cover"
+            class="object-center objet-fill"
           />
-        </div>
+        </picture>
         <Header as="h1">{{ data.properties.Post }}</Header>
         <p>Publicado el {{ data.properties.Fecha_Publicacion }}</p>
       </header>
