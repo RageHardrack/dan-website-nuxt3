@@ -11,9 +11,10 @@ const { data, pending } = await useLazyAsyncData("/api/blog/get-post/", () =>
   $fetch(`/api/blog/get-post/${slug}`)
 );
 
-definePageMeta({
-  title: computed(() => `Daniel Colmenares - ${data.value.properties.Post}`),
-});
+// TODO: Research Meta SEO for blogs
+// definePageMeta({
+//   title: computed(() => `Daniel Colmenares - ${data.value.properties.Post}`),
+// });
 </script>
 
 <template>
@@ -24,7 +25,7 @@ definePageMeta({
       <header class="flex flex-col space-y-4">
         <picture class="w-full md:h-[400px] overflow-hidden">
           <img
-            :src="data.properties.Image_URL"
+            :src="String(data.properties.Image_URL)"
             :alt="`Banner ${data.properties.Post}`"
             class="object-center objet-fill"
           />

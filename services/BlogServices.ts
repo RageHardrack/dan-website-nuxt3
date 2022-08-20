@@ -54,13 +54,17 @@ class BlogServices {
     return { object: page.object, id: page.id, properties };
   }
 
-  async getPostContent(blockId: string): Promise<IPostBlock> {
-    const { results } = await this.NotionClient.getPageContent(blockId, {
-      page_size: 100,
-    });
+  async getPostContent(blockId: string): Promise<IPostBlock[]> {
+    // TODO: Type block content Response
+    const listBlockChildren = await this.NotionClient.getPageContent<any[]>(
+      blockId,
+      {
+        page_size: 100,
+      }
+    );
 
     // TODO: Type block content
-    return results.map((block: any) => {
+    return listBlockChildren.map((block: any) => {
       return {
         type: block.type,
         body:

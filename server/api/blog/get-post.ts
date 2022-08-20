@@ -1,7 +1,7 @@
-import { createError, defineHandle } from "h3";
+import { sendError, createError, defineHandle } from "h3";
 import { BlogService } from "~~/services";
 
-export default defineHandle(async (req) => {
+export default defineHandle(async (req, res) => {
   try {
     const slug = req.url.substring(1) as string;
 
@@ -12,10 +12,13 @@ export default defineHandle(async (req) => {
     );
 
     if (!current) {
-      createError({
-        statusCode: 404,
-        message: "No se pudo obtener el contenido de la Publicación",
-      });
+      return sendError(
+        res,
+        createError({
+          statusCode: 404,
+          message: "No se pudo obtener el contenido de la Publicación",
+        })
+      );
     }
 
     const { properties, id: pageId } = await BlogService.findOne(current.id);
@@ -25,9 +28,10 @@ export default defineHandle(async (req) => {
     return { properties, content };
   } catch (error) {
     console.error(error);
-    createError({
+    sendError(
+      res,createError({
       statusCode: 500,
       message: "No se pudo obtener el contenido de la Publicación",
-    });
+    }));
   }
 });

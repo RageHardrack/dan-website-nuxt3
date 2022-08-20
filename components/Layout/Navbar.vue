@@ -14,9 +14,13 @@ const toggleSideNav = inject<() => boolean>("toggleSideNav");
       </NuxtLink>
 
       <ul
-        class="items-center justify-center hidden space-x-4 font-bold md:flex text-bone"
+        class="items-center justify-center hidden space-x-4 md:flex text-bone"
       >
-        <li v-for="{ title, path } in ROUTES_LINKS" :key="title">
+        <li
+          v-for="{ title, path } in ROUTES_LINKS"
+          :key="title"
+          class="transition duration-300 ease-in-out hover:text-gold"
+        >
           <NuxtLink :to="path">
             {{ title }}
           </NuxtLink>
@@ -27,3 +31,9 @@ const toggleSideNav = inject<() => boolean>("toggleSideNav");
     </nav>
   </header>
 </template>
+
+<style scoped>
+.nuxt-link-active {
+  @apply font-bold text-gold;
+}
+</style>

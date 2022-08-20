@@ -1,7 +1,8 @@
 export const ROUTES_LINKS = [
-  { title: "Acerca", path: "/about" },
+  { title: "About me", path: "/about" },
   { title: "Blog", path: "/blog" },
-  { title: "Enlaces", path: "/social-share" },
+  { title: "Portfolio", path: "/portfolio" },
+  { title: "Links", path: "/social-share" },
 ];
 
 export const SOCIAL_MEDIA_LINKS = [
