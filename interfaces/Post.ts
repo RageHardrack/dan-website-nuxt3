@@ -62,4 +62,5 @@ export interface IPostBlock {
   type: string;
   body: string;
   caption: string;
+  emoji?: string;
 }
