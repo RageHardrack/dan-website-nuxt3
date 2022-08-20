@@ -1,11 +1,6 @@
 import { Notion, DATABASES_ID, NotionClient } from "~~/vendors";
-import {
-  PostResponse,
-  IPostBlock,
-  Tag,
-  IPostProperties,
-  IPost,
-} from "~~/interfaces";
+import { PostResponse, IPostBlock, IPost } from "~~/interfaces";
+import { postPropertiesTransformer } from "~~/utils";
 
 class BlogServices {
   constructor(
@@ -36,16 +31,7 @@ class BlogServices {
       return {
         object: item.object,
         id: item.id,
-        properties: {
-          Tags: item.properties.Tags.multi_select.map((tag: Tag) => tag.name),
-          Image_URL: item.properties.Image_URL.url,
-          Status: item.properties.Status.select.name,
-          Slug: item.properties.Slug.rich_text[0].plain_text,
-          Fecha_Publicacion: item.properties.Fecha_Publicacion.date.start,
-          Brief: item.properties.Brief.rich_text[0].plain_text,
-          Post: item.properties.Post.title[0].plain_text,
-          Prevent_Index: item.properties.Prevent_Index.checkbox,
-        },
+        properties: postPropertiesTransformer(item.properties),
       };
     });
 
@@ -55,16 +41,7 @@ class BlogServices {
   async findOne(pageId: string): Promise<IPost> {
     const page = await this.NotionClient.getPage<PostResponse>(pageId);
 
-    const properties: IPostProperties = {
-      Tags: page.properties.Tags.multi_select.map((item: Tag) => item.name),
-      Image_URL: page.properties.Image_URL.url,
-      Status: page.properties.Status.select.name,
-      Slug: page.properties.Slug.rich_text[0].plain_text,
-      Fecha_Publicacion: page.properties.Fecha_Publicacion.date.start,
-      Brief: page.properties.Brief.rich_text[0].plain_text,
-      Post: page.properties.Post.title[0].plain_text,
-      Prevent_Index: page.properties.Prevent_Index.checkbox,
-    };
+    const properties = postPropertiesTransformer(page.properties);
 
     return { object: page.object, id: page.id, properties };
   }

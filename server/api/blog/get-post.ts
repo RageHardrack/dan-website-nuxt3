@@ -1,4 +1,5 @@
 import { sendError, createError, defineHandle } from "h3";
+import { IPost } from "~~/interfaces";
 import { BlogService } from "~~/services";
 
 export default defineHandle(async (req, res) => {
@@ -8,7 +9,7 @@ export default defineHandle(async (req, res) => {
     const pages = await BlogService.findAll();
 
     const current = pages.find(
-      (r: any) => r.properties.Slug["rich_text"][0]["plain_text"] == slug
+      (r: IPost) => r.properties.Slug["rich_text"][0]["plain_text"] == slug
     );
 
     if (!current) {
@@ -29,9 +30,11 @@ export default defineHandle(async (req, res) => {
   } catch (error) {
     console.error(error);
     sendError(
-      res,createError({
-      statusCode: 500,
-      message: "No se pudo obtener el contenido de la Publicación",
-    }));
+      res,
+      createError({
+        statusCode: 500,
+        message: "No se pudo obtener el contenido de la Publicación",
+      })
+    );
   }
 });
