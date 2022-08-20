@@ -39,7 +39,7 @@ export interface PostResponseProperties {
 export interface IPost {
   object: string;
   id: string;
-  properties: PostResponseProperties | IPostProperties;
+  properties: IPostProperties;
 }
 
 export interface IPostProperties {

@@ -20,7 +20,7 @@ const { data, pending } = await useLazyAsyncData("/api/blog/get-post/", () =>
       <header class="flex flex-col space-y-4">
         <picture class="w-full md:h-[400px] overflow-hidden">
           <img
-            :src="String(data.properties.Image_URL)"
+            :src="data.properties.Image_URL"
             :alt="`Banner ${data.properties.Post}`"
             class="object-center objet-fill"
           />

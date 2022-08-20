@@ -32,9 +32,24 @@ class BlogServices {
       }
     );
 
-    return results.map((item: PostResponse) => {
-      return { object: item.object, id: item.id, properties: item.properties };
+    const pages = results.map((item: PostResponse) => {
+      return {
+        object: item.object,
+        id: item.id,
+        properties: {
+          Tags: item.properties.Tags.multi_select.map((tag: Tag) => tag.name),
+          Image_URL: item.properties.Image_URL.url,
+          Status: item.properties.Status.select.name,
+          Slug: item.properties.Slug.rich_text[0].plain_text,
+          Fecha_Publicacion: item.properties.Fecha_Publicacion.date.start,
+          Brief: item.properties.Brief.rich_text[0].plain_text,
+          Post: item.properties.Post.title[0].plain_text,
+          Prevent_Index: item.properties.Prevent_Index.checkbox,
+        },
+      };
     });
+
+    return pages;
   }
 
   async findOne(pageId: string): Promise<IPost> {

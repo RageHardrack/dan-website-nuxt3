@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import BaseCard from "~~/components/UI-kit/Cards/BaseCard.vue";
-import Header from "~~/components/Typography/Header.vue";
-import Pill from "~~/components/UI-kit/Pills/Pill.vue";
 import { IPostProperties } from "~~/interfaces";
 
 interface Props {
@@ -15,26 +12,22 @@ const { Image_URL, Tags, Fecha_Publicacion, Slug, Post, Brief } = post;
 
 <template>
   <NuxtLink :to="`/blog/${Slug}`">
-    <BaseCard :isLink="true">
+    <UICardBase :isLink="true">
       <template #header>
-        <img
-          :src="String(Image_URL)"
-          :alt="`${Post} cover`"
-          class="aspect-square"
-        />
+        <img :src="Image_URL" :alt="`${Post} cover`" class="aspect-square" />
       </template>
 
       <template #content>
-        <Header as="h2" customClass="text-gold">{{ Post }}</Header>
+        <UIHeader as="h2" customClass="text-gold">{{ Post }}</UIHeader>
         <p class="text-gray-400">Publicado el {{ Fecha_Publicacion }}</p>
         <p class="text-bone">{{ Brief }}</p>
       </template>
 
       <template #footer>
-        <Pill v-for="(name, idx) in Tags" :key="idx" customClass="mr-2 mb-2">
-          {{ name }}</Pill
+        <UIPill v-for="(name, idx) in Tags" :key="idx" customClass="mr-2 mb-2">
+          {{ name }}</UIPill
         >
       </template>
-    </BaseCard>
+    </UICardBase>
   </NuxtLink>
 </template>

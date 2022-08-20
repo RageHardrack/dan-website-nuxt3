@@ -13,10 +13,10 @@ const { Image_URL, Tags, Fecha_Publicacion, Slug, Post, Brief } = post;
 
 <template>
   <NuxtLink :to="`/blog/${Slug}`">
-    <CardWide :isLink="true">
+    <UICardWide :isLink="true">
       <template #aside>
         <img
-          :src="String(Image_URL)"
+          :src="Image_URL"
           :alt="`${Post} cover`"
           class="object-cover w-full rounded-lg aspect-square"
         />
@@ -36,6 +36,6 @@ const { Image_URL, Tags, Fecha_Publicacion, Slug, Post, Brief } = post;
       <template #footer>
         <p class="text-black-coffee">Publicado el {{ Fecha_Publicacion }}</p>
       </template>
-    </CardWide>
+    </UICardWide>
   </NuxtLink>
 </template>
