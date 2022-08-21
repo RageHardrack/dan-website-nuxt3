@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { SOCIAL_MEDIA_LINKS, UTILS_LINKS } from "../../constantes";
+import { SOCIAL_MEDIA_LINKS, UTILS_LINKS } from "~~/constantes";
 </script>
 
 <template>
@@ -8,7 +8,7 @@ import { SOCIAL_MEDIA_LINKS, UTILS_LINKS } from "../../constantes";
       class="container flex flex-col items-center justify-center py-8 space-y-4 text-bone"
     >
       <UILogo />
-      <Heading3>
+      <h2>
         Created by ⚡
         <a
           :href="UTILS_LINKS[0].url"
@@ -19,7 +19,7 @@ import { SOCIAL_MEDIA_LINKS, UTILS_LINKS } from "../../constantes";
           Daniel Colmenares
         </a>
         ⚡
-      </Heading3>
+      </h2>
 
       <section class="flex items-center justify-center space-x-4">
         <a

@@ -5,7 +5,7 @@ const toggleSideNav = inject<() => boolean>("toggleSideNav");
 </script>
 
 <template>
-  <aside class="fixed inset-0 flex flex-col bg-bone md:hidden">
+  <aside class="fixed inset-0 z-20 flex flex-col bg-bone md:hidden">
     <header class="container flex items-center justify-end h-24 bg-primary">
       <button
         @click="toggleSideNav"
