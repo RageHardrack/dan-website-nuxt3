@@ -8,7 +8,9 @@ const { customClass = "" } = defineProps<Props>();
 
 <template>
   <h2
-    :class="`text-xl sm:text-2xl font-semibold font-sans leading-8 ${customClass}`"
+    :class="`text-xl sm:text-2xl font-semibold font-sans leading-8 ${
+      customClass || ''
+    }`"
   >
     <slot />
   </h2>
