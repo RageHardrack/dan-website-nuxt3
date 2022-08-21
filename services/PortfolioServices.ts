@@ -1,9 +1,11 @@
 import { Notion, DATABASES_ID, NotionClient } from "~~/vendors";
 import {
+  ChildDatabase,
   ContentBlock,
   IProject,
   ISkill,
   ProjectResponse,
+  RawContentBlock,
   SkillResponse,
 } from "~~/interfaces";
 import {
@@ -17,12 +19,21 @@ class PortfolioServices {
     private readonly databaseId: string
   ) {}
 
-  async findAllChildDatabases(): Promise<ContentBlock[]> {
-    const blocks = await this.NotionClient.getPageContent<ContentBlock[]>(
+  async findAllChildDatabases(): Promise<ChildDatabase[]> {
+    const blocks = await this.NotionClient.getPageContent<RawContentBlock[]>(
       this.databaseId
     );
 
-    return blocks;
+    const childDatabases: ChildDatabase[] = blocks.map((block) => {
+      return {
+        object: block.object,
+        id: block.id,
+        type: block.type,
+        title: block["child_database"].title,
+      };
+    });
+
+    return childDatabases;
   }
 
   async findProjects(blockId: string): Promise<IProject[]> {
