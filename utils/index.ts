@@ -1,1 +1,1 @@
-export * from "./postPropertiesTransformer";
+export * from "./transformers";

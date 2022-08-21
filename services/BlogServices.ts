@@ -1,5 +1,5 @@
 import { Notion, DATABASES_ID, NotionClient } from "~~/vendors";
-import { PostResponse, IPostBlock, IPost } from "~~/interfaces";
+import { PostResponse, IPostBlock, IPost, ContentBlock } from "~~/interfaces";
 import { postPropertiesTransformer } from "~~/utils";
 
 class BlogServices {
@@ -47,16 +47,13 @@ class BlogServices {
   }
 
   async getPostContent(blockId: string): Promise<IPostBlock[]> {
-    // TODO: Type block content Response
-    const listBlockChildren = await this.NotionClient.getPageContent<any[]>(
-      blockId,
-      {
-        page_size: 100,
-      }
-    );
+    const listBlockChildren = await this.NotionClient.getPageContent<
+      ContentBlock[]
+    >(blockId, {
+      page_size: 100,
+    });
 
-    // TODO: Type block content
-    return listBlockChildren.map((block: any) => {
+    return listBlockChildren.map((block: ContentBlock) => {
       return {
         type: block.type,
         body:
