@@ -12,7 +12,7 @@ const { Image_URL, Tags, Fecha_Publicacion, Slug, Post, Brief } = post;
 
 <template>
   <NuxtLink :to="`/blog/${Slug}`">
-    <UICardBase :isLink="true">
+    <UICard :isLink="true">
       <template #header>
         <img :src="Image_URL" :alt="`${Post} cover`" class="aspect-square" />
       </template>
@@ -28,6 +28,6 @@ const { Image_URL, Tags, Fecha_Publicacion, Slug, Post, Brief } = post;
           {{ name }}</UIPill
         >
       </template>
-    </UICardBase>
+    </UICard>
   </NuxtLink>
 </template>

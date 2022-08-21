@@ -1,14 +1,17 @@
 <script setup lang="ts">
 interface Props {
   isLink?: boolean;
+  color?: string;
 }
 
-const { isLink = false } = defineProps<Props>();
+const { isLink = false, color = "primary" } = defineProps<Props>();
 </script>
 
 <template>
   <article
-    :class="`flex flex-col justify-between space-y-4 duration-300 transform rounded-lg shadow-lg bg-primary hover:scale-105 overflow-hidden ${
+    :class="`flex flex-col justify-between space-y-4 duration-300 transform rounded-lg shadow-lg bg-${
+      color || 'primary'
+    } hover:scale-105 overflow-hidden ${
       isLink ? 'cursor-pointer' : 'cursor-auto'
     }`"
   >
