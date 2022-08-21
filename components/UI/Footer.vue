@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { SOCIAL_MEDIA_LINKS } from "../../constantes";
+import { SOCIAL_MEDIA_LINKS, UTILS_LINKS } from "../../constantes";
 </script>
 
 <template>
@@ -8,20 +8,25 @@ import { SOCIAL_MEDIA_LINKS } from "../../constantes";
       class="container flex flex-col items-center justify-center py-8 space-y-4 text-bone"
     >
       <UILogo />
-      <!-- TODO: Make my name a CTA -->
-      <h2>
+      <Heading3>
         Created by ⚡
-        <span class="font-semibold underline text-electric"
-          >Daniel Colmenares</span
+        <a
+          :href="UTILS_LINKS[0].url"
+          target="_blank"
+          rel="nofollow"
+          class="font-semibold underline text-electric"
         >
+          Daniel Colmenares
+        </a>
         ⚡
-      </h2>
+      </Heading3>
 
       <section class="flex items-center justify-center space-x-4">
         <a
           v-for="{ social, url } in SOCIAL_MEDIA_LINKS"
           :key="social"
           target="_blank"
+          rel="nofollow"
           :href="url"
           class="transition duration-300 hover:text-gold"
         >

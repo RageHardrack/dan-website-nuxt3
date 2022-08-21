@@ -46,7 +46,7 @@ definePageMeta({
       </ul>
 
       <p class="text-center text-black-coffee">
-        Contact me email: <br />
+        Contact me: <br />
         <a
           href="mailto:dacolmenares93@gmail.com"
           target="_blank"

@@ -7,8 +7,15 @@ export const ROUTES_LINKS = [
 
 export const SOCIAL_MEDIA_LINKS = [
   { social: "LinkedIn", url: "https://linkedin.com/in/dan-colmenares" },
-  { social: "GitHub", url: "https://github.com/RageHardrack" },
+  // { social: "GitHub", url: "https://github.com/RageHardrack" },
   { social: "Twitter", url: "https://twitter.com/dragon_azul93" },
+];
+
+export const UTILS_LINKS = [
+  {
+    name: "Portfolio Repository",
+    url: "https://github.com/RageHardrack/dan-website-nuxt3",
+  },
 ];
 
 export const BLOCK_ENUM = {
