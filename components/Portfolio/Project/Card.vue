@@ -1,16 +1,29 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { IProjectProperties } from "~~/interfaces";
+
+interface Props {
+  projectProps: IProjectProperties;
+}
+
+const { projectProps } = defineProps<Props>();
+</script>
 
 <template>
   <UICard>
     <template #header></template>
 
     <template #content>
-      <Heading2 customClass="text-gold">Project 1</Heading2>
-      <p class="text-bone">Project description</p>
+      <Heading2 customClass="text-gold">{{ projectProps.Name }}</Heading2>
     </template>
 
     <template #footer>
-      <UIPill>Frontend</UIPill>
+      <UIPill
+        v-for="(name, idx) in projectProps.Tags"
+        :key="idx"
+        customClass="mr-2 mb-2"
+      >
+        {{ name }}</UIPill
+      >
     </template>
   </UICard>
 </template>
