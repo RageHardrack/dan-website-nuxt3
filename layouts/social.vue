@@ -8,7 +8,7 @@ useMeta({
 
 <template>
   <section
-    class="container flex flex-col items-center justify-center min-h-screen py-8 space-y-4 md:space-y-8"
+    class="container flex flex-col items-center justify-center min-h-screen space-y-4 md:space-y-8"
   >
     <slot />
   </section>

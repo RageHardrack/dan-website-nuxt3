@@ -1,7 +1,6 @@
 import { Notion, DATABASES_ID, NotionClient } from "~~/vendors";
 import {
   ChildDatabase,
-  ContentBlock,
   IProject,
   ISkill,
   ProjectResponse,
