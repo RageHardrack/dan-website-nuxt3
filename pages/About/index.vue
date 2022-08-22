@@ -6,6 +6,8 @@ definePageMeta({
 
 <template>
   <NuxtLayout>
-    <div>hola About Daniel</div>
+    <Heading1>About Daniel Colmenares</Heading1>
+
+    <Heading2>Working on it...</Heading2>
   </NuxtLayout>
 </template>
