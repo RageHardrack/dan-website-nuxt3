@@ -4,6 +4,20 @@ export type Tag = {
   color: string;
 };
 
+export type TechTag =
+  | "VueJS"
+  | "ReactJS"
+  | "NextJS"
+  | "NuxtJS"
+  | "Frontend"
+  | "Backend"
+  | "TailwindCSS"
+  | "Typescript"
+  | "Strapi"
+  | "Pinia"
+  | "Sequelize"
+  | "PWA";
+
 export interface TedBy {
   object: string;
   id: string;

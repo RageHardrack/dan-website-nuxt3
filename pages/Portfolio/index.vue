@@ -16,12 +16,15 @@ definePageMeta({
 
     <section v-else class="flex flex-col space-y-10">
       <header class="flex flex-col space-y-4">
-        <Heading1>My Portfolio</Heading1>
+        <Heading1>My Work</Heading1>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum ex
-          doloribus distinctio, eos facilis illum consequatur maiores quo modi
-          in magni iusto aperiam porro quia eligendi delectus perferendis culpa
-          nam.
+          Web developer, tech enthusiast, amateur writer and passionate about
+          video games. I love to learn something new every day, creating
+          solutions using technology and code. I used to be a bike messenger in
+          Mail On Bike, then I created a Administrative System for them so it
+          can improve their operations and efficiency. My dreams are to develop
+          an RPG video game, write a Sci-fi novel and teach others about
+          technology and programming. Lover of coffee, science and music.
         </p>
       </header>
 
