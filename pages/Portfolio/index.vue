@@ -1,9 +1,7 @@
 <script setup lang="ts">
-const { data, pending, refresh } = await useLazyAsyncData("portfolio", () =>
+const { data, pending } = await useLazyAsyncData("portfolio", () =>
   $fetch("/api/portfolio")
 );
-
-refresh();
 
 definePageMeta({
   title: "Portfolio",
@@ -35,6 +33,7 @@ definePageMeta({
             v-for="project in data.projects"
             :key="project.id"
             :projectProps="project.properties"
+            v-motion-slide-right
           />
         </UIGrid>
       </section>
@@ -46,6 +45,7 @@ definePageMeta({
             v-for="skill in data.skills"
             :key="skill.id"
             :skillProps="skill.properties"
+            v-motion-slide-left
           />
         </UIGridTechs>
       </section>
