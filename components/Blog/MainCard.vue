@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { IPostProperties } from "~~/interfaces";
-// import { DateTime } from "luxon";
+import dayjs from "dayjs";
 
 interface Props {
   post: IPostProperties;
@@ -34,7 +34,9 @@ const { Image_URL, Tags, Fecha_Publicacion, Slug, Post, Brief } = post;
       </template>
 
       <template #footer>
-        <p class="text-black-coffee">Publicado el {{ Fecha_Publicacion }}</p>
+        <p class="text-black-coffee">
+          {{ dayjs(Fecha_Publicacion).format("DD MMMM YYYY") }}
+        </p>
       </template>
     </UICardWide>
   </NuxtLink>

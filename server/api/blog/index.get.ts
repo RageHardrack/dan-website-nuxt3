@@ -1,7 +1,7 @@
+import { createError, sendError } from "h3";
 import { BlogService } from "~~/services";
-import { createError, defineHandle, sendError } from "h3";
 
-export default defineHandle(async (_req, res) => {
+export default defineEventHandler(async (event) => {
   try {
     const pages = await BlogService.findAll();
 
@@ -13,7 +13,7 @@ export default defineHandle(async (_req, res) => {
   } catch (error) {
     console.error(error);
     sendError(
-      res,
+      event,
       createError({
         statusCode: 500,
         message: error.message,

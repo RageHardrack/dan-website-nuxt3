@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { data, pending } = await useLazyAsyncData("posts", () =>
-  $fetch("/api/blog/get-post-publicados")
+  $fetch("/api/blog")
 );
 
 definePageMeta({

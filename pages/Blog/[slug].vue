@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 
 const { slug } = route.params;
 const { data, pending, refresh } = await useLazyAsyncData("content", () =>
-  $fetch(`/api/blog/get-post/${slug}`)
+  $fetch(`/api/blog/${slug}`)
 );
 
 // TODO: Research Meta SEO for blogs

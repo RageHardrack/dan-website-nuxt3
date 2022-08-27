@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { data, pending, refresh } = await useLazyAsyncData("portfolio", () =>
-  $fetch("/api/portfolio/get-portfolio")
+  $fetch("/api/portfolio")
 );
 
 refresh();

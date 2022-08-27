@@ -1,10 +1,12 @@
-import { sendError, createError, defineHandle } from "h3";
+import { sendError, createError } from "h3";
 import { IPost } from "~~/interfaces";
 import { BlogService } from "~~/services";
 
-export default defineHandle(async (req, res) => {
+export default defineEventHandler(async (event) => {
   try {
-    const slug = req.url.substring(1) as string;
+    const slug = event.context.params.slug as string;
+
+    console.log({ slug });
 
     const pages = await BlogService.findAll();
 
@@ -12,7 +14,7 @@ export default defineHandle(async (req, res) => {
 
     if (!current) {
       return sendError(
-        res,
+        event,
         createError({
           statusCode: 404,
           message: "No se pudo obtener el contenido de la Publicación",
@@ -28,7 +30,7 @@ export default defineHandle(async (req, res) => {
   } catch (error) {
     console.error(error);
     sendError(
-      res,
+      event,
       createError({
         statusCode: 500,
         message: "No se pudo obtener el contenido de la Publicación",

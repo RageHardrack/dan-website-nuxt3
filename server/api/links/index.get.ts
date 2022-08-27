@@ -1,7 +1,7 @@
-import { createError, defineHandle } from "h3";
+import { createError } from "h3";
 import { LinkService } from "~~/services";
 
-export default defineHandle(async (_req) => {
+export default defineEventHandler(async (_event) => {
   try {
     const linksPages = await LinkService.findAll();
 

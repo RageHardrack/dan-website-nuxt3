@@ -1,7 +1,7 @@
-import { createError, defineHandle, sendError } from "h3";
+import { createError, sendError } from "h3";
 import { PortfolioService } from "~~/services";
 
-export default defineHandle(async (_req, res) => {
+export default defineEventHandler(async (event) => {
   try {
     const portfolioDatabases = await PortfolioService.findAllChildDatabases();
 
@@ -19,7 +19,7 @@ export default defineHandle(async (_req, res) => {
   } catch (error) {
     console.error(error);
     sendError(
-      res,
+      event,
       createError({
         statusCode: 500,
         message: error.message,
