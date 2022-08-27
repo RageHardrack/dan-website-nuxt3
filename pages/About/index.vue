@@ -1,6 +1,6 @@
 <script setup lang="ts">
 definePageMeta({
-  title: "Daniel Colmenares - About",
+  title: "About me",
 });
 </script>
 

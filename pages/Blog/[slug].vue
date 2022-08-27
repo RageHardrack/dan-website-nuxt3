@@ -7,10 +7,11 @@ const { data, pending, refresh } = await useLazyAsyncData("content", () =>
   $fetch(`/api/blog/${slug}`)
 );
 
-// TODO: Research Meta SEO for blogs
 refresh();
+
+// TODO: Research Meta SEO for blogs
 // definePageMeta({
-//   title: `Daniel Colmenares - ${data?.value.properties.Post || ""}`,
+//   title: `${data?.value.properties.Post || ""}`,
 // });
 </script>
 

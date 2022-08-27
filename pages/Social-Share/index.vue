@@ -4,7 +4,7 @@ const { data, pending } = await useLazyAsyncData("links", () =>
 );
 
 definePageMeta({
-  title: "Daniel Colmenares - Social Links",
+  title: "Social Links",
 });
 </script>
 

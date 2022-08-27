@@ -6,8 +6,6 @@ export default defineEventHandler(async (event) => {
   try {
     const slug = event.context.params.slug as string;
 
-    console.log({ slug });
-
     const pages = await BlogService.findAll();
 
     const current = pages.find((page: IPost) => page.properties.Slug == slug);

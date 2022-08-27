@@ -4,13 +4,13 @@ const { data, pending } = await useLazyAsyncData("posts", () =>
 );
 
 definePageMeta({
-  title: "Daniel Colmenares - Blog",
+  title: "Blog",
 });
 </script>
 
 <template>
   <NuxtLayout>
-    <LoadingPage loadMessage="Cargando Publicaciones" v-if="pending" />
+    <LoadingPage loadMessage="Loading posts" v-if="pending" />
 
     <section v-else class="flex flex-col justify-center space-y-4 md:space-y-8">
       <Heading1 customClass="text-primary">Última publicación</Heading1>

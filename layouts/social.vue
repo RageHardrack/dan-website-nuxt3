@@ -1,8 +1,8 @@
 <script setup lang="ts">
 const route = useRoute();
 
-useMeta({
-  title: computed(() => route.meta.title),
+useHead({
+  title: `Daniel Colmenares - ${route.meta.title}`,
 });
 </script>
 

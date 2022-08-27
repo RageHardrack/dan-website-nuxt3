@@ -7,8 +7,8 @@ const toggleSideNav = (): boolean => (sideNav.value = !sideNav.value);
 provide("sideNav", sideNav);
 provide("toggleSideNav", toggleSideNav);
 
-useMeta({
-  title: computed(() => route.meta.title),
+useHead({
+  title: `Daniel Colmenares - ${route.meta.title}`,
 });
 </script>
 

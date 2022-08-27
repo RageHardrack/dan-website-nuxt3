@@ -6,7 +6,7 @@ const { data, pending, refresh } = await useLazyAsyncData("portfolio", () =>
 refresh();
 
 definePageMeta({
-  title: "Daniel Colmenares - Portfolio",
+  title: "Portfolio",
 });
 </script>
 
