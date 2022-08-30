@@ -20,7 +20,7 @@ useHead({
       <UISideNav v-if="sideNav" />
     </transition>
 
-    <main class="container flex-1 py-8">
+    <main class="container flex-1 py-4 md:py-8">
       <slot />
     </main>
 

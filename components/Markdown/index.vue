@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { IPostBlock } from "~~/interfaces";
+import { IPageContent } from "~~/interfaces";
 
 interface Props {
-  content: IPostBlock[];
+  content: IPageContent[];
 }
 
 const { content } = defineProps<Props>();

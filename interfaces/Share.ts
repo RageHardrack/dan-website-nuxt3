@@ -18,6 +18,13 @@ export type TechTag =
   | "Sequelize"
   | "PWA";
 
+export interface IPageContent {
+  type: string;
+  body: string;
+  caption: string;
+  emoji?: string;
+}
+
 export interface TedBy {
   object: string;
   id: string;

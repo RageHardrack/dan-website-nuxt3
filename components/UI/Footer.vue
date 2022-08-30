@@ -14,7 +14,7 @@ import { SOCIAL_MEDIA_LINKS, UTILS_LINKS } from "~~/constantes";
           :href="UTILS_LINKS[0].url"
           target="_blank"
           rel="nofollow"
-          class="font-semibold underline text-electric"
+          class="font-semibold underline transition duration-300 text-electric hover:text-secondary"
         >
           Daniel Colmenares
         </a>

@@ -1,3 +1,4 @@
+import { IPageContent } from "./Share";
 import {
   Parent,
   TedBy,
@@ -55,12 +56,5 @@ export interface IPostProperties {
 
 export interface IPostContent {
   properties: PostResponseProperties;
-  content: IPostBlock;
-}
-
-export interface IPostBlock {
-  type: string;
-  body: string;
-  caption: string;
-  emoji?: string;
+  content: IPageContent;
 }

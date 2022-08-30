@@ -6,7 +6,11 @@ const toggleSideNav = inject<() => boolean>("toggleSideNav");
 
 <template>
   <aside class="fixed inset-0 z-20 flex flex-col bg-bone md:hidden">
-    <header class="container flex items-center justify-end h-24 bg-primary">
+    <header class="container flex items-center justify-between h-24 bg-primary">
+      <NuxtLink to="/" @click="toggleSideNav">
+        <Heading2 customClass="text-gold">Dan Colmenares</Heading2>
+      </NuxtLink>
+
       <button
         @click="toggleSideNav"
         class="flex items-center justify-center rounded-full bg-black-coffee"

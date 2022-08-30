@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
   try {
     const aboutContent = await AboutService.getAboutContent();
 
-    return { aboutContent };
+    return aboutContent;
   } catch (error) {
     console.error(error);
     sendError(

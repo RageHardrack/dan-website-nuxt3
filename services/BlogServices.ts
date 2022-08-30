@@ -1,5 +1,5 @@
 import { Notion, DATABASES_ID, NotionClient } from "~~/vendors";
-import { PostResponse, IPostBlock, IPost, ContentBlock } from "~~/interfaces";
+import { PostResponse, IPageContent, IPost, ContentBlock } from "~~/interfaces";
 import { blockChildrenTransformer, postPropertiesTransformer } from "~~/utils";
 
 class BlogServices {
@@ -46,7 +46,7 @@ class BlogServices {
     return { object: page.object, id: page.id, properties };
   }
 
-  async getPostContent(blockId: string): Promise<IPostBlock[]> {
+  async getPostContent(blockId: string): Promise<IPageContent[]> {
     const listBlockChildren = await this.NotionClient.getPageContent<
       ContentBlock[]
     >(blockId, {

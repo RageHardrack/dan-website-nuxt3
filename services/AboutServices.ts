@@ -1,4 +1,4 @@
-import { ContentBlock } from "~~/interfaces";
+import { ContentBlock, IPageContent } from "~~/interfaces";
 import { blockChildrenTransformer } from "~~/utils";
 import { Notion, DATABASES_ID, NotionClient } from "~~/vendors";
 
@@ -8,7 +8,7 @@ class AboutServices {
     private readonly databaseId: string
   ) {}
 
-  async getAboutContent() {
+  async getAboutContent(): Promise<IPageContent[]> {
     const listBlockChildren = await this.NotionClient.getPageContent<
       ContentBlock[]
     >(this.databaseId, {
