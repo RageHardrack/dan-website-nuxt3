@@ -6,6 +6,7 @@ import {
   IProjectProperties,
   RawSkillProperties,
   ISkillProperties,
+  ContentBlock,
 } from "~~/interfaces";
 
 export const postPropertiesTransformer = (
@@ -41,5 +42,20 @@ export const skillPropertiesTransformer = (
   return {
     Name: skillProperties.Name.title[0].plain_text,
     Image_URL: skillProperties.Image_URL.url,
+  };
+};
+
+export const blockChildrenTransformer = (block: ContentBlock) => {
+  return {
+    type: block.type,
+    body:
+      block.type === "image"
+        ? block[block.type].file.url
+        : block[block.type].rich_text[0].plain_text,
+    caption:
+      block.type === "image"
+        ? block[block.type].caption[0].plain_text
+        : block[block.type].rich_text[0].plain_text,
+    emoji: block.type === "callout" ? block[block.type].icon.emoji : null,
   };
 };
