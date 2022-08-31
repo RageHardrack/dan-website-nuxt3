@@ -29,6 +29,7 @@ export const projectPropertiesTransformer = (
 ): IProjectProperties => {
   return {
     Name: projectProperties.Name.title[0].plain_text,
+    Slug: projectProperties.Slug.rich_text[0].plain_text,
     Tags: projectProperties.Tags.multi_select.map((tag: Tag) => tag.name),
     Repository: projectProperties.Repository.url,
     Preview: projectProperties.Preview.url,

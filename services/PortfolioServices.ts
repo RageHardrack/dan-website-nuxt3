@@ -55,6 +55,20 @@ class PortfolioServices {
     return projects;
   }
 
+  async getProjectContent(projectId: string): Promise<IPageContent[]> {
+    const listBlockChildren = await this.NotionClient.getPageContent<
+      ContentBlock[]
+    >(projectId, {
+      page_size: 100,
+    });
+
+    return listBlockChildren
+      .filter((block: ContentBlock) => block.type !== "child_database")
+      .map((block: ContentBlock) => {
+        return blockChildrenTransformer(block);
+      });
+  }
+
   async findSkills(blockId: string): Promise<ISkill[]> {
     const skillsDatabase = await this.NotionClient.getDatabase<SkillResponse[]>(
       blockId
@@ -71,7 +85,7 @@ class PortfolioServices {
     return skills;
   }
 
-  async getContent(): Promise<IPageContent[]> {
+  async getPortfolioContent(): Promise<IPageContent[]> {
     const listBlockChildren = await this.NotionClient.getPageContent<
       ContentBlock[]
     >(this.databaseId, {

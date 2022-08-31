@@ -5,6 +5,7 @@ import {
   Parent,
   TedBy,
   TitleProperty,
+  RichTextProperty,
 } from ".";
 
 export interface ProjectResponse {
@@ -30,6 +31,7 @@ export interface IProject {
 
 export interface RawProjectProperties {
   Name: TitleProperty;
+  Slug: RichTextProperty;
   Tags: MultiSelectProperty;
   Repository?: UrlProperty;
   Preview: UrlProperty;
@@ -38,6 +40,7 @@ export interface RawProjectProperties {
 
 export interface IProjectProperties {
   Name: string;
+  Slug: string;
   Tags: string[];
   Repository?: string;
   Preview: string;

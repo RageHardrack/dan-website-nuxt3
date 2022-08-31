@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
   try {
     const portfolioDatabases = await PortfolioService.findAllChildDatabases();
 
-    const content = await PortfolioService.getContent();
+    const content = await PortfolioService.getPortfolioContent();
 
     const projectId = portfolioDatabases.find(
       (page) => page.title === "Projects"
