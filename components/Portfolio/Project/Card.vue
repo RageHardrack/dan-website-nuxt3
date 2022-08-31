@@ -9,7 +9,7 @@ const { projectProps } = defineProps<Props>();
 </script>
 
 <template>
-  <UICard>
+  <UICard :hasClick="true" :hasHover="true">
     <template #header></template>
 
     <template #content>
@@ -22,8 +22,8 @@ const { projectProps } = defineProps<Props>();
         :key="idx"
         customClass="mr-2 mb-2"
       >
-        {{ name }}</UIPill
-      >
+        {{ name }}
+      </UIPill>
     </template>
   </UICard>
 </template>

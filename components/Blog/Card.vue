@@ -12,7 +12,7 @@ const { Image_URL, Tags, Fecha_Publicacion, Slug, Post, Brief } = post;
 
 <template>
   <NuxtLink :to="`/blog/${Slug}`">
-    <UICard :isLink="true">
+    <UICard :hasClick="true" :hasHover="true">
       <template #header>
         <img :src="Image_URL" :alt="`${Post} cover`" class="aspect-square" />
       </template>

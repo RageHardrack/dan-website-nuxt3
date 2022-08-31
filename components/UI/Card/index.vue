@@ -1,19 +1,21 @@
 <script setup lang="ts">
 interface Props {
-  isLink?: boolean;
+  hasClick?: boolean;
   color?: string;
+  hasHover?: boolean;
 }
 
-const { isLink = false, color = "primary" } = defineProps<Props>();
+const { hasClick, color, hasHover } = defineProps<Props>();
+
+const hoverClass = hasHover ? "transform duration-300 hover:scale-110" : "";
+const clickClass = hasClick ? "cursor-pointer" : "cursor-auto";
 </script>
 
 <template>
   <article
-    :class="`flex flex-col justify-between space-y-4 duration-300 transform rounded-lg shadow-lg bg-${
+    :class="`flex flex-col justify-between space-y-4 rounded-lg shadow-lg bg-${
       color || 'primary'
-    } hover:scale-105 overflow-hidden ${
-      isLink ? 'cursor-pointer' : 'cursor-auto'
-    }`"
+    } ${hoverClass} overflow-hidden ${clickClass}`"
   >
     <header>
       <slot name="header" />
