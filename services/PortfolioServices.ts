@@ -1,6 +1,8 @@
 import { Notion, DATABASES_ID, NotionClient } from "~~/vendors";
 import {
   ChildDatabase,
+  ContentBlock,
+  IPageContent,
   IProject,
   ISkill,
   ProjectResponse,
@@ -8,6 +10,7 @@ import {
   SkillResponse,
 } from "~~/interfaces";
 import {
+  blockChildrenTransformer,
   projectPropertiesTransformer,
   skillPropertiesTransformer,
 } from "~~/utils";
@@ -24,12 +27,13 @@ class PortfolioServices {
     );
 
     const childDatabases: ChildDatabase[] = blocks.map((block) => {
-      return {
-        object: block.object,
-        id: block.id,
-        type: block.type,
-        title: block["child_database"].title,
-      };
+      if (block.type === "child_database")
+        return {
+          object: block.object,
+          id: block.id,
+          type: block.type,
+          title: block["child_database"].title,
+        };
     });
 
     return childDatabases;
@@ -65,6 +69,20 @@ class PortfolioServices {
     });
 
     return skills;
+  }
+
+  async getContent(): Promise<IPageContent[]> {
+    const listBlockChildren = await this.NotionClient.getPageContent<
+      ContentBlock[]
+    >(this.databaseId, {
+      page_size: 100,
+    });
+
+    return listBlockChildren
+      .filter((block: ContentBlock) => block.type !== "child_database")
+      .map((block: ContentBlock) => {
+        return blockChildrenTransformer(block);
+      });
   }
 }
 

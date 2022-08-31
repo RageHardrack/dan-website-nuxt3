@@ -2,7 +2,7 @@ export const ROUTES_LINKS = [
   { title: "About", path: "/about" },
   { title: "Blog", path: "/blog" },
   { title: "Portfolio", path: "/portfolio" },
-  { title: "Social Links", path: "/social-share" },
+  // { title: "Social Links", path: "/social-share" },
 ];
 
 export const SOCIAL_MEDIA_LINKS = [

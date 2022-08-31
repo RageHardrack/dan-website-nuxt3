@@ -5,6 +5,8 @@ export default defineEventHandler(async (event) => {
   try {
     const portfolioDatabases = await PortfolioService.findAllChildDatabases();
 
+    const content = await PortfolioService.getContent();
+
     const projectId = portfolioDatabases.find(
       (page) => page.title === "Projects"
     ).id;
@@ -15,7 +17,7 @@ export default defineEventHandler(async (event) => {
     const projects = await PortfolioService.findProjects(projectId);
     const skills = await PortfolioService.findSkills(skillId);
 
-    return { projects, skills };
+    return { projects, skills, content };
   } catch (error) {
     console.error(error);
     sendError(
