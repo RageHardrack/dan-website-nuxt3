@@ -53,9 +53,9 @@ const { content } = defineProps<Props>();
 
       <picture
         v-else-if="type === 'image'"
-        class="flex flex-col self-center space-y-2 aspect-square"
+        class="flex flex-col self-center space-y-2 overflow-hidden aspect-auto"
       >
-        <img :src="body" :alt="caption" class="w-96 h-96" />
+        <img :src="body" :alt="caption" class="aspect-auto max-h-96" />
         <p class="italic">{{ caption }}</p>
       </picture>
     </template>

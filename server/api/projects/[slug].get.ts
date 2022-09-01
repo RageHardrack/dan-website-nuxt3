@@ -29,9 +29,7 @@ export default defineEventHandler(async (event) => {
       );
     }
 
-    const content = await PortfolioService.getProjectContent(findProjectId);
-
-    return { content };
+    return await PortfolioService.getProjectContent(findProjectId);
   } catch (error) {
     console.error(error);
     sendError(
