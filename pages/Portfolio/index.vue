@@ -1,10 +1,15 @@
 <script setup lang="ts">
+import { useUIStore } from "~~/store";
+
+const store = useUIStore();
+
 const { data, pending } = await useLazyAsyncData("portfolio", () =>
   $fetch("/api/portfolio")
 );
-const isOpen = ref(false);
 
-const toggleModal = () => (isOpen.value = !isOpen.value);
+const isOpen = computed(() => store.getIsModalOpen);
+
+const openModal = store.openModal;
 
 definePageMeta({
   title: "Portfolio",
@@ -18,7 +23,7 @@ definePageMeta({
     <section v-else class="flex flex-col space-y-10">
       <Markdown :content="data.content" />
 
-      <Modal v-if="isOpen" @closeModal="toggleModal">
+      <Modal v-if="isOpen">
         <UICard color="transparent">
           <template #header>Hello</template>
 
@@ -32,7 +37,7 @@ definePageMeta({
         <Heading2>Projects</Heading2>
         <UIGrid>
           <PortfolioProjectCard
-            @click="toggleModal"
+            @click="openModal"
             v-for="project in data.projects"
             :key="project.id"
             :projectProps="project.properties"
