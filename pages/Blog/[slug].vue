@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const route = useRoute();
-import dayjs from "dayjs";
+const { $dayjs } = useNuxtApp();
 
 const { slug } = route.params;
 const { data, pending, refresh } = await useLazyAsyncData("content", () =>
@@ -31,7 +31,7 @@ refresh();
         <Heading1>{{ data.properties.Post }}</Heading1>
         <p>
           Publicado el
-          {{ dayjs(data.properties.Fecha_Publicacion).format("DD MMMM YYYY") }}
+          {{ $dayjs(data.properties.Fecha_Publicacion).format("DD MMMM YYYY") }}
         </p>
       </header>
 
