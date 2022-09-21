@@ -17,7 +17,7 @@ definePageMeta({
 
       <section class="flex flex-col space-y-2">
         <Heading2>Projects</Heading2>
-        <UIGrid>
+        <UIGrid size="lg">
           <PortfolioProjectCard
             v-for="project in data.projects"
             :key="project.id"
@@ -28,13 +28,13 @@ definePageMeta({
 
       <section class="flex flex-col space-y-2">
         <Heading2>Skills</Heading2>
-        <UIGridTechs>
+        <UIGrid size="sm">
           <PortfolioSkillCard
             v-for="skill in data.skills"
             :key="skill.id"
             :skillProps="skill.properties"
           />
-        </UIGridTechs>
+        </UIGrid>
       </section>
     </section>
   </NuxtLayout>

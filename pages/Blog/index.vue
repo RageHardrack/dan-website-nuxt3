@@ -21,7 +21,7 @@ definePageMeta({
         Publicaciones anteriores
       </Heading2>
 
-      <UIGrid>
+      <UIGrid size="lg">
         <BlogCard
           v-for="{ properties, id } in data.posts.slice(1)"
           :post="properties"

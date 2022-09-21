@@ -21,6 +21,7 @@ export class NotionClient implements HttpAdapter {
     return results as unknown as T;
   }
 
+  //TODO: Type in HTTPAdapter
   async getPage<T>(pageId: string, options = {}): Promise<T> {
     const page = await this.notion.pages.retrieve({
       page_id: pageId,
@@ -30,6 +31,7 @@ export class NotionClient implements HttpAdapter {
     return page as unknown as T;
   }
 
+  //TODO: Type in HTTPAdapter
   async getPageContent<T>(blockId: string, options = {}): Promise<T> {
     const { results } = await this.notion.blocks.children.list({
       block_id: blockId,
