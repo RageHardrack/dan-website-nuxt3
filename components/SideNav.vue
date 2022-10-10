@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ROUTES_LINKS } from "../../constantes";
+import { ROUTES_LINKS } from "~~/constantes";
 
 const toggleSideNav = inject<() => boolean>("toggleSideNav");
 </script>

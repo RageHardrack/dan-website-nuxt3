@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ROUTES_LINKS } from "../../constantes";
+import { ROUTES_LINKS } from "~~/constantes";
 
 const toggleSideNav = inject<() => boolean>("toggleSideNav");
 </script>
@@ -8,7 +8,7 @@ const toggleSideNav = inject<() => boolean>("toggleSideNav");
   <header class="sticky top-0 z-20 flex items-center h-24 bg-primary">
     <nav class="container flex items-center justify-between py-2">
       <NuxtLink to="/">
-        <UILogo />
+        <Logo />
       </NuxtLink>
 
       <ul
@@ -25,7 +25,7 @@ const toggleSideNav = inject<() => boolean>("toggleSideNav");
         </li>
       </ul>
 
-      <UIButtonMenu @pressButton="toggleSideNav" class="flex md:hidden" />
+      <ButtonMenu @pressButton="toggleSideNav" class="flex md:hidden" />
     </nav>
   </header>
 </template>

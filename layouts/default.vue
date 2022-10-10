@@ -14,16 +14,16 @@ useHead({
 
 <template>
   <section class="flex flex-col justify-between min-h-screen">
-    <UINavbar />
+    <Navbar />
 
     <transition name="left">
-      <UISideNav v-if="sideNav" />
+      <SideNav v-if="sideNav" />
     </transition>
 
     <main class="container flex-1 py-4 md:py-8">
       <slot />
     </main>
 
-    <UIFooter />
+    <Footer />
   </section>
 </template>

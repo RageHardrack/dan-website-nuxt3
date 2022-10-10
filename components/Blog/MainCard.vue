@@ -13,7 +13,7 @@ const { Image_URL, Tags, Fecha_Publicacion, Slug, Post, Brief } = post;
 
 <template>
   <NuxtLink :to="`/blog/${Slug}`">
-    <UICardWide :isLink="true">
+    <CardWide :isLink="true">
       <template #aside>
         <img
           :src="Image_URL"
@@ -23,9 +23,9 @@ const { Image_URL, Tags, Fecha_Publicacion, Slug, Post, Brief } = post;
       </template>
 
       <template #header>
-        <UIPill v-for="(name, idx) in Tags" :key="idx" customClass="mr-2 mb-2">
-          {{ name }}</UIPill
-        >
+        <Pill v-for="(name, idx) in Tags" :key="idx" customClass="mr-2 mb-2">
+          {{ name }}
+        </Pill>
       </template>
 
       <template #content>
@@ -38,6 +38,6 @@ const { Image_URL, Tags, Fecha_Publicacion, Slug, Post, Brief } = post;
           {{ $dayjs(Fecha_Publicacion).format("DD MMMM YYYY") }}
         </p>
       </template>
-    </UICardWide>
+    </CardWide>
   </NuxtLink>
 </template>

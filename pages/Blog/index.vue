@@ -21,13 +21,13 @@ definePageMeta({
         Publicaciones anteriores
       </Heading2>
 
-      <UIGrid size="lg">
-        <BlogCard
+      <Grid size="lg">
+        <CardBlog
           v-for="{ properties, id } in data.posts.slice(1)"
           :post="properties"
           :key="id"
         />
-      </UIGrid>
+      </Grid>
     </section>
   </NuxtLayout>
 </template>

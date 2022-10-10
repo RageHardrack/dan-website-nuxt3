@@ -7,7 +7,7 @@ import { SOCIAL_MEDIA_LINKS, UTILS_LINKS } from "~~/constantes";
     <article
       class="container flex flex-col items-center justify-center py-8 space-y-4 text-bone"
     >
-      <UILogo />
+      <Logo />
       <h2>
         Created by ⚡
         <a

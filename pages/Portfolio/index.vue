@@ -17,24 +17,24 @@ definePageMeta({
 
       <section class="flex flex-col space-y-2">
         <Heading2>Projects</Heading2>
-        <UIGrid size="lg">
-          <UICardProject
+        <Grid size="lg">
+          <CardProject
             v-for="project in data.projects"
             :key="project.id"
             :projectProps="project.properties"
           />
-        </UIGrid>
+        </Grid>
       </section>
 
       <section class="flex flex-col space-y-2">
         <Heading2>Skills</Heading2>
-        <UIGrid size="sm">
-          <UICardSkill
+        <Grid size="sm">
+          <CardSkill
             v-for="skill in data.skills"
             :key="skill.id"
             :skillProps="skill.properties"
           />
-        </UIGrid>
+        </Grid>
       </section>
     </section>
   </NuxtLayout>

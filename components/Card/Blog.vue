@@ -12,7 +12,7 @@ const { Image_URL, Tags, Fecha_Publicacion, Slug, Post, Brief } = post;
 
 <template>
   <NuxtLink :to="`/blog/${Slug}`">
-    <UICard :hasClick="true" :hasHover="true">
+    <Card :hasClick="true" :hasHover="true">
       <template #header>
         <img :src="Image_URL" :alt="`${Post} cover`" class="aspect-square" />
       </template>
@@ -24,10 +24,10 @@ const { Image_URL, Tags, Fecha_Publicacion, Slug, Post, Brief } = post;
       </template>
 
       <template #footer>
-        <UIPill v-for="(name, idx) in Tags" :key="idx" customClass="mr-2 mb-2">
-          {{ name }}</UIPill
+        <Pill v-for="(name, idx) in Tags" :key="idx" customClass="mr-2 mb-2">
+          {{ name }}</Pill
         >
       </template>
-    </UICard>
+    </Card>
   </NuxtLink>
 </template>

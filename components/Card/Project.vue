@@ -30,9 +30,9 @@ const { Name, Slug, Tags, Preview } = projectProps;
     </section>
 
     <footer class="flex flex-wrap items-center justify-start p-4 h-1/5">
-      <UIPill v-for="(name, idx) in Tags" :key="idx" customClass="mr-1 mb-1">
+      <Pill v-for="(name, idx) in Tags" :key="idx" customClass="mr-1 mb-1">
         {{ name }}
-      </UIPill>
+      </Pill>
     </footer>
   </article>
 </template>

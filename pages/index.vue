@@ -14,7 +14,7 @@ definePageMeta({
         </section>
 
         <picture class="flex flex-col items-center justify-center flex-1">
-          <UILogo />
+          <Logo />
         </picture>
       </article>
     </section>

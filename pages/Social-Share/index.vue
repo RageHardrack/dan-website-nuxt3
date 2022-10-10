@@ -36,13 +36,13 @@ definePageMeta({
       </header>
 
       <ul class="flex flex-col items-center justify-center w-full space-y-4">
-        <UIButtonLinkExternal
+        <ButtonLinkExternal
           v-for="{ Link, Name, Orden } in data.linksPages"
           :key="Orden"
           :enlace="Link"
         >
           {{ Name }}
-        </UIButtonLinkExternal>
+        </ButtonLinkExternal>
       </ul>
 
       <p class="text-center text-black-coffee">
