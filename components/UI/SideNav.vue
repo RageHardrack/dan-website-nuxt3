@@ -15,7 +15,7 @@ const toggleSideNav = inject<() => boolean>("toggleSideNav");
         @click="toggleSideNav"
         class="flex items-center justify-center rounded-full bg-black-coffee"
       >
-        <UIIconCrossSvg customClass="text-gold w-8 h-8" />
+        <IconCrossSvg customClass="text-gold w-8 h-8" />
       </button>
     </header>
 

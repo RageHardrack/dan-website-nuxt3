@@ -17,15 +17,3 @@ export const UTILS_LINKS = [
     url: "https://github.com/RageHardrack/dan-website-nuxt3",
   },
 ];
-
-export const BLOCK_ENUM = {
-  h1: "heading_1",
-  h2: "heading_2",
-  h3: "heading_3",
-  p: "paragraph",
-  ul: "bulleted_list_item",
-  ol: "numbered_list_item",
-  quote: "quote",
-  callout: "callout",
-  img: "image",
-};
