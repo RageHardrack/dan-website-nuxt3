@@ -12,8 +12,6 @@ const { Name, Slug, Tags, Preview } = projectProps;
 <template>
   <article
     class="flex flex-col justify-between space-y-2 overflow-hidden duration-300 transform rounded-lg shadow-lg cursor-pointer h-80 bg-primary hover:scale-110"
-    :hasClick="true"
-    :hasHover="true"
     @click="navigateTo(`/portfolio/projects/${Slug}`)"
     v-motion-slide-right
   >

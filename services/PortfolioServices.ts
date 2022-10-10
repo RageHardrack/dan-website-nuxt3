@@ -42,7 +42,9 @@ class PortfolioServices {
   async findProjects(blockId: string): Promise<IProject[]> {
     const projectsDatabase = await this.NotionClient.getDatabase<
       ProjectResponse[]
-    >(blockId);
+    >(blockId, {
+      sorts: [{ property: "Orden", direction: "ascending" }],
+    });
 
     const projects = projectsDatabase.map((project) => {
       return {

@@ -1,3 +1,4 @@
+import { NumberProperty } from './Share';
 import {
   MultiSelectProperty,
   UrlProperty,
@@ -36,6 +37,7 @@ export interface RawProjectProperties {
   Repository?: UrlProperty;
   Preview: UrlProperty;
   Language: SelectProperty;
+  Orden: NumberProperty;
 }
 
 export interface IProjectProperties {
@@ -45,6 +47,7 @@ export interface IProjectProperties {
   Repository?: string;
   Preview: string;
   Language: string;
+  Orden: number;
 }
 
 export interface SkillResponse {

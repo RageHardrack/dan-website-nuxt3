@@ -34,6 +34,7 @@ export const projectPropertiesTransformer = (
     Repository: projectProperties.Repository.url,
     Preview: projectProperties.Preview.url,
     Language: projectProperties.Language.select.name,
+    Orden: projectProperties.Orden.number
   };
 };
 
