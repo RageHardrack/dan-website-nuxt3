@@ -11,14 +11,13 @@ const hoverClass = hasHover ? "transform duration-300 hover:scale-110" : "";
 const clickClass = hasClick ? "cursor-pointer" : "cursor-auto";
 </script>
 
-// TODO: Improve Card
 <template>
   <article
     :class="`flex flex-col justify-between space-y-2 rounded-lg shadow-lg bg-${
       color || 'primary'
     } ${hoverClass} overflow-hidden ${clickClass}`"
   >
-    <header class="relative overflow-hidden">
+    <header class="relative overflow-hidden max-h-80">
       <slot name="header" />
     </header>
 

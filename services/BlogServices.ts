@@ -21,6 +21,12 @@ class BlogServices {
                 equals: "Publicado",
               },
             },
+            {
+              property: "Testing",
+              checkbox: {
+                equals: true,
+              },
+            },
           ],
         },
         sorts: [{ property: "Fecha_Publicacion", direction: "descending" }],

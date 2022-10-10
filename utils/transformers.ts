@@ -21,6 +21,8 @@ export const postPropertiesTransformer = (
     Brief: postProperties.Brief.rich_text[0].plain_text,
     Post: postProperties.Post.title[0].plain_text,
     Prevent_Index: postProperties.Prevent_Index.checkbox,
+    Language: postProperties.Language.select.name,
+    Testing: postProperties.Testing.checkbox,
   };
 };
 

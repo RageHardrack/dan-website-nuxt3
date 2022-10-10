@@ -19,14 +19,14 @@ const { Image_URL, Tags, Fecha_Publicacion, Slug, Post, Brief } = post;
 
       <template #content>
         <Heading2 customClass="text-gold">{{ Post }}</Heading2>
-        <p class="text-gray-400">Publicado el {{ Fecha_Publicacion }}</p>
+        <p class="text-gray-400">{{ $dayjs(Fecha_Publicacion).format("DD MMMM YYYY") }}</p>
         <p class="text-bone">{{ Brief }}</p>
       </template>
 
       <template #footer>
         <Pill v-for="(name, idx) in Tags" :key="idx" customClass="mr-2 mb-2">
-          {{ name }}</Pill
-        >
+          {{ name }}
+        </Pill>
       </template>
     </Card>
   </NuxtLink>

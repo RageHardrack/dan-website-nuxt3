@@ -35,6 +35,8 @@ export interface PostResponseProperties {
   Brief: RichTextProperty;
   Post: TitleProperty;
   Prevent_Index: CheckboxProperty;
+  Language: SelectProperty;
+  Testing: CheckboxProperty;
 }
 
 export interface IPost {
@@ -52,6 +54,8 @@ export interface IPostProperties {
   Brief: string;
   Post: string;
   Prevent_Index: boolean;
+  Language: string;
+  Testing: boolean;
 }
 
 export interface IPostContent {
