@@ -10,8 +10,9 @@ const { skillProps } = defineProps<Props>();
 
 <template>
   <article
-    class="flex flex-col bg-secondary bg-opacity-30 justify-between overflow-hidden duration-300 transform rounded-lg shadow-lg hover:scale-105"
+    class="flex flex-col justify-between overflow-hidden duration-300 transform rounded-lg shadow-lg bg-secondary bg-opacity-30 hover:scale-105"
     :title="skillProps.Name"
+    v-motion-slide-left
   >
     <img
       :src="skillProps.Image_URL"

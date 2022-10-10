@@ -18,7 +18,7 @@ definePageMeta({
       <section class="flex flex-col space-y-2">
         <Heading2>Projects</Heading2>
         <UIGrid size="lg">
-          <PortfolioProjectCard
+          <UICardProject
             v-for="project in data.projects"
             :key="project.id"
             :projectProps="project.properties"
@@ -29,7 +29,7 @@ definePageMeta({
       <section class="flex flex-col space-y-2">
         <Heading2>Skills</Heading2>
         <UIGrid size="sm">
-          <PortfolioSkillCard
+          <UICardSkill
             v-for="skill in data.skills"
             :key="skill.id"
             :skillProps="skill.properties"
