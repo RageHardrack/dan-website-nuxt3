@@ -57,12 +57,12 @@ definePageMeta({
       <section class="flex flex-col space-y-2">
         <Heading2 v-motion-slide-top>Projects</Heading2>
 
-        <section class="flex space-x-4">
+        <section class="flex flex-wrap">
           <button
             v-for="option in filterOptions"
             :key="option"
             @click="onChangeFilterOptions(option)"
-            class="px-3 py-1 transition duration-300 ease-in-out border rounded-lg border-gold hover:bg-gold"
+            class="px-3 py-1 mb-2 mr-1 transition duration-300 ease-in-out border rounded-lg border-gold hover:bg-gold"
             :class="{ 'bg-gold font-semibold': option === filterSelected }"
           >
             {{ option }}
@@ -70,7 +70,7 @@ definePageMeta({
           
           <button
             @click="onChangeFilterOptions('')"
-            class="px-3 py-1 transition duration-300 ease-in-out border rounded-lg border-gold hover:bg-gold"
+            class="px-3 py-1 mb-2 mr-1 transition duration-300 ease-in-out border rounded-lg border-gold hover:bg-gold"
             :class="{ 'bg-gold font-semibold': filterSelected === '' }"
           >
             All
