@@ -20,6 +20,7 @@ const { Name, Slug, Tags, Preview } = projectProps;
         :src="Preview"
         :alt="`${Name} preview`"
         class="absolute top-0 left-0 right-0 w-full"
+        loading="lazy"
       />
     </header>
 
