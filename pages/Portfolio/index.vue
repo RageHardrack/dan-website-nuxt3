@@ -3,6 +3,28 @@ const { data, pending } = await useLazyAsyncData("portfolio", () =>
   $fetch("/api/portfolio")
 );
 
+const filterOptions = [
+  "Frontend",
+  "Backend",
+  "VueJS",
+  "ReactJS",
+  "NextJS",
+  "Typescript",
+];
+
+const filterSelected = ref("");
+
+const onChangeFilterOptions = (optionSelected: string) =>
+  (filterSelected.value = optionSelected);
+
+const filteredProjects = computed(() => {
+  if (!filterSelected.value) return data.value.projects;
+
+  return data.value.projects.filter((project) =>
+    project.properties.Tags.includes(filterSelected.value)
+  );
+});
+
 definePageMeta({
   title: "Portfolio",
 });
@@ -14,29 +36,50 @@ definePageMeta({
 
     <section v-else class="flex flex-col space-y-5">
       <header
-        class="flex lg:flex-row flex-col-reverse justify-between"
+        class="flex flex-col-reverse justify-between lg:flex-row"
         v-motion-slide-top
       >
-        <div class="lg:w-3/4 w-full">
+        <div class="w-full lg:w-3/4">
           <Markdown :content="data.content" />
         </div>
 
         <picture
-          class="lg:w-1/4 w-full lg:p-4 pb-4 flex overflow-hidden items-center justify-center"
+          class="flex items-center justify-center w-full pb-4 overflow-hidden lg:w-1/4 lg:p-4"
         >
           <img
             src="~~/assets/img/perfil.jpg"
             alt="Daniel Colmenares"
-            class="aspect-square w-52 h-52 rounded-full border-4 border-gold"
+            class="border-4 rounded-full aspect-square w-52 h-52 border-gold"
           />
         </picture>
       </header>
 
       <section class="flex flex-col space-y-2">
         <Heading2 v-motion-slide-top>Projects</Heading2>
+
+        <section class="flex space-x-4">
+          <button
+            v-for="option in filterOptions"
+            :key="option"
+            @click="onChangeFilterOptions(option)"
+            class="px-3 py-1 transition duration-300 ease-in-out border rounded-lg border-gold hover:bg-gold"
+            :class="{ 'bg-gold font-semibold': option === filterSelected }"
+          >
+            {{ option }}
+          </button>
+          
+          <button
+            @click="onChangeFilterOptions('')"
+            class="px-3 py-1 transition duration-300 ease-in-out border rounded-lg border-gold hover:bg-gold"
+            :class="{ 'bg-gold font-semibold': filterSelected === '' }"
+          >
+            All
+          </button>
+        </section>
+
         <Grid size="lg">
           <CardProject
-            v-for="project in data.projects"
+            v-for="project in filteredProjects"
             :key="project.id"
             :projectProps="project.properties"
           />
