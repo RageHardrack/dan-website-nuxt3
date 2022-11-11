@@ -906,7 +906,7 @@
   resolved "https://registry.yarnpkg.com/@vueuse/metadata/-/metadata-9.3.0.tgz#c107fe77a577e1f221536cd1b291039c0c7c4bce"
   integrity sha512-GnnfjbzIPJIh9ngL9s9oGU1+Hx/h5/KFqTfJykzh/1xjaHkedV9g0MASpdmPZIP+ynNhKAcEfA6g5i8KXwtoMA==
 
-"@vueuse/motion@^2.0.0-beta.23":
+"@vueuse/motion@2.0.0-beta.23":
   version "2.0.0-beta.23"
   resolved "https://registry.yarnpkg.com/@vueuse/motion/-/motion-2.0.0-beta.23.tgz#a62c48b7baa23d5eb312adab173f11bb2e26ecd1"
   integrity sha512-xYAhqn/J/lMEL8XX4TGkj7v320fYAQ4q9J9e/BlakemFxfUewO1j53wu62kJ9Wm4qo1rDHiDNoRwoMc3ppkjeg==
@@ -3490,7 +3490,7 @@ nuxi@3.0.0-rc.11:
   optionalDependencies:
     fsevents "~2.3.2"
 
-nuxt@^3.0.0-rc.11:
+nuxt@3.0.0-rc.11:
   version "3.0.0-rc.11"
   resolved "https://registry.yarnpkg.com/nuxt/-/nuxt-3.0.0-rc.11.tgz#08f9861b71b68e322bf8f732f8b28956bb92219f"
   integrity sha512-I0wyxPHnUoJBWoROKUx91PLKaAFZ/TsxSpcm3/jn/Ysq2RGU5Q3o9AzqT0YcXW4rgH35QPFvGpqopU9X0vS7Qw==
