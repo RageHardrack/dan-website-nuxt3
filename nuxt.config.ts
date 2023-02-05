@@ -5,9 +5,13 @@ export default defineNuxtConfig({
   modules: [
     "@nuxtjs/tailwindcss",
     "@vueuse/nuxt",
+    "@morev/vue-transitions/nuxt",
     [
       "@pinia/nuxt",
       { autoImports: ["defineStore", ["defineStore", "definePiniaStore"]] },
     ],
   ],
+  devServer: {
+    port: 3000,
+  },
 });

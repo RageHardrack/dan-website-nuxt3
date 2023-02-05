@@ -1,11 +1,11 @@
 <template>
-  <transition name="fade">
+  <transition-fade>
     <div
-      class="flex items-center flex-col justify-center overflow-hidden fixed inset-0 z-30"
+      class="fixed inset-0 z-30 flex flex-col items-center justify-center overflow-hidden"
     >
       <div class="fixed inset-0 z-40 w-screen h-screen bg-black-coffee/70" />
 
       <slot />
     </div>
-  </transition>
+  </transition-fade>
 </template>

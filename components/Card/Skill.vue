@@ -23,10 +23,10 @@ const { skillProps } = defineProps<Props>();
       :alt="skillProps.Name"
       class="aspect-square"
     />
-    <transition name="fade" appear>
-    <Pill v-if="!isOutside" class='absolute top-1 left-1'>
-      {{ skillProps.Name }}
-    </Pill>
-    </transition>
+    <transition-slide appear>
+      <Pill v-if="!isOutside" class="absolute top-1 left-1">
+        {{ skillProps.Name }}
+      </Pill>
+    </transition-slide>
   </article>
 </template>
