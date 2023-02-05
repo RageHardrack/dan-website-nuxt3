@@ -35,9 +35,7 @@ definePageMeta({
     <LoadingPage loadMessage="Loading Portfolio..." v-if="pending" />
 
     <section v-else class="flex flex-col space-y-5">
-      <header
-        class="flex flex-col-reverse justify-between lg:flex-row"
-      >
+      <header class="flex flex-col-reverse justify-between lg:flex-row">
         <div class="w-full lg:w-3/4">
           <Markdown :content="data!.content" />
         </div>
@@ -54,22 +52,22 @@ definePageMeta({
       </header>
 
       <section class="flex flex-col space-y-2">
-        <Heading2 >Projects</Heading2>
+        <Heading2>Projects</Heading2>
 
-        <section class="flex flex-wrap">
+        <section class="flex flex-wrap gap-x-1 gap-y-2">
           <button
             v-for="option in filterOptions"
             :key="option"
             @click="onChangeFilterOptions(option)"
-            class="px-3 py-1 mb-2 mr-1 transition duration-300 ease-in-out border rounded-lg border-gold hover:bg-gold"
+            class="px-3 py-1 transition duration-300 ease-in-out border rounded-lg border-gold hover:bg-gold"
             :class="{ 'bg-gold font-semibold': option === filterSelected }"
           >
             {{ option }}
           </button>
-          
+
           <button
             @click="onChangeFilterOptions('')"
-            class="px-3 py-1 mb-2 mr-1 transition duration-300 ease-in-out border rounded-lg border-gold hover:bg-gold"
+            class="px-3 py-1 transition duration-300 ease-in-out border rounded-lg border-gold hover:bg-gold"
             :class="{ 'bg-gold font-semibold': filterSelected === '' }"
           >
             All
