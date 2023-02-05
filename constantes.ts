@@ -6,9 +6,9 @@ export const ROUTES_LINKS = [
 ];
 
 export const SOCIAL_MEDIA_LINKS = [
-  { social: "LinkedIn", url: "https://linkedin.com/in/dan-colmenares" },
+  { social: "linkedIn", url: "https://linkedin.com/in/dan-colmenares" },
   // { social: "GitHub", url: "https://github.com/RageHardrack" },
-  { social: "Twitter", url: "https://twitter.com/dragon_azul93" },
+  { social: "twitter", url: "https://twitter.com/dragon_azul93" },
 ];
 
 export const UTILS_LINKS = [

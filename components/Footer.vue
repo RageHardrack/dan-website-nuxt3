@@ -24,14 +24,14 @@ import { SOCIAL_MEDIA_LINKS, UTILS_LINKS } from "~~/constantes";
       <section class="flex items-center justify-center space-x-4">
         <a
           v-for="{ social, url } in SOCIAL_MEDIA_LINKS"
-          class="transition duration-300 hover:text-gold"
+          class="text-white"
           rel="nofollow"
           target="_blank"
           :href="url"
           :key="social"
           :title="social"
         >
-          <IconEnum :type="social" />
+          <Icon :name="social" size="48px" class="transition duration-300 hover:text-gold" />
         </a>
       </section>
     </article>

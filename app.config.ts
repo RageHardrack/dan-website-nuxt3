@@ -1,7 +1,6 @@
 export default defineAppConfig({
   nuxtIcon: {
     size: "24px",
-    class: "text-gold",
     aliases: {
       github: "mdi:github",
       twitter: "mdi:twitter",
