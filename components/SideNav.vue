@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ROUTES_LINKS } from "~~/constantes";
+import { useUIStore } from "~~/store";
 
-const toggleSideNav = inject<() => boolean>("toggleSideNav");
+const { toggleSideNav } = useUIStore();
 </script>
 
 <template>
@@ -13,9 +14,9 @@ const toggleSideNav = inject<() => boolean>("toggleSideNav");
 
       <button
         @click="toggleSideNav"
-        class="flex items-center justify-center rounded-full bg-black-coffee"
+        class="flex items-center justify-center p-1 rounded-full bg-black-coffee"
       >
-        <IconCrossSvg customClass="text-gold w-8 h-8" />
+        <Icon name="cross" size="32px" />
       </button>
     </header>
 
