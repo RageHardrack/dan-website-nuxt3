@@ -1,11 +1,8 @@
 <script setup lang="ts">
+import { useUIStore } from "~~/store";
 const route = useRoute();
-const sideNav = ref<boolean>(false);
 
-const toggleSideNav = (): boolean => (sideNav.value = !sideNav.value);
-
-provide("sideNav", sideNav);
-provide("toggleSideNav", toggleSideNav);
+const { getShowSideBar } = useUIStore();
 
 useHead({
   title: `Daniel Colmenares - ${route.meta.title}`,
@@ -16,8 +13,8 @@ useHead({
   <section class="flex flex-col justify-between min-h-screen">
     <Navbar />
 
-    <transition-slide :offset="['-100%', 0]" :duration="300">
-      <SideNav v-if="sideNav" />
+    <transition-slide :offset="['-100%', 0]" :duration="500">
+      <SideNav v-if="getShowSideBar" />
     </transition-slide>
 
     <main class="container flex-1 py-4 md:py-8">
