@@ -17,7 +17,6 @@ const { skillProps } = defineProps<Props>();
     class="relative flex flex-col justify-between overflow-hidden duration-300 transform rounded-lg shadow-lg bg-secondary bg-opacity-30 hover:scale-105"
     ref="target"
     :title="skillProps.Name"
-    v-motion-slide-left
   >
     <img
       :src="skillProps.Image_URL"

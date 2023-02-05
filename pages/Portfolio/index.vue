@@ -18,9 +18,9 @@ const onChangeFilterOptions = (optionSelected: string) =>
   (filterSelected.value = optionSelected);
 
 const filteredProjects = computed(() => {
-  if (!filterSelected.value) return data.value.projects;
+  if (!filterSelected.value) return data!.value!.projects;
 
-  return data.value.projects.filter((project) =>
+  return data!.value!.projects.filter((project) =>
     project.properties.Tags.includes(filterSelected.value)
   );
 });
@@ -37,10 +37,9 @@ definePageMeta({
     <section v-else class="flex flex-col space-y-5">
       <header
         class="flex flex-col-reverse justify-between lg:flex-row"
-        v-motion-slide-top
       >
         <div class="w-full lg:w-3/4">
-          <Markdown :content="data.content" />
+          <Markdown :content="data!.content" />
         </div>
 
         <picture
@@ -55,7 +54,7 @@ definePageMeta({
       </header>
 
       <section class="flex flex-col space-y-2">
-        <Heading2 v-motion-slide-top>Projects</Heading2>
+        <Heading2 >Projects</Heading2>
 
         <section class="flex flex-wrap">
           <button
@@ -87,10 +86,10 @@ definePageMeta({
       </section>
 
       <section class="flex flex-col space-y-2">
-        <Heading2 v-motion-slide-top>Skills</Heading2>
+        <Heading2>Skills</Heading2>
         <Grid size="sm">
           <CardSkill
-            v-for="skill in data.skills"
+            v-for="skill in data!.skills"
             :key="skill.id"
             :skillProps="skill.properties"
           />
