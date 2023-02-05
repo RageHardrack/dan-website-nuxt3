@@ -13,7 +13,7 @@ definePageMeta({
     <LoadingPage loadMessage="Loading posts" v-if="pending" />
 
     <section v-else class="flex flex-col justify-center space-y-4 md:space-y-8">
-      <Markdown :content="data" v-motion-slide-right />
+      <Markdown :content="data!" />
     </section>
   </NuxtLayout>
 </template>

@@ -1,27 +1,26 @@
 export interface UIState {
   isModalOpen: boolean;
+  showSideBar: boolean;
 }
 
-const state = (): UIState => ({
-  isModalOpen: false,
-});
-
-const getters = {
-  getIsModalOpen: (state: UIState) => state.isModalOpen,
-};
-
-const actions = {
-  openModal() {
-    this.isModalOpen = true;
-  },
-
-  closeModal() {
-    this.isModalOpen = false;
-  },
-};
-
 export const useUIStore = definePiniaStore("UI", {
-  state,
-  getters,
-  actions,
+  state: (): UIState => ({
+    isModalOpen: false,
+    showSideBar: false,
+  }),
+  getters: {
+    getIsModalOpen: (state: UIState) => computed(() => state.isModalOpen),
+    getShowSideBar: (state: UIState) => computed(() => state.showSideBar),
+  },
+  actions: {
+    openModal() {
+      this.isModalOpen = true;
+    },
+    closeModal() {
+      this.isModalOpen = false;
+    },
+    toggleSideNav() {
+      this.showSideBar = !this.showSideBar;
+    },
+  },
 });

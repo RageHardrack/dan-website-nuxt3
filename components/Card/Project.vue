@@ -13,7 +13,6 @@ const { Name, Slug, Tags, Preview } = projectProps;
   <article
     class="flex flex-col justify-between space-y-2 overflow-hidden duration-300 transform rounded-lg shadow-lg cursor-pointer h-80 bg-primary hover:scale-110"
     @click="navigateTo(`/portfolio/projects/${Slug}`)"
-    v-motion-slide-right
   >
     <header class="relative overflow-hidden h-3/5">
       <img
@@ -28,8 +27,8 @@ const { Name, Slug, Tags, Preview } = projectProps;
       <Heading2 customClass="text-gold">{{ Name }}</Heading2>
     </section>
 
-    <footer class="flex flex-wrap items-center justify-start p-4 h-1/5">
-      <Pill v-for="(name, idx) in Tags" :key="idx" customClass="mr-1 mb-1">
+    <footer class="flex flex-wrap items-center justify-start gap-1 p-4 h-1/5">
+      <Pill v-for="(name, idx) in Tags" :key="idx">
         {{ name }}
       </Pill>
     </footer>

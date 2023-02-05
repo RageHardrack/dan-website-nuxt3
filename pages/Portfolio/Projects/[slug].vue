@@ -21,7 +21,7 @@ refresh();
       >
         <Heading3>Return to Portfolio</Heading3>
       </NuxtLink>
-      <Markdown :content="data" />
+      <Markdown :content="data!" />
     </section>
   </NuxtLayout>
 </template>
