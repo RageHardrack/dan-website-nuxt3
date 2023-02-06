@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useUIStore } from "~~/store";
-
 const store = useUIStore();
 
 const closeModal = store.closeModal;

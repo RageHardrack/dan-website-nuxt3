@@ -7,11 +7,12 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     "@morev/vue-transitions/nuxt",
     "nuxt-icon",
-    [
-      "@pinia/nuxt",
-      { autoImports: ["defineStore", ["defineStore", "definePiniaStore"]] },
-    ],
+    "@pinia/nuxt",
   ],
+  pinia: { autoImports: ["defineStore", ["defineStore", "definePiniaStore"]] },
+  imports: {
+    dirs: ["stores"],
+  },
   devServer: {
     port: 3000,
   },

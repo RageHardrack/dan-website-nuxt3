@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ROUTES_LINKS } from "~~/constantes";
-import { useUIStore } from "~~/store";
 
 const { toggleSideNav } = useUIStore();
 </script>
@@ -16,7 +15,7 @@ const { toggleSideNav } = useUIStore();
         @click="toggleSideNav"
         class="flex items-center justify-center p-1 rounded-full bg-black-coffee"
       >
-        <Icon name="cross" size="32px" />
+        <Icon name="cross" size="32px" class="text-gold" />
       </button>
     </header>
 

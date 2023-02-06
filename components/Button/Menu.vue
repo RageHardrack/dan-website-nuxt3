@@ -6,6 +6,6 @@ const clicked = () => emits("pressButton");
 
 <template>
   <button @click.prevent="clicked">
-    <Icon name="menu" size="40px" />
+    <Icon name="menu" size="40px" class="text-gold" />
   </button>
 </template>
