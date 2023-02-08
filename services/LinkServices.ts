@@ -11,11 +11,21 @@ class LinkServices {
     const res = await this.NotionClient.getDatabase<Link[]>(this.databaseId, {
       sorts: [{ property: "Orden", direction: "ascending" }],
       filter: {
-        property: "Display",
-        checkbox: {
-          equals: true,
-        }
-      }
+        and: [
+          {
+            property: "Display",
+            checkbox: {
+              equals: true,
+            },
+          },
+          {
+            property: "Stage",
+            relation: {
+              contains: "5d125d1c1275471abc4b20ba57c7ef3d",
+            },
+          },
+        ],
+      },
     });
 
     return res

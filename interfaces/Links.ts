@@ -5,6 +5,7 @@ import {
   NumberProperty,
   TitleProperty,
   CheckboxProperty,
+  RelationProperty,
 } from ".";
 
 export interface Link {
@@ -27,4 +28,5 @@ export interface LinkProperties {
   Orden: NumberProperty;
   Name: TitleProperty;
   Display: CheckboxProperty;
+  Stage: RelationProperty;
 }

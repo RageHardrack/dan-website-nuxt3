@@ -122,3 +122,12 @@ export interface DateProperty {
     time_zone?: string;
   };
 }
+
+export interface RelationProperty {
+  id: string;
+  type: string;
+  relation: {
+    id: string;
+  }[];
+  has_more: boolean;
+}
