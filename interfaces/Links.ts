@@ -1,4 +1,11 @@
-import { TedBy, Parent, UrlProperty, NumberProperty, TitleProperty } from ".";
+import {
+  TedBy,
+  Parent,
+  UrlProperty,
+  NumberProperty,
+  TitleProperty,
+  CheckboxProperty,
+} from ".";
 
 export interface Link {
   object: { id: string };
@@ -19,4 +26,5 @@ export interface LinkProperties {
   Link: UrlProperty;
   Orden: NumberProperty;
   Name: TitleProperty;
+  Display: CheckboxProperty;
 }

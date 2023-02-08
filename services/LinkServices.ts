@@ -10,6 +10,12 @@ class LinkServices {
   async findAll() {
     const res = await this.NotionClient.getDatabase<Link[]>(this.databaseId, {
       sorts: [{ property: "Orden", direction: "ascending" }],
+      filter: {
+        property: "Display",
+        checkbox: {
+          equals: true,
+        }
+      }
     });
 
     return res
