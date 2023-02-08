@@ -5,21 +5,19 @@ definePageMeta({
 </script>
 
 <template>
-  <NuxtLayout>
-    <section class="flex flex-col items-center justify-center">
-      <article class="flex items-center justify-between w-full">
-        <section class="flex flex-col items-center justify-center flex-1">
-          <Heading1>Hello there!</Heading1>
-          <Heading2>My page is under Construction...</Heading2>
-          <Icon name="github" size="48px" class=" text-primary" />
-        </section>
+  <section class="flex flex-col items-center justify-center">
+    <article class="flex items-center justify-between w-full">
+      <section class="flex flex-col items-center justify-center flex-1">
+        <Heading1>Hello there!</Heading1>
+        <Heading2>My page is under Construction...</Heading2>
+        <Icon name="github" size="48px" class="text-primary" />
+      </section>
 
-        <picture class="flex flex-col items-center justify-center flex-1">
-          <Logo />
-        </picture>
-      </article>
-    </section>
-  </NuxtLayout>
+      <picture class="flex flex-col items-center justify-center flex-1">
+        <Logo />
+      </picture>
+    </article>
+  </section>
 </template>
 
 <style>

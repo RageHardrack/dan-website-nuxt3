@@ -14,7 +14,7 @@ const { Name, Slug, Tags, Preview } = projectProps;
 
 <template>
   <article
-    class="relative flex flex-col justify-between space-y-2 overflow-hidden duration-300 transform rounded-lg shadow-lg cursor-pointer hover:scale-105"
+    class="relative flex flex-col justify-between space-y-2 overflow-hidden duration-300 transform rounded-lg shadow-lg cursor-pointer h-80 hover:scale-105"
     ref="target"
     @click="navigateTo(`/portfolio/projects/${Slug}`)"
   >
