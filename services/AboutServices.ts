@@ -1,6 +1,8 @@
+import { blockContentAdapter } from "~~/adapters";
 import { ContentBlock, IPageContent } from "~~/interfaces";
-import { blockChildrenTransformer } from "~~/utils";
-import { Notion, DATABASES_ID, NotionClient } from "~~/vendors";
+import { Notion, NotionClient } from "~~/vendors";
+
+const { aboutPage } = useRuntimeConfig();
 
 class AboutServices {
   constructor(
@@ -16,9 +18,9 @@ class AboutServices {
     });
 
     return listBlockChildren.map((block: ContentBlock) => {
-      return blockChildrenTransformer(block);
+      return blockContentAdapter(block);
     });
   }
 }
 
-export const AboutService = new AboutServices(Notion, DATABASES_ID.ABOUT_ID);
+export const AboutService = new AboutServices(Notion, aboutPage);

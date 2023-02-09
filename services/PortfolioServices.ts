@@ -1,4 +1,4 @@
-import { Notion, DATABASES_ID, NotionClient } from "~~/vendors";
+import { Notion, NotionClient } from "~~/vendors";
 import {
   ChildDatabase,
   ContentBlock,
@@ -10,10 +10,12 @@ import {
   SkillResponse,
 } from "~~/interfaces";
 import {
-  blockChildrenTransformer,
   projectPropertiesTransformer,
   skillPropertiesTransformer,
 } from "~~/utils";
+import { blockContentAdapter } from "~~/adapters";
+
+const { portfolioPage } = useRuntimeConfig();
 
 class PortfolioServices {
   constructor(
@@ -97,12 +99,9 @@ class PortfolioServices {
     return listBlockChildren
       .filter((block: ContentBlock) => block.type !== "child_database")
       .map((block: ContentBlock) => {
-        return blockChildrenTransformer(block);
+        return blockContentAdapter(block);
       });
   }
 }
 
-export const PortfolioService = new PortfolioServices(
-  Notion,
-  DATABASES_ID.PORTFOLIO_ID
-);
+export const PortfolioService = new PortfolioServices(Notion, portfolioPage);
