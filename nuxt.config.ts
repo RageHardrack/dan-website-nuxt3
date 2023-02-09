@@ -20,6 +20,7 @@ export default defineNuxtConfig({
     layoutTransition: { name: "layout", mode: "out-in" },
     pageTransition: { name: "page", mode: "out-in" },
   },
+  vueTransitions: {},
   runtimeConfig: {
     notionSecret: process.env.NOTION_API_KEY,
     homePage: process.env.NOTION_HOME_ID,
