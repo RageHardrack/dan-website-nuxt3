@@ -1,32 +1,32 @@
 import {
-  TedBy,
-  Parent,
   UrlProperty,
   NumberProperty,
   TitleProperty,
   CheckboxProperty,
   RelationProperty,
+  NotionResponse
 } from ".";
 
-export interface Link {
-  object: { id: string };
-  id: string;
-  created_time: string;
-  last_edited_time: string;
-  created_by: TedBy;
-  last_edited_by: TedBy;
-  cover?: string;
-  icon?: string;
-  parent: Parent;
-  archived: boolean;
-  properties: LinkProperties;
-  url: string;
+export interface LinkNotionResponse extends NotionResponse {
+  properties: LinkNotionResponseProperties;
 }
 
-export interface LinkProperties {
+export interface ILink extends ILinkProperties {
+  id: string;
+}
+
+export interface LinkNotionResponseProperties {
   Link: UrlProperty;
   Orden: NumberProperty;
   Name: TitleProperty;
   Display: CheckboxProperty;
   Stage: RelationProperty;
+}
+
+export interface ILinkProperties {
+  Link: string;
+  Orden: number;
+  Name: string;
+  Display: boolean;
+  Stage: string;
 }

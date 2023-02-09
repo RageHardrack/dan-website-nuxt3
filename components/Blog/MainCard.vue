@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { IPostProperties } from "~~/interfaces";
+import { IPost } from "~~/interfaces";
 const { $dayjs } = useNuxtApp();
 
 interface Props {
-  post: IPostProperties;
+  post: IPost;
 }
 
 const { post } = defineProps<Props>();

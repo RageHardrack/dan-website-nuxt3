@@ -1,5 +1,5 @@
 import {
-  PostResponseProperties,
+  PostNotionResponseProperties,
   IPostProperties,
   Tag,
   RawProjectProperties,
@@ -8,23 +8,6 @@ import {
   ISkillProperties,
   ContentBlock,
 } from "~~/interfaces";
-
-export const postPropertiesTransformer = (
-  postProperties: PostResponseProperties
-): IPostProperties => {
-  return {
-    Tags: postProperties.Tags.multi_select.map((tag: Tag) => tag.name),
-    Image_URL: postProperties.Image_URL.url,
-    Status: postProperties.Status.select.name,
-    Slug: postProperties.Slug.rich_text[0].plain_text,
-    Fecha_Publicacion: postProperties.Fecha_Publicacion.date.start,
-    Brief: postProperties.Brief.rich_text[0].plain_text,
-    Post: postProperties.Post.title[0].plain_text,
-    Prevent_Index: postProperties.Prevent_Index.checkbox,
-    Language: postProperties.Language.select.name,
-    Testing: postProperties.Testing.checkbox,
-  };
-};
 
 export const projectPropertiesTransformer = (
   projectProperties: RawProjectProperties
@@ -46,20 +29,5 @@ export const skillPropertiesTransformer = (
   return {
     Name: skillProperties.Name.title[0].plain_text,
     Image_URL: skillProperties.Image_URL.url,
-  };
-};
-
-export const blockChildrenTransformer = (block: ContentBlock) => {
-  return {
-    type: block.type,
-    body:
-      block.type === "image"
-        ? block[block.type].file.url
-        : block[block.type].rich_text[0].plain_text,
-    caption:
-      block.type === "image"
-        ? block[block.type].caption[0].plain_text
-        : block[block.type].rich_text[0].plain_text,
-    emoji: block.type === "callout" ? block[block.type].icon.emoji : null,
   };
 };

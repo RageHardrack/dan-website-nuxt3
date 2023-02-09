@@ -1,16 +1,10 @@
 import { Client } from "@notionhq/client";
 import { HttpAdapter } from "~~/interfaces";
 
-export const DATABASES_ID = {
-  HOME_ID: process.env.NOTION_HOME_ID as string,
-  ABOUT_ID: process.env.NOTION_ABOUT_ID as string,
-  BLOG_ID: process.env.NOTION_BLOG_ID as string,
-  PORTFOLIO_ID: process.env.NOTION_PORTFOLIO_ID as string,
-  LINK_TREE_ID: process.env.NOTION_LINK_TREE_ID as string,
-};
+const { notionSecret } = useRuntimeConfig();
 
 export class NotionClient implements HttpAdapter {
-  private notion = new Client({ auth: process.env.NOTION_API_KEY });
+  private notion = new Client({ auth: notionSecret });
 
   async getDatabase<T>(databaseId: string, options = {}): Promise<T> {
     const { results } = await this.notion.databases.query({

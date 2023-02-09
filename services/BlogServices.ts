@@ -1,6 +1,18 @@
-import { Notion, DATABASES_ID, NotionClient } from "~~/vendors";
-import { PostResponse, IPageContent, IPost, ContentBlock } from "~~/interfaces";
-import { blockChildrenTransformer, postPropertiesTransformer } from "~~/utils";
+import { Notion, NotionClient } from "~~/vendors";
+import {
+  PostNotionResponse,
+  IPageContent,
+  IPost,
+  ContentBlock,
+} from "~~/interfaces";
+import { getEnvironmentId } from "~~/utils";
+import {
+  postAdapter,
+  postPropertiesAdapter,
+  blockContentAdapter,
+} from "~~/adapters";
+
+const { blogPage } = useRuntimeConfig();
 
 class BlogServices {
   constructor(
@@ -9,7 +21,7 @@ class BlogServices {
   ) {}
 
   async findAll(): Promise<IPost[]> {
-    const results = await this.NotionClient.getDatabase<PostResponse[]>(
+    const results = await this.NotionClient.getDatabase<PostNotionResponse[]>(
       this.databaseId,
       {
         page_size: 10,
@@ -22,9 +34,9 @@ class BlogServices {
               },
             },
             {
-              property: "Testing",
-              checkbox: {
-                equals: true,
+              property: "Stage",
+              relation: {
+                contains: getEnvironmentId(),
               },
             },
           ],
@@ -33,23 +45,16 @@ class BlogServices {
       }
     );
 
-    const pages = results.map((page: PostResponse) => {
-      return {
-        object: page.object,
-        id: page.id,
-        properties: postPropertiesTransformer(page.properties),
-      };
-    });
-
-    return pages;
+    return postAdapter(results);
   }
 
   async findOne(pageId: string): Promise<IPost> {
-    const page = await this.NotionClient.getPage<PostResponse>(pageId);
+    const page = await this.NotionClient.getPage<PostNotionResponse>(pageId);
 
-    const properties = postPropertiesTransformer(page.properties);
-
-    return { object: page.object, id: page.id, properties };
+    return {
+      id: page.id,
+      ...postPropertiesAdapter(page.properties),
+    };
   }
 
   async getPostContent(blockId: string): Promise<IPageContent[]> {
@@ -60,9 +65,9 @@ class BlogServices {
     });
 
     return listBlockChildren.map((block: ContentBlock) => {
-      return blockChildrenTransformer(block);
+      return blockContentAdapter(block);
     });
   }
 }
 
-export const BlogService = new BlogServices(Notion, DATABASES_ID.BLOG_ID);
+export const BlogService = new BlogServices(Notion, blogPage);

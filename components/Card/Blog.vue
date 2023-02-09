@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { IPostProperties } from "~~/interfaces";
+import { IPost } from "~~/interfaces";
 
 interface Props {
-  post: IPostProperties;
+  post: IPost;
 }
 
 const { post } = defineProps<Props>();
