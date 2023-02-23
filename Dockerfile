@@ -1,20 +1,20 @@
-FROM node:18-alpine as dev-deps
+FROM --platform=linux/amd64 node:18-alpine as dev-deps
 WORKDIR /app
 COPY package.json .
 RUN yarn install --frozen-lockfile
 
-FROM node:18-alpine as builder
+FROM --platform=linux/amd64 node:18-alpine as builder
 WORKDIR /app
 COPY --from=dev-deps /app/node_modules ./node_modules
 COPY . .
 RUN yarn build
 
-FROM node:18-alpine as prod-deps
+FROM --platform=linux/amd64 node:18-alpine as prod-deps
 WORKDIR /app
 COPY package.json package.json
 RUN yarn install --frozen-lockfile
 
-FROM node:18-alpine as prod
+FROM --platform=linux/amd64 node:18-alpine as prod
 EXPOSE 3000
 WORKDIR /app
 
