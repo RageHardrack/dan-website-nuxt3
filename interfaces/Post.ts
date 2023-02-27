@@ -1,7 +1,6 @@
-import { IPageContent } from "./Share";
 import {
-  Parent,
-  TedBy,
+  IPageContent,
+  NotionResponse,
   CheckboxProperty,
   DateProperty,
   MultiSelectProperty,
@@ -9,24 +8,14 @@ import {
   SelectProperty,
   TitleProperty,
   UrlProperty,
+  RelationProperty,
 } from ".";
 
-export interface PostResponse {
-  object: string;
-  id: string;
-  created_time: string;
-  last_edited_time: string;
-  created_by: TedBy;
-  last_edited_by: TedBy;
-  cover?: string;
-  icon?: string;
-  parent: Parent;
-  archived: boolean;
-  properties: PostResponseProperties;
-  url: string;
+export interface PostNotionResponse extends NotionResponse {
+  properties: PostNotionResponseProperties;
 }
 
-export interface PostResponseProperties {
+export interface PostNotionResponseProperties {
   Tags: MultiSelectProperty;
   Image_URL: UrlProperty;
   Status: SelectProperty;
@@ -36,13 +25,11 @@ export interface PostResponseProperties {
   Post: TitleProperty;
   Prevent_Index: CheckboxProperty;
   Language: SelectProperty;
-  Testing: CheckboxProperty;
+  Stage: RelationProperty;
 }
 
-export interface IPost {
-  object: string;
+export interface IPost extends IPostProperties {
   id: string;
-  properties: IPostProperties;
 }
 
 export interface IPostProperties {
@@ -55,10 +42,10 @@ export interface IPostProperties {
   Post: string;
   Prevent_Index: boolean;
   Language: string;
-  Testing: boolean;
+  Stage: string;
 }
 
 export interface IPostContent {
-  properties: PostResponseProperties;
+  properties: PostNotionResponseProperties;
   content: IPageContent;
 }

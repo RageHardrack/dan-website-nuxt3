@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ROUTES_LINKS } from "~~/constantes";
-import { useUIStore } from "~~/store";
 
 const { toggleSideNav } = useUIStore();
 </script>

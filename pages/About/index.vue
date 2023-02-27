@@ -1,7 +1,5 @@
 <script setup lang="ts">
-const { data, pending } = await useLazyAsyncData("about", () =>
-  $fetch("/api/about-me")
-);
+const { data, pending } = await useLazyFetch("/api/about-me");
 
 definePageMeta({
   title: "About me",
@@ -9,11 +7,9 @@ definePageMeta({
 </script>
 
 <template>
-  <NuxtLayout>
-    <LoadingPage loadMessage="Loading posts" v-if="pending" />
+  <LoadingPage loadMessage="Loading posts" v-if="pending" />
 
-    <section v-else class="flex flex-col justify-center space-y-4 md:space-y-8">
-      <Markdown :content="data!" />
-    </section>
-  </NuxtLayout>
+  <section v-else class="flex flex-col justify-center space-y-4 md:space-y-8">
+    <Markdown :content="data!" />
+  </section>
 </template>

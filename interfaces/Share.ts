@@ -25,6 +25,20 @@ export interface IPageContent {
   emoji?: string;
 }
 
+export interface NotionResponse {
+  object: string;
+  id: string;
+  created_time: string;
+  last_edited_time: string;
+  created_by: TedBy;
+  last_edited_by: TedBy;
+  cover?: string;
+  icon?: string;
+  parent: Parent;
+  archived: boolean;
+  url: string;
+}
+
 export interface TedBy {
   object: string;
   id: string;
@@ -121,4 +135,13 @@ export interface DateProperty {
     end?: string;
     time_zone?: string;
   };
+}
+
+export interface RelationProperty {
+  id: string;
+  type: string;
+  relation: {
+    id: string;
+  }[];
+  has_more: boolean;
 }

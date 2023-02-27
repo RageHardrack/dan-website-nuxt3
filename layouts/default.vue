@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useUIStore } from "~~/store";
 const route = useRoute();
 
 const { getShowSideBar } = useUIStore();

@@ -1,5 +1,34 @@
 import { TedBy, Parent } from ".";
 
+export type BlockType =
+  | "paragraph"
+  | "heading_1"
+  | "heading_2"
+  | "heading_3"
+  | "callout"
+  | "quote"
+  | "bulleted_list_item"
+  | "numbered_list_item"
+  | "to_do"
+  | "toggle"
+  | "code"
+  | "child_page"
+  | "child_database"
+  | "embed"
+  | "image"
+  | "video"
+  | "file"
+  | "pdf"
+  | "bookmark"
+  | "equation"
+  | "divider"
+  | "table_of_contents"
+  | "breadcrumb"
+  | "column_list"
+  | "column"
+  | "link_preview"
+  | "table"
+  | "table_row";
 export interface ContentBlockResponse {
   object: string;
   results: ContentBlock[];
@@ -30,7 +59,7 @@ export interface RawChildDatabase {
 export interface ContentBlock {
   object: string;
   id: string;
-  type: string;
+  type: BlockType;
   body: string;
   caption: string;
   emoji?: string;

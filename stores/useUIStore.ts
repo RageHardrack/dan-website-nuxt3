@@ -3,7 +3,7 @@ export interface UIState {
   showSideBar: boolean;
 }
 
-export const useUIStore = definePiniaStore("UI", {
+export default definePiniaStore("UI", {
   state: (): UIState => ({
     isModalOpen: false,
     showSideBar: false,
