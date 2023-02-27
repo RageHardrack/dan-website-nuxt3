@@ -2,17 +2,56 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Git Semantic Version
+        uses: PaulHatch/semantic-version@v4.0.3
+        with:
+          major_pattern: "Major:"
+          minor_pattern: "Feat:"
+          format: "${major}.${minor}.${patch}"
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          file: ./Dockerfile
+          push: true
+          tags: |
+            ${{ secrets.DOCKER_USER }}/dragon-azul-nuxt3-website:${{ steps.version.outputs.version }}
+            ${{ secrets.DOCKER_USER }}/dragon-azul-nuxt3-website:latest
+          secrets: |
+            "NOTION_API_KEY=${{ secrets.NOTION_API_KEY }}"
+            "APP_ENVIRONMENT=prod"
+            "NOTION_HOME_ID=${{ secrets.NOTION_HOME_ID }}"
+            "NOTION_ABOUT_ID=${{ secrets.NOTION_ABOUT_ID }}"
+            "NOTION_BLOG_ID=${{ secrets.NOTION_BLOG_ID }}"
+            "NOTION_PORTFOLIO_ID=${{ secrets.NOTION_PORTFOLIO_ID }}"
+            "NOTION_LINK_TREE_ID=${{ secrets.NOTION_LINK_TREE_ID }}"
+            "DEVELOPMENT_STAGE=${{ secrets.DEVELOPMENT_STAGE }}"
+            "PRODUCTION_STAGE=${{ secrets.PRODUCTION_STAGE }}"
