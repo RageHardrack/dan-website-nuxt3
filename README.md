@@ -26,4 +26,10 @@ Build the application for production:
 yarn build
 ```
 
+## Build Docker Image
+
+```bash
+docker build -t hardrack/dragon-azul-nuxt3-website:tag .
+```
+
 Checkout the [deployment documentation](https://v3.nuxtjs.org/docs/deployment).
