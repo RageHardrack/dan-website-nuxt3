@@ -43,8 +43,8 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            ${{ secrets.DOCKER_USER }}/dragon-azul-nuxt3-website:${{ steps.version.outputs.version }}
-            ${{ secrets.DOCKER_USER }}/dragon-azul-nuxt3-website:latest
+            hardrack/dragon-azul-nuxt3-website:${{ steps.version.outputs.version }}
+            hardrack/dragon-azul-nuxt3-website:latest
           secrets: |
             "NOTION_API_KEY=${{ secrets.NOTION_API_KEY }}"
             "APP_ENVIRONMENT=prod"
