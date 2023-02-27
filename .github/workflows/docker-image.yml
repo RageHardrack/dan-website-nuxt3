@@ -37,13 +37,15 @@ jobs:
 
       - name: Build and push
         uses: docker/build-push-action@v4
+        env:
+          NEW_VERSION: ${{ steps.version.outputs.version }}
         with:
           context: .
           platforms: linux/amd64,linux/arm64
           file: ./Dockerfile
           push: true
           tags: |
-            ${{ secrets.DOCKER_USER }}/dragon-azul-nuxt3-website:${{ steps.version.outputs.version }}
+            ${{ secrets.DOCKER_USER }}/dragon-azul-nuxt3-website:$NEW_VERSION
             ${{ secrets.DOCKER_USER }}/dragon-azul-nuxt3-website:latest
           secrets: |
             "NOTION_API_KEY=${{ secrets.NOTION_API_KEY }}"
