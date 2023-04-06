@@ -56,6 +56,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
+          port: ${{ secrets.PORT }}
           script: |
             cd app/dan-website-nuxt3
             git pull
