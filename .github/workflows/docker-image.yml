@@ -36,7 +36,7 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            ${{ secrets.DOCKER_USER }}/dragon-azul-nuxt3-website:1.0.5
+            ${{ secrets.DOCKER_USER }}/dragon-azul-nuxt3-website:1.0.6
             ${{ secrets.DOCKER_USER }}/dragon-azul-nuxt3-website:latest
           secrets: |
             "NOTION_API_KEY=${{ secrets.NOTION_API_KEY }}"
@@ -48,3 +48,15 @@ jobs:
             "NOTION_LINK_TREE_ID=${{ secrets.NOTION_LINK_TREE_ID }}"
             "DEVELOPMENT_STAGE=${{ secrets.DEVELOPMENT_STAGE }}"
             "PRODUCTION_STAGE=${{ secrets.PRODUCTION_STAGE }}"
+
+      - name: download changes, build and run containers
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          script: |
+            cd app/dan-website-nuxt3
+            git pull
+            docker compose up -d --build
