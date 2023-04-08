@@ -28,7 +28,6 @@ services:
 
   nuxt-app:
     image: hardrack/dragon-azul-nuxt3-website:latest
-    build: .
     restart: always
     expose:
       - '3000'
