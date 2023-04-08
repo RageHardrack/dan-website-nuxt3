@@ -27,7 +27,7 @@ services:
     restart: always
 
   nuxt-app:
-    image: nuxt-app
+    image: hardrack/dragon-azul-nuxt3-website:latest
     build: .
     restart: always
     expose:

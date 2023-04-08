@@ -10,6 +10,9 @@ definePageMeta({
       <section class="flex flex-col items-center justify-center flex-1">
         <Heading1>Hello there!</Heading1>
         <Heading2>My page is under Construction...</Heading2>
+        <Heading3
+          >This page is using CI/CD with Github Actions and Docker</Heading3
+        >
         <Icon name="github" size="48px" class="text-primary" />
       </section>
 
