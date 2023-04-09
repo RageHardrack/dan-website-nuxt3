@@ -25,7 +25,7 @@ services:
     restart: always
 
   nuxt-app:
-    image: hardrack/dragon-azul-nuxt3-website:latest
+    image: hardrack/dragon-azul-nuxt3-website:1.0.6
     restart: always
     expose:
       - '3000'
