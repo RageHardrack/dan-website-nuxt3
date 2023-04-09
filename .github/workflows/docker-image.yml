@@ -48,3 +48,15 @@ jobs:
             "NOTION_LINK_TREE_ID=${{ secrets.NOTION_LINK_TREE_ID }}"
             "DEVELOPMENT_STAGE=${{ secrets.DEVELOPMENT_STAGE }}"
             "PRODUCTION_STAGE=${{ secrets.PRODUCTION_STAGE }}"
+
+      - name: download changes and run containers
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
+          script: |
+            cd app/nuxt-app
+            git pull
+            docker compose up -d
