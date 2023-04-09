@@ -19,8 +19,6 @@ services:
     container_name: nginx-proxy-acme
     environment:
       - DEFAULT_EMAIL=${DEFAULT_EMAIL}
-    volumes_from:
-      - nginx-proxy
     volumes:
       - acme:/etc/acme.sh
       - /var/run/docker.sock:/var/run/docker.sock:ro
