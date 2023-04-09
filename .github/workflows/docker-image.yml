@@ -49,12 +49,13 @@ jobs:
             "DEVELOPMENT_STAGE=${{ secrets.DEVELOPMENT_STAGE }}"
             "PRODUCTION_STAGE=${{ secrets.PRODUCTION_STAGE }}"
 
-      - name: download changes and run containers
-        uses: appleboy/ssh-action@v0.1.7
+      - name: Download changes and run containers
+        uses: appleboy/ssh-action@v0.1.9
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
             cd app/dan-website-nuxt3
