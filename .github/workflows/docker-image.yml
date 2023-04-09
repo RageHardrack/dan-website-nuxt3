@@ -59,6 +59,5 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
             cd app/dan-website-nuxt3
-            docker-compose down
             git pull
             docker-compose up -d
