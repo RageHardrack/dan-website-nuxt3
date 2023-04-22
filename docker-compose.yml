@@ -25,13 +25,22 @@ services:
     restart: always
 
   nuxt-app:
-    image: hardrack/dragon-azul-nuxt3-website:1.0.6
+    image: hardrack/dragon-azul-nuxt3-website:1.0.7
     restart: always
     expose:
       - '3000'
     environment:
       - VIRTUAL_HOST=${DOMINIO_HOST}
       - LETSENCRYPT_HOST=${DOMINIO_HOST}
+      - NOTION_API_KEY=${{ NOTION_API_KEY }}
+      - APP_ENVIRONMENT=prod
+      - NOTION_HOME_ID=${{ NOTION_HOME_ID }}
+      - NOTION_ABOUT_ID=${{ NOTION_ABOUT_ID }}
+      - NOTION_BLOG_ID=${{ NOTION_BLOG_ID }}
+      - NOTION_PORTFOLIO_ID=${{ NOTION_PORTFOLIO_ID }}
+      - NOTION_LINK_TREE_ID=${{ NOTION_LINK_TREE_ID }}
+      - DEVELOPMENT_STAGE=${{ DEVELOPMENT_STAGE }}
+      - PRODUCTION_STAGE=${{ PRODUCTION_STAGE }}
 
 volumes:
   conf:
