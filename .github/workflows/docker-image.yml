@@ -36,18 +36,18 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            ${{ secrets.DOCKER_USER }}/dragon-azul-nuxt3-website:1.0.6
+            ${{ secrets.DOCKER_USER }}/dragon-azul-nuxt3-website:1.0.7
             ${{ secrets.DOCKER_USER }}/dragon-azul-nuxt3-website:latest
-          secrets: |
-            "NOTION_API_KEY=${{ secrets.NOTION_API_KEY }}"
-            "APP_ENVIRONMENT=prod"
-            "NOTION_HOME_ID=${{ secrets.NOTION_HOME_ID }}"
-            "NOTION_ABOUT_ID=${{ secrets.NOTION_ABOUT_ID }}"
-            "NOTION_BLOG_ID=${{ secrets.NOTION_BLOG_ID }}"
-            "NOTION_PORTFOLIO_ID=${{ secrets.NOTION_PORTFOLIO_ID }}"
-            "NOTION_LINK_TREE_ID=${{ secrets.NOTION_LINK_TREE_ID }}"
-            "DEVELOPMENT_STAGE=${{ secrets.DEVELOPMENT_STAGE }}"
-            "PRODUCTION_STAGE=${{ secrets.PRODUCTION_STAGE }}"
+          # secrets: |
+          #   "NOTION_API_KEY=${{ secrets.NOTION_API_KEY }}"
+          #   "APP_ENVIRONMENT=prod"
+          #   "NOTION_HOME_ID=${{ secrets.NOTION_HOME_ID }}"
+          #   "NOTION_ABOUT_ID=${{ secrets.NOTION_ABOUT_ID }}"
+          #   "NOTION_BLOG_ID=${{ secrets.NOTION_BLOG_ID }}"
+          #   "NOTION_PORTFOLIO_ID=${{ secrets.NOTION_PORTFOLIO_ID }}"
+          #   "NOTION_LINK_TREE_ID=${{ secrets.NOTION_LINK_TREE_ID }}"
+          #   "DEVELOPMENT_STAGE=${{ secrets.DEVELOPMENT_STAGE }}"
+          #   "PRODUCTION_STAGE=${{ secrets.PRODUCTION_STAGE }}"
 
       - name: Download changes and run containers
         uses: appleboy/ssh-action@v0.1.9
