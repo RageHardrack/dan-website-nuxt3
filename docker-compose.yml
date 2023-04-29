@@ -27,6 +27,7 @@ services:
   nuxt-app:
     image: hardrack/dragon-azul-nuxt3-website:1.0.7
     restart: always
+    build: .
     expose:
       - '3000'
     environment:
