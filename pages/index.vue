@@ -13,7 +13,7 @@ definePageMeta({
         <Heading3>
           This page is using CI/CD with Github Actions and Docker
         </Heading3>
-        <Heading3> This page was modified on april</Heading3>
+        <Heading3> This page was modified on 28 april on Stream by Hardrack. Follow me!</Heading3>
         <Icon name="github" size="48px" class="text-primary" />
       </section>
 
