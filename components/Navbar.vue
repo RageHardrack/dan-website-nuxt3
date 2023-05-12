@@ -8,7 +8,7 @@ const { toggleSideNav } = useUIStore();
   <header class="sticky top-0 z-20 flex items-center h-24 bg-primary">
     <nav class="container flex items-center justify-between py-2">
       <NuxtLink to="/">
-        <Logo />
+        <LogoReverse />
       </NuxtLink>
 
       <ul

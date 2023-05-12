@@ -15,6 +15,10 @@ module.exports = {
         "black-coffee": "#322A26",
         bone: "#E0DDCF",
       },
+      fontFamily:{
+        'roboto-mono': ['Roboto Mono'],
+        metalick: ['Metalick'],
+      }
     },
     keyframes: {
       expand: {

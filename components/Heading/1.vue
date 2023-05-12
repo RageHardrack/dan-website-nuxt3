@@ -7,7 +7,9 @@ const { customClass = "" } = defineProps<Props>();
 </script>
 
 <template>
-  <h1 :class="`text-3xl font-bold font-sans leading-8 ${customClass || ''}`">
+  <h1
+    :class="`text-3xl font-bold font-metalick leading-8 ${customClass ?? ''}`"
+  >
     <slot />
   </h1>
 </template>

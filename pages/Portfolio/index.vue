@@ -1,14 +1,7 @@
 <script setup lang="ts">
-const { data, pending } = await useLazyFetch("/api/portfolio");
+import { filterProjectOptions } from "~~/interfaces";
 
-const filterOptions = [
-  "Frontend",
-  "Backend",
-  "VueJS",
-  "ReactJS",
-  "NextJS",
-  "Typescript",
-];
+const { data, pending } = await useLazyFetch("/api/portfolio");
 
 const filterSelected = ref("");
 
@@ -47,11 +40,11 @@ definePageMeta({
       </picture>
     </header>
 
-    <section class="flex flex-col space-y-2">
+    <section class="flex flex-col space-y-4">
       <Heading2>Projects</Heading2>
-      <section class="flex flex-wrap gap-x-1 gap-y-2">
+      <header class="flex flex-wrap gap-x-1 gap-y-2">
         <button
-          v-for="option in filterOptions"
+          v-for="option in filterProjectOptions"
           :key="option"
           @click="onChangeFilterOptions(option)"
           class="px-3 py-1 transition duration-300 ease-in-out border rounded-lg border-gold hover:bg-gold"
@@ -66,7 +59,7 @@ definePageMeta({
         >
           All
         </button>
-      </section>
+      </header>
       <Grid size="lg">
         <CardProject
           v-for="project in filteredProjects"
@@ -75,8 +68,8 @@ definePageMeta({
         />
       </Grid>
     </section>
-    
-    <section class="flex flex-col space-y-2">
+
+    <section class="flex flex-col space-y-4">
       <Heading2>Skills</Heading2>
       <Grid size="sm">
         <CardSkill
