@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,7 +9,7 @@ html {
 }
 
 body {
-  @apply bg-bone;
+  @apply bg-white;
 }
 
 button,

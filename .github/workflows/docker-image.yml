@@ -58,6 +58,6 @@ jobs:
           port: ${{ secrets.PORT }}
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
-            cd app/dan-website-nuxt3
+            cd ~/app/dan-website-nuxt3/
             git pull
             docker-compose up -d --build

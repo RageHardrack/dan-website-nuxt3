@@ -4,11 +4,11 @@ import { BlogService } from "~~/services";
 
 export default defineEventHandler(async (event) => {
   try {
-    const slug = event.context.params.slug as string;
+    const slug = event.context?.params?.slug as string;
 
     const pages = await BlogService.findAll();
 
-    const current = pages.find((page: IPost) => page.properties.Slug == slug);
+    const current = pages.find((page: IPost) => page.Slug == slug);
 
     if (!current) {
       return sendError(
@@ -20,11 +20,11 @@ export default defineEventHandler(async (event) => {
       );
     }
 
-    const { properties, id: pageId } = await BlogService.findOne(current.id);
+    const pageContent = await BlogService.findOne(current.id);
 
-    const content = await BlogService.getPostContent(pageId);
+    const content = await BlogService.getPostContent(pageContent.id);
 
-    return { properties, content };
+    return { ...pageContent, content };
   } catch (error) {
     console.error(error);
     sendError(

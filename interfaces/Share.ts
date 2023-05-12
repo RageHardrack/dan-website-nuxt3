@@ -145,3 +145,12 @@ export interface RelationProperty {
   }[];
   has_more: boolean;
 }
+
+export enum filterProjectOptions {
+  FRONTEND = "Frontend",
+  BACKEND = "Backend",
+  VUEJS = "VueJS",
+  REACTJS = "ReactJS",
+  NEXTJS = "NextJS",
+  TYPESCRIPT = "Typescript",
+}
