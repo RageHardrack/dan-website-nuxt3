@@ -8,7 +8,7 @@ const { isLink = false } = defineProps<Props>();
 
 <template>
   <article
-    :class="`flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0 rounded-lg md:max-h-96 overflow-hidden ${
+    :class="`flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0 rounded-lg md:max-h-96 overflow-hidden shadow-xl bg-bone ${
       isLink ? 'cursor-pointer' : 'cursor-auto'
     }`"
   >
