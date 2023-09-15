@@ -3,7 +3,7 @@ import {
   PostNotionResponse,
   IPageContent,
   IPost,
-  ContentBlock,
+  RawContentBlock,
 } from "~~/interfaces";
 import { getEnvironmentId } from "~~/utils";
 import {
@@ -59,12 +59,12 @@ class BlogServices {
 
   async getPostContent(blockId: string): Promise<IPageContent[]> {
     const listBlockChildren = await this.NotionClient.getPageContent<
-      ContentBlock[]
+      RawContentBlock[]
     >(blockId, {
       page_size: 100,
     });
 
-    return listBlockChildren.map((block: ContentBlock) => {
+    return listBlockChildren.map((block: RawContentBlock) => {
       return blockContentAdapter(block);
     });
   }

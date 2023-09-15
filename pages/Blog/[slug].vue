@@ -36,6 +36,7 @@ refresh();
 
     <Divider />
 
+    {{ data!.content }}
     <Markdown :content="data!.content" />
   </section>
 </template>
