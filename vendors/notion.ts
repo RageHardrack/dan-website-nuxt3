@@ -1,5 +1,5 @@
 import { Client } from "@notionhq/client";
-import { HttpAdapter } from "~~/interfaces";
+import type { HttpAdapter } from "~~/interfaces";
 
 const { notionSecret } = useRuntimeConfig();
 

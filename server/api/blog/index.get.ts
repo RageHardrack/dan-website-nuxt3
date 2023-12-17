@@ -1,4 +1,3 @@
-import { createError, sendError } from "h3";
 import { BlogService } from "~~/services";
 
 export default defineEventHandler(async (event) => {
@@ -10,7 +9,7 @@ export default defineEventHandler(async (event) => {
     const posts = await Promise.all(promises);
 
     return { posts };
-  } catch (error) {
+  } catch (error: any) {
     console.error(error);
     sendError(
       event,

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IPost } from "~~/interfaces";
+import type { IPost } from "~~/interfaces";
 
 interface Props {
   post: IPost;

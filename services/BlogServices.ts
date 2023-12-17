@@ -1,5 +1,5 @@
 import { Notion, NotionClient } from "~~/vendors";
-import {
+import type {
   PostNotionResponse,
   IPageContent,
   IPost,
@@ -15,6 +15,8 @@ import {
 const { blogPage } = useRuntimeConfig();
 
 class BlogServices {
+  private environment = getEnvironmentId();
+
   constructor(
     private readonly NotionClient: NotionClient,
     private readonly databaseId: string
@@ -36,7 +38,7 @@ class BlogServices {
             {
               property: "Stage",
               relation: {
-                contains: getEnvironmentId(),
+                contains: this.environment,
               },
             },
           ],

@@ -1,4 +1,3 @@
-import { createError, sendError } from "h3";
 import { AboutService } from "~~/services";
 
 export default defineEventHandler(async (event) => {
@@ -6,7 +5,7 @@ export default defineEventHandler(async (event) => {
     const aboutContent = await AboutService.getAboutContent();
 
     return aboutContent;
-  } catch (error) {
+  } catch (error: any) {
     console.error(error);
     sendError(
       event,

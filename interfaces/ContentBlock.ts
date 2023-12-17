@@ -1,4 +1,4 @@
-import { TedBy, Parent } from ".";
+import type { Parent, TedBy } from "./Share";
 
 export enum BlockType {
   PARAGRAPH = "paragraph",

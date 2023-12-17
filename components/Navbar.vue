@@ -14,15 +14,14 @@ const { toggleSideNav } = useUIStore();
       <ul
         class="items-center justify-center hidden space-x-4 md:flex text-bone"
       >
-        <li
+        <NuxtLink
           v-for="{ title, path } in ROUTES_LINKS"
           :key="title"
+          :to="path"
           class="text-lg transition duration-300 ease-in-out hover:text-gold"
         >
-          <NuxtLink :to="path">
-            {{ title }}
-          </NuxtLink>
-        </li>
+          {{ title }}
+        </NuxtLink>
       </ul>
 
       <ButtonMenu @pressButton="toggleSideNav" class="flex md:hidden" />

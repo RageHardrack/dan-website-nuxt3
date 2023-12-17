@@ -1,15 +1,15 @@
-import {
-  IPageContent,
+import type {
   NotionResponse,
-  CheckboxProperty,
-  DateProperty,
   MultiSelectProperty,
-  RichTextProperty,
-  SelectProperty,
-  TitleProperty,
   UrlProperty,
+  SelectProperty,
+  RichTextProperty,
+  DateProperty,
+  TitleProperty,
+  CheckboxProperty,
   RelationProperty,
-} from ".";
+  IPageContent,
+} from "./Share";
 
 export interface PostNotionResponse extends NotionResponse {
   properties: PostNotionResponseProperties;
