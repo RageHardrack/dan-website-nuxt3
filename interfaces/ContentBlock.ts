@@ -1,34 +1,35 @@
-import { TedBy, Parent } from ".";
+import type { Parent, TedBy } from "./Share";
 
-export type BlockType =
-  | "paragraph"
-  | "heading_1"
-  | "heading_2"
-  | "heading_3"
-  | "callout"
-  | "quote"
-  | "bulleted_list_item"
-  | "numbered_list_item"
-  | "to_do"
-  | "toggle"
-  | "code"
-  | "child_page"
-  | "child_database"
-  | "embed"
-  | "image"
-  | "video"
-  | "file"
-  | "pdf"
-  | "bookmark"
-  | "equation"
-  | "divider"
-  | "table_of_contents"
-  | "breadcrumb"
-  | "column_list"
-  | "column"
-  | "link_preview"
-  | "table"
-  | "table_row";
+export enum BlockType {
+  PARAGRAPH = "paragraph",
+  HEADING_1 = "heading_1",
+  HEADING_2 = "heading_2",
+  HEADING_3 = "heading_3",
+  CALLOUT = "callout",
+  QUOTE = "quote",
+  BULLETED_LIST_ITEM = "bulleted_list_item",
+  NUMBERED_LIST_ITEM = "numbered_list_item",
+  TO_DO = "to_do",
+  TOGGLE = "toggle",
+  CODE = "code",
+  CHILD_PAGE = "child_page",
+  CHILD_DATABASE = "child_database",
+  EMBED = "embed",
+  IMAGE = "image",
+  VIDEO = "video",
+  FILE = "file",
+  PDF = "pdf",
+  BOOKMARK = "bookmark",
+  EQUATION = "equation",
+  DIVIDER = "divider",
+  TABLE_OF_CONTENTS = "table_of_contents",
+  BREADCRUMB = "breadcrumb",
+  COLUMN_LIST = "column_list",
+  COLUMN = "column",
+  LINK_PREVIEW = "link_preview",
+  TABLE = "table",
+  TABLE_ROW = "table_row",
+}
 export interface ContentBlockResponse {
   object: string;
   results: ContentBlock[];
@@ -50,6 +51,9 @@ export interface RawContentBlock {
   archived: boolean;
   type: string;
   child_database: RawChildDatabase;
+  [BlockType.IMAGE]?: { file: { url: string }, caption: { plain_text: string }[] };
+  [BlockType.PARAGRAPH]?: { rich_text: { plain_text: string }[] };
+  [BlockType.CALLOUT]?: { icon: { emoji: string } };
 }
 
 export interface RawChildDatabase {

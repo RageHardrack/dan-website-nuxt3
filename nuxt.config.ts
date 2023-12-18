@@ -7,20 +7,27 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     "@morev/vue-transitions/nuxt",
     "nuxt-icon",
-    "@pinia/nuxt",
+    [
+      "@pinia/nuxt",
+      { autoImports: ["defineStore", ["defineStore", "definePiniaStore"]] },
+    ],
+    "dayjs-nuxt",
   ],
-  pinia: { autoImports: ["defineStore", ["defineStore", "definePiniaStore"]] },
-  imports: {
-    dirs: ["stores"],
+  pinia: {
+    storesDirs: ["./stores/**"],
   },
   devServer: {
     port: 3000,
   },
-  app: {
-    layoutTransition: { name: "layout", mode: "out-in" },
-    pageTransition: { name: "page", mode: "out-in" },
+  dayjs: {
+    locales: ["es", "en"],
+    plugins: ["relativeTime", "utc", "timezone"],
+    defaultLocale: "es",
   },
-  vueTransitions: {},
+  // app: {
+  //   layoutTransition: { name: "layout", mode: "out-in" },
+  //   pageTransition: { name: "page", mode: "out-in" },
+  // },
   runtimeConfig: {
     notionSecret: process.env.NOTION_API_KEY,
     homePage: process.env.NOTION_HOME_ID,

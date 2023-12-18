@@ -1,11 +1,11 @@
-import {
-  UrlProperty,
-  NumberProperty,
-  TitleProperty,
+import type {
   CheckboxProperty,
+  NotionResponse,
+  NumberProperty,
   RelationProperty,
-  NotionResponse
-} from ".";
+  TitleProperty,
+  UrlProperty,
+} from "./Share";
 
 export interface LinkNotionResponse extends NotionResponse {
   properties: LinkNotionResponseProperties;

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IPageContent } from "~~/interfaces";
+import type { IPageContent } from "~~/interfaces";
 
 interface Props {
   content: IPageContent[];

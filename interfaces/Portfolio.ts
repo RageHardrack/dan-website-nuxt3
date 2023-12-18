@@ -1,13 +1,5 @@
-import { NumberProperty } from './Share';
-import {
-  MultiSelectProperty,
-  UrlProperty,
-  SelectProperty,
-  Parent,
-  TedBy,
-  TitleProperty,
-  RichTextProperty,
-} from ".";
+import type { MultiSelectProperty, NumberProperty, Parent, RichTextProperty, SelectProperty, TedBy, TitleProperty, UrlProperty } from "./Share";
+
 
 export interface ProjectResponse {
   object: string;

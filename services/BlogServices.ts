@@ -1,9 +1,9 @@
 import { Notion, NotionClient } from "~~/vendors";
-import {
+import type {
   PostNotionResponse,
   IPageContent,
   IPost,
-  ContentBlock,
+  RawContentBlock,
 } from "~~/interfaces";
 import { getEnvironmentId } from "~~/utils";
 import {
@@ -15,6 +15,8 @@ import {
 const { blogPage } = useRuntimeConfig();
 
 class BlogServices {
+  private environment = getEnvironmentId();
+
   constructor(
     private readonly NotionClient: NotionClient,
     private readonly databaseId: string
@@ -36,7 +38,7 @@ class BlogServices {
             {
               property: "Stage",
               relation: {
-                contains: getEnvironmentId(),
+                contains: this.environment,
               },
             },
           ],
@@ -59,12 +61,12 @@ class BlogServices {
 
   async getPostContent(blockId: string): Promise<IPageContent[]> {
     const listBlockChildren = await this.NotionClient.getPageContent<
-      ContentBlock[]
+      RawContentBlock[]
     >(blockId, {
       page_size: 100,
     });
 
-    return listBlockChildren.map((block: ContentBlock) => {
+    return listBlockChildren.map((block: RawContentBlock) => {
       return blockContentAdapter(block);
     });
   }

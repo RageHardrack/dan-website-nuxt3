@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { IPost } from "~~/interfaces";
-const { $dayjs } = useNuxtApp();
+import type { IPost } from "~~/interfaces";
+const dayjs = useDayjs();
 
 interface Props {
   post: IPost;
@@ -35,7 +35,7 @@ const { Image_URL, Tags, Fecha_Publicacion, Slug, Post, Brief } = post;
 
       <template #footer>
         <p class="text-black-coffee">
-          {{ $dayjs(Fecha_Publicacion).format("DD MMMM YYYY") }}
+          {{ dayjs(Fecha_Publicacion).format("DD MMMM YYYY") }}
         </p>
       </template>
     </CardWide>
