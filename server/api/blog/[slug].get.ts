@@ -1,5 +1,5 @@
 import { sendError, createError } from "h3";
-import { IPost } from "~~/interfaces";
+import type { IPost } from "~~/interfaces";
 import { BlogService } from "~~/services";
 
 export default defineEventHandler(async (event) => {
