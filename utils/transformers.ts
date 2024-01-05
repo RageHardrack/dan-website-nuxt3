@@ -1,6 +1,4 @@
-import {
-  PostNotionResponseProperties,
-  IPostProperties,
+import type {
   Tag,
   RawProjectProperties,
   IProjectProperties,
@@ -16,7 +14,7 @@ export const projectPropertiesTransformer = (
     Name: projectProperties.Name.title[0].plain_text,
     Slug: projectProperties.Slug.rich_text[0].plain_text,
     Tags: projectProperties.Tags.multi_select.map((tag: Tag) => tag.name),
-    Repository: projectProperties.Repository.url,
+    Repository: projectProperties.Repository?.url,
     Preview: projectProperties.Preview.url,
     Language: projectProperties.Language.select.name,
     Orden: projectProperties.Orden.number

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ISkillProperties } from "~~/interfaces";
+import type { ISkillProperties } from "~~/interfaces";
 
 interface Props {
   skillProps: ISkillProperties;

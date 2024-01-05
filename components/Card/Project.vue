@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IProjectProperties } from "~~/interfaces";
+import type { IProjectProperties } from "~~/interfaces";
 
 interface Props {
   projectProps: IProjectProperties;

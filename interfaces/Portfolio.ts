@@ -1,5 +1,14 @@
-import type { MultiSelectProperty, NumberProperty, Parent, RichTextProperty, SelectProperty, TedBy, TitleProperty, UrlProperty } from "./Share";
-
+import type { ContentBlock } from "./ContentBlock";
+import type {
+  MultiSelectProperty,
+  NumberProperty,
+  Parent,
+  RichTextProperty,
+  SelectProperty,
+  TedBy,
+  TitleProperty,
+  UrlProperty,
+} from "./Share";
 
 export interface ProjectResponse {
   object: string;
@@ -71,4 +80,14 @@ export interface ISkill {
 export interface ISkillProperties {
   Name: string;
   Image_URL: string;
+}
+
+export interface PortfolioPageApiResponse {
+  content: ContentBlock[];
+  projects: IProject[];
+  skills: ISkill[];
+}
+
+export interface ProjectPageApiResponse {
+  content: ContentBlock[];
 }

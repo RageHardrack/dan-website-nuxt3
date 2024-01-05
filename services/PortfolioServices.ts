@@ -1,5 +1,5 @@
 import { Notion, NotionClient } from "~~/vendors";
-import {
+import type {
   ChildDatabase,
   ContentBlock,
   IPageContent,
@@ -28,6 +28,7 @@ class PortfolioServices {
       this.databaseId
     );
 
+    // TODO: Corregir tipo
     const childDatabases: ChildDatabase[] = blocks.map((block) => {
       if (block.type === "child_database")
         return {
@@ -59,17 +60,17 @@ class PortfolioServices {
     return projects;
   }
 
-  async getProjectContent(projectId: string): Promise<IPageContent[]> {
+  async getProjectContent(projectId: string): Promise<ContentBlock[]> {
     const listBlockChildren = await this.NotionClient.getPageContent<
-      ContentBlock[]
+      RawContentBlock[]
     >(projectId, {
       page_size: 100,
     });
 
     return listBlockChildren
-      .filter((block: ContentBlock) => block.type !== "child_database")
-      .map((block: ContentBlock) => {
-        return blockChildrenTransformer(block);
+      .filter((block: RawContentBlock) => block.type !== "child_database")
+      .map((block: RawContentBlock) => {
+        return blockContentAdapter(block);
       });
   }
 
@@ -89,16 +90,16 @@ class PortfolioServices {
     return skills;
   }
 
-  async getPortfolioContent(): Promise<IPageContent[]> {
+  async getPortfolioContent(): Promise<ContentBlock[]> {
     const listBlockChildren = await this.NotionClient.getPageContent<
-      ContentBlock[]
+      RawContentBlock[]
     >(this.databaseId, {
       page_size: 100,
     });
 
     return listBlockChildren
-      .filter((block: ContentBlock) => block.type !== "child_database")
-      .map((block: ContentBlock) => {
+      .filter((block: RawContentBlock) => block.type !== "child_database")
+      .map((block: RawContentBlock) => {
         return blockContentAdapter(block);
       });
   }

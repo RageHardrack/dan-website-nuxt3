@@ -2,9 +2,9 @@ import { AboutService } from "~~/services";
 
 export default defineEventHandler(async (event) => {
   try {
-    const aboutContent = await AboutService.getAboutContent();
+    const content = await AboutService.getAboutContent();
 
-    return aboutContent;
+    return { content };
   } catch (error: any) {
     console.error(error);
     sendError(

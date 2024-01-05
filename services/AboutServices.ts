@@ -1,5 +1,5 @@
 import { blockContentAdapter } from "~~/adapters";
-import { ContentBlock, IPageContent } from "~~/interfaces";
+import type { RawContentBlock, ContentBlock } from "~~/interfaces";
 import { Notion, NotionClient } from "~~/vendors";
 
 const { aboutPage } = useRuntimeConfig();
@@ -10,14 +10,14 @@ class AboutServices {
     private readonly databaseId: string
   ) {}
 
-  async getAboutContent(): Promise<IPageContent[]> {
+  async getAboutContent(): Promise<ContentBlock[]> {
     const listBlockChildren = await this.NotionClient.getPageContent<
-      ContentBlock[]
+      RawContentBlock[]
     >(this.databaseId, {
       page_size: 100,
     });
 
-    return listBlockChildren.map((block: ContentBlock) => {
+    return listBlockChildren.map((block: RawContentBlock) => {
       return blockContentAdapter(block);
     });
   }
