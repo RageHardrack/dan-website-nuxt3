@@ -1,15 +1,14 @@
-import { sendError, createError } from "h3";
 import { PortfolioService } from "~~/services";
 
 export default defineEventHandler(async (event) => {
   try {
-    const slug = event.context.params.slug as string;
+    const slug = getRouterParam(event, "slug");
 
     const portfolioDatabases = await PortfolioService.findAllChildDatabases();
 
     const projectsDatabaseId = portfolioDatabases.find(
       (page) => page.title === "Projects"
-    ).id;
+    )!.id;
 
     const projectsDatabase = await PortfolioService.findProjects(
       projectsDatabaseId
@@ -17,7 +16,7 @@ export default defineEventHandler(async (event) => {
 
     const findProjectId = projectsDatabase.find(
       (pro) => pro.properties.Slug == slug
-    ).id;
+    )!.id;
 
     if (!findProjectId) {
       return sendError(
@@ -29,7 +28,9 @@ export default defineEventHandler(async (event) => {
       );
     }
 
-    return await PortfolioService.getProjectContent(findProjectId);
+    const content = await PortfolioService.getProjectContent(findProjectId);
+
+    return { content };
   } catch (error) {
     console.error(error);
     sendError(

@@ -1,4 +1,3 @@
-import { sendError, createError } from "h3";
 import type { IPost } from "~~/interfaces";
 import { BlogService } from "~~/services";
 

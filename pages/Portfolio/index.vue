@@ -1,7 +1,12 @@
 <script setup lang="ts">
-import { filterProjectOptions } from "~~/interfaces";
+import {
+  filterProjectOptions,
+  type PortfolioPageApiResponse,
+} from "~~/interfaces";
 
-const { data, pending } = await useLazyFetch("/api/portfolio");
+const { data, pending } = await useLazyFetch<PortfolioPageApiResponse>(
+  "/api/portfolio"
+);
 
 const filterSelected = ref("");
 
@@ -9,9 +14,9 @@ const onChangeFilterOptions = (optionSelected: string) =>
   (filterSelected.value = optionSelected);
 
 const filteredProjects = computed(() => {
-  if (!filterSelected.value) return data!.value!.projects;
+  if (!filterSelected.value) return data.value!.projects;
 
-  return data!.value!.projects.filter((project) =>
+  return data.value!.projects.filter((project) =>
     project.properties.Tags.includes(filterSelected.value)
   );
 });
@@ -42,6 +47,7 @@ definePageMeta({
 
     <section class="flex flex-col space-y-4">
       <Heading2>Projects</Heading2>
+
       <header class="flex flex-wrap gap-x-1 gap-y-2">
         <button
           v-for="option in filterProjectOptions"
@@ -52,6 +58,7 @@ definePageMeta({
         >
           {{ option }}
         </button>
+
         <button
           @click="onChangeFilterOptions('')"
           class="px-3 py-1 transition duration-300 ease-in-out border rounded-lg border-gold hover:bg-gold"
@@ -60,6 +67,7 @@ definePageMeta({
           All
         </button>
       </header>
+      
       <Grid size="lg">
         <CardProject
           v-for="project in filteredProjects"

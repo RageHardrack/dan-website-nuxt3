@@ -1,5 +1,9 @@
 <script setup lang="ts">
-const { data, pending } = await useLazyFetch("/api/about-me");
+import type { ApiResponseContentBlock } from "~/interfaces";
+
+const { data, pending } = await useLazyFetch<ApiResponseContentBlock>(
+  "/api/about-me"
+);
 
 definePageMeta({
   title: "About me",
@@ -10,6 +14,6 @@ definePageMeta({
   <LoadingPage loadMessage="Loading About page" v-if="pending" />
 
   <section v-else class="flex flex-col justify-center space-y-4 md:space-y-8">
-    <Markdown :content="data!" />
+    <Markdown :content="data!.content" />
   </section>
 </template>

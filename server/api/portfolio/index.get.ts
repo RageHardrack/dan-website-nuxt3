@@ -1,4 +1,3 @@
-import { createError, sendError } from "h3";
 import { PortfolioService } from "~~/services";
 
 export default defineEventHandler(async (event) => {
@@ -9,16 +8,16 @@ export default defineEventHandler(async (event) => {
 
     const projectId = portfolioDatabases.find(
       (page) => page.title === "Projects"
-    ).id;
+    )!.id;
     const skillId = portfolioDatabases.find(
       (page) => page.title === "Skills"
-    ).id;
+    )!.id;
 
     const projects = await PortfolioService.findProjects(projectId);
     const skills = await PortfolioService.findSkills(skillId);
 
     return { projects, skills, content };
-  } catch (error) {
+  } catch (error: any) {
     console.error(error);
     sendError(
       event,

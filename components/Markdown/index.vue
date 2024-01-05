@@ -1,10 +1,9 @@
 <script setup lang="ts">
-import type { IPageContent } from "~~/interfaces";
+import type { ContentBlock } from "~~/interfaces";
 
 interface Props {
-  content: IPageContent[];
+  content: ContentBlock[];
 }
-
 const { content } = defineProps<Props>();
 </script>
 
