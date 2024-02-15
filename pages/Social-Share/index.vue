@@ -28,7 +28,7 @@ definePageMeta({
       </picture>
 
       <Heading1 customClass="text-gold">Daniel Colmenares</Heading1>
-      <Heading3 customClass="text-black-coffee"> Web Developer </Heading3>
+      <Heading3 customClass="text-black-coffee"> Fullstack Web Developer </Heading3>
 
       <Divider />
     </header>

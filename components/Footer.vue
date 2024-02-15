@@ -7,7 +7,7 @@ import { SOCIAL_MEDIA_LINKS, UTILS_LINKS } from "~~/constantes";
     <article
       class="container flex flex-col items-center justify-center py-8 space-y-4 text-bone"
     >
-      <Logo />
+      <!-- <Logo /> -->
       <h2>
         Created by ⚡
         <a
@@ -31,7 +31,7 @@ import { SOCIAL_MEDIA_LINKS, UTILS_LINKS } from "~~/constantes";
           :key="social"
           :title="social"
         >
-          <Icon :name="social" size="48px" class="transition duration-300 hover:text-gold" />
+          <Icon :name="social" size="24px" class="transition duration-300 hover:text-gold" />
         </a>
       </section>
     </article>
