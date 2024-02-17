@@ -1,5 +1,11 @@
 <script setup lang="ts">
-const { data, pending } = await useLazyFetch("/api/links");
+import type { ILink } from "~/interfaces";
+
+type LinksResponse = {
+  linksPages: ILink[];
+};
+
+const { data, pending } = await useLazyFetch<LinksResponse>("/api/links");
 
 definePageMeta({
   title: "Social Links",
@@ -28,7 +34,9 @@ definePageMeta({
       </picture>
 
       <Heading1 customClass="text-gold">Daniel Colmenares</Heading1>
-      <Heading3 customClass="text-black-coffee"> Fullstack Web Developer </Heading3>
+      <Heading3 customClass="text-black-coffee">
+        Fullstack Web Developer
+      </Heading3>
 
       <Divider />
     </header>

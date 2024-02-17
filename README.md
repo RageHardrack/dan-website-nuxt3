@@ -1,16 +1,36 @@
-# Nuxt 3 Minimal Starter
+# Daniel Colmenares' personal Portfolio/Blog
 
-We recommend to look at the [documentation](https://v3.nuxtjs.org).
+## Stack
+
+- Nuxt v3
+- TailwindCSS
+- Notion Client v1
 
 ## Setup
 
-Make sure to install the dependencies
+### Environment Variables
+
+| Name                  | Description                                                                                                                  | Required |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------- | -------- |
+| `NOTION_API_KEY`      | Api Key to connect Notion and use it as Content Manager                                                                      | YES      |
+| `APP_ENVIRONMENT`     | Set the environment as dev by default only to access to "dev" content and test it in local                                   | NO       |
+| `NOTION_HOME_ID`      | Notion's DB ID for the parent page "HOME"                                                                                    | YES      |
+| `NOTION_ABOUT_ID`     | Notion's DB ID for the parent page "ABOUT ME"                                                                                | YES      |
+| `NOTION_BLOG_ID`      | Notion's DB ID for the parent page "BLOG"                                                                                    | YES      |
+| `NOTION_PORTFOLIO_ID` | Notion's DB ID for the parent page "PORTFOLIO"                                                                               | YES      |
+| `NOTION_LINK_TREE_ID` | Notion's DB ID for the parent page "LINK TREE"                                                                               | YES      |
+| `DEVELOPMENT_STAGE`   | Notion's ID for enum "DEVELOPMENT". Using to determine which of my content in my personal Notion is set to development stage | NO       |
+| `PRODUCTION_STAGE`    | Notion's ID for enum "PRODUCTION". Using to determine which of my content in my personal Notion is set to production stage   | YES      |
+
+### Install dependencies
+
+Make sure to install the dependencies using `pnpm`
 
 ```bash
-yarn install
+pnpm install
 ```
 
-## Development
+### Development Server
 
 Start the development server on [localhost](http://localhost:3000)
 
@@ -18,7 +38,7 @@ Start the development server on [localhost](http://localhost:3000)
 yarn dev
 ```
 
-## Production
+### Build to Production
 
 Build the application for production:
 
@@ -26,10 +46,10 @@ Build the application for production:
 yarn build
 ```
 
-## Build Docker Image
+### Build Docker Image
+
+Please note this is a help for myself to easily build up the docker image. If you want to reply it, change 'hardrack' and the name of the repo, to your fork and personal Docker Hub user.
 
 ```bash
 docker build -t hardrack/dragon-azul-nuxt3-website:tag .
 ```
-
-Checkout the [deployment documentation](https://v3.nuxtjs.org/docs/deployment).

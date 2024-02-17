@@ -1,4 +1,3 @@
-import { createError } from "h3";
 import { LinkService } from "~~/services";
 
 export default defineEventHandler(async (_event) => {

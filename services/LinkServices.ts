@@ -1,5 +1,5 @@
 import { Notion, NotionClient } from "~~/vendors";
-import { ILink, LinkNotionResponse } from "~~/interfaces";
+import type { ILink, LinkNotionResponse } from "~~/interfaces";
 import { linkAdapter } from "~~/adapters";
 import { getEnvironmentId } from "~~/utils";
 
