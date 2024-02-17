@@ -13,17 +13,24 @@ definePageMeta({
 <template>
   <LoadingPage loadMessage="Loading About page" v-if="pending" />
 
-  <section v-else class="flex flex-col justify-center space-y-4 md:space-y-8">
-    <picture
-      class="flex items-center justify-center w-full pb-4 overflow-hidden lg:w-1/4 lg:p-4"
-    >
-      <img
-        src="~~/assets/img/perfil.jpg"
-        alt="Daniel Colmenares"
-        class="border-4 rounded-full aspect-square w-52 h-52 border-gold"
-      />
-    </picture>
+  <section
+    v-else
+    class="flex flex-col items-center justify-center gap-y-8"
+  >
+    <header class="flex items-center justify-between w-full overflow-hidden">
+      <picture>
+        <img
+          src="~~/assets/img/perfil.jpg"
+          alt="Daniel Colmenares"
+          class="border-4 rounded-full aspect-square w-52 h-52 border-gold"
+        />
+      </picture>
+    </header>
 
     <Markdown :content="data!.content" />
+
+    <ButtonDownload url="/daniel-colmenares-cv.pdf"
+      >Download my CV</ButtonDownload
+    >
   </section>
 </template>
