@@ -2,7 +2,7 @@ export default defineAppConfig({
   nuxtIcon: {
     size: "24px",
     aliases: {
-      github: "mdi:github",
+      gitHub: "mdi:github",
       twitter: "mdi:twitter",
       instagram: "mdi:instagram",
       linkedIn: "fa:linkedin",

@@ -2,6 +2,8 @@ import { Notion, NotionClient } from "~~/vendors";
 import type {
   ChildDatabase,
   ContentBlock,
+  ExperienceNotionResponse,
+  IExperience,
   IPageContent,
   IProject,
   ISkill,
@@ -9,10 +11,7 @@ import type {
   RawContentBlock,
   SkillResponse,
 } from "~~/interfaces";
-import {
-  projectPropertiesTransformer,
-  skillPropertiesTransformer,
-} from "~~/utils";
+import { PropertiesTransformer } from "~~/utils";
 import { blockContentAdapter } from "~~/adapters";
 
 const { portfolioPage } = useRuntimeConfig();
@@ -53,7 +52,9 @@ class PortfolioServices {
       return {
         object: project.object,
         id: project.id,
-        properties: projectPropertiesTransformer(project.properties),
+        properties: PropertiesTransformer.GetProjectProperties(
+          project.properties
+        ),
       };
     });
 
@@ -84,11 +85,29 @@ class PortfolioServices {
       return {
         object: skill.object,
         id: skill.id,
-        properties: skillPropertiesTransformer(skill.properties),
+        properties: PropertiesTransformer.GetSkillProperties(skill.properties),
       };
     });
 
     return skills;
+  }
+
+  async findExperience(blockId: string): Promise<IExperience[]> {
+    const experienceDatabase = await this.NotionClient.getDatabase<
+      ExperienceNotionResponse[]
+    >(blockId, { sorts: [{ property: "Orden", direction: "ascending" }] });
+
+    const experience = experienceDatabase.map((xp) => {
+      return {
+        object: xp.object,
+        id: xp.id,
+        properties: PropertiesTransformer.GetExperienceProperties(
+          xp.properties
+        ),
+      };
+    });
+
+    return experience;
   }
 
   async getPortfolioContent(): Promise<ContentBlock[]> {
