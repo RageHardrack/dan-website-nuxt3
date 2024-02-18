@@ -12,7 +12,9 @@ useHead({
   <section class="flex flex-col justify-between min-h-screen">
     <Navbar />
 
-    <SideNav v-if="getShowSideBar" />
+    <transition-slide :offset="['-100%', 0]">
+      <SideNav v-if="getShowSideBar" />
+    </transition-slide>
 
     <main class="container flex-1 py-4 md:py-8">
       <slot />
