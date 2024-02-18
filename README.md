@@ -35,7 +35,7 @@ pnpm install
 Start the development server on [localhost](http://localhost:3000)
 
 ```bash
-yarn dev
+pnpm dev
 ```
 
 ### Build to Production
@@ -43,12 +43,12 @@ yarn dev
 Build the application for production:
 
 ```bash
-yarn build
+pnpm build
 ```
 
 ### Build Docker Image
 
-Please note this is a help for myself to easily build up the docker image. If you want to reply it, change 'hardrack' and the name of the repo, to your fork and personal Docker Hub user.
+_Please note this is a help for myself to easily build up the docker image. If you want to reply it, change 'hardrack' and the name of the repo, to your fork and personal Docker Hub user._
 
 ```bash
 docker build -t hardrack/dragon-azul-nuxt3-website:tag .

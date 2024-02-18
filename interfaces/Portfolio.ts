@@ -1,28 +1,16 @@
 import type { ContentBlock } from "./ContentBlock";
 import type {
   MultiSelectProperty,
+  NotionResponse,
   NumberProperty,
-  Parent,
   RichTextProperty,
   SelectProperty,
-  TedBy,
   TitleProperty,
   UrlProperty,
 } from "./Share";
 
-export interface ProjectResponse {
-  object: string;
-  id: string;
-  created_time: string;
-  last_edited_time: string;
-  created_by: TedBy;
-  last_edited_by: TedBy;
-  cover?: string;
-  icon?: string;
-  parent: Parent;
-  archived: boolean;
+export interface ProjectResponse extends NotionResponse {
   properties: RawProjectProperties;
-  url: string;
 }
 
 export interface IProject {
@@ -51,24 +39,14 @@ export interface IProjectProperties {
   Orden: number;
 }
 
-export interface SkillResponse {
-  object: string;
-  id: string;
-  created_time: string;
-  last_edited_time: string;
-  created_by: TedBy;
-  last_edited_by: TedBy;
-  cover?: string;
-  icon?: string;
-  parent: Parent;
-  archived: boolean;
+export interface SkillResponse extends NotionResponse {
   properties: RawSkillProperties;
-  url: string;
 }
 
 export interface RawSkillProperties {
   Name: TitleProperty;
   Image_URL: UrlProperty;
+  Orden: NumberProperty;
 }
 
 export interface ISkill {
@@ -80,14 +58,40 @@ export interface ISkill {
 export interface ISkillProperties {
   Name: string;
   Image_URL: string;
+  Orden: number;
 }
 
 export interface PortfolioPageApiResponse {
   content: ContentBlock[];
   projects: IProject[];
-  skills: ISkill[];
 }
 
 export interface ProjectPageApiResponse {
   content: ContentBlock[];
+}
+
+export interface RawExperienceProperties {
+  Work: TitleProperty;
+  Stack: MultiSelectProperty;
+  Orden: NumberProperty;
+  Description: RichTextProperty;
+  Period: RichTextProperty;
+}
+
+export interface IExperienceProperties {
+  Work: string;
+  Stack: string[];
+  Orden: number;
+  Description: string;
+  Period: string;
+}
+
+export interface ExperienceNotionResponse extends NotionResponse {
+  properties: RawExperienceProperties;
+}
+
+export interface IExperience {
+  object: string;
+  id: string;
+  properties: IExperienceProperties;
 }

@@ -10,11 +10,7 @@ definePageMeta({
       <section class="flex flex-col items-center justify-center flex-1 gap-8">
         <Heading1>Daniel Colmenares</Heading1>
         <Heading2>My page is under Construction...</Heading2>
-        <Heading3>
-          This page was modified on may 12 on Stream by Hardrack. Follow
-          me!</Heading3
-        >
-        <Icon name="github" size="48px" class="text-primary" />
+        <Icon name="gitHub" size="48px" class="text-primary" />
       </section>
 
       <picture class="flex flex-col items-center justify-center flex-1">
