@@ -76,7 +76,8 @@ class PortfolioServices {
 
   async findSkills(blockId: string): Promise<ISkill[]> {
     const skillsDatabase = await this.NotionClient.getDatabase<SkillResponse[]>(
-      blockId
+      blockId,
+      { sorts: [{ property: "Orden", direction: "ascending" }] }
     );
 
     const skills = skillsDatabase.map((skill) => {

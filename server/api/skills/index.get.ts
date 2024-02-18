@@ -3,16 +3,13 @@ import { PortfolioService } from "~~/services";
 export default defineEventHandler(async (event) => {
   try {
     const portfolioDatabases = await PortfolioService.findAllChildDatabases();
-
-    const content = await PortfolioService.getPortfolioContent();
-
-    const projectId = portfolioDatabases.find(
-      (page) => page.title === "Projects"
+    const skillId = portfolioDatabases.find(
+      (page) => page.title === "Skills"
     )!.id;
 
-    const projects = await PortfolioService.findProjects(projectId);
+    const skills = await PortfolioService.findSkills(skillId);
 
-    return { projects, content };
+    return skills;
   } catch (error: any) {
     console.error(error);
     sendError(

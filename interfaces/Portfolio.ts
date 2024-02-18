@@ -80,6 +80,7 @@ export interface ISkill {
 export interface ISkillProperties {
   Name: string;
   Image_URL: string;
+  Orden: number;
 }
 
 export interface PortfolioPageApiResponse {

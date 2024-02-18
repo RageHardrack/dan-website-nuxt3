@@ -76,16 +76,5 @@ definePageMeta({
         />
       </Grid>
     </section>
-
-    <section class="flex flex-col space-y-4">
-      <Heading2>Skills</Heading2>
-      <Grid size="sm">
-        <CardSkill
-          v-for="skill in data!.skills"
-          :key="skill.id"
-          :skillProps="skill.properties"
-        />
-      </Grid>
-    </section>
   </section>
 </template>

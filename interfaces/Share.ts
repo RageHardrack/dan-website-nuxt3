@@ -152,5 +152,6 @@ export enum filterProjectOptions {
   VUEJS = "VueJS",
   REACTJS = "ReactJS",
   NEXTJS = "NextJS",
+  NUXTJS = "NuxtJS",
   TYPESCRIPT = "Typescript",
 }
