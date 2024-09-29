@@ -10,9 +10,6 @@ const { data, pending } = await useLazyFetch<PortfolioPageApiResponse>(
 
 const filterSelected = ref("");
 
-const onChangeFilterOptions = (optionSelected: string) =>
-  (filterSelected.value = optionSelected);
-
 const filteredProjects = computed(() => {
   if (!filterSelected.value) return data.value!.projects;
 
@@ -48,26 +45,11 @@ definePageMeta({
     <section class="flex flex-col space-y-4">
       <Heading2>Projects</Heading2>
 
-      <header class="flex flex-wrap gap-x-1 gap-y-2">
-        <button
-          v-for="option in filterProjectOptions"
-          :key="option"
-          @click="onChangeFilterOptions(option)"
-          class="px-3 py-1 transition duration-300 ease-in-out border rounded-lg border-gold hover:bg-gold"
-          :class="{ 'bg-gold font-semibold': option === filterSelected }"
-        >
-          {{ option }}
-        </button>
+      <FilterOptions
+        :filterOptions="Object.values(filterProjectOptions)"
+        v-model="filterSelected"
+      />
 
-        <button
-          @click="onChangeFilterOptions('')"
-          class="px-3 py-1 transition duration-300 ease-in-out border rounded-lg border-gold hover:bg-gold"
-          :class="{ 'bg-gold font-semibold': filterSelected === '' }"
-        >
-          All
-        </button>
-      </header>
-      
       <Grid size="lg">
         <CardProject
           v-for="project in filteredProjects"

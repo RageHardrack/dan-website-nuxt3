@@ -146,6 +146,7 @@ export interface RelationProperty {
   has_more: boolean;
 }
 
+//TODO: Change this for data from notion
 export enum filterProjectOptions {
   FRONTEND = "Frontend",
   BACKEND = "Backend",
@@ -154,4 +155,12 @@ export enum filterProjectOptions {
   NEXTJS = "NextJS",
   NUXTJS = "NuxtJS",
   TYPESCRIPT = "Typescript",
+}
+
+//TODO: Change this for data from notion
+export enum filterSkillsOptions {
+  LANGUAGE = "Language",
+  FRAMEWORK = "Framework",
+  DATABASE = "Database",
+  TOOLS = "Tools",
 }

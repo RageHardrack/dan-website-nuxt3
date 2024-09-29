@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import type {
-  ApiResponseContentBlock,
-  IExperience,
-  ISkill,
+import {
+  filterSkillsOptions,
+  type ApiResponseContentBlock,
+  type IExperience,
+  type ISkill,
 } from "~/interfaces";
 
 const { data: about, pending: aboutPending } =
@@ -16,9 +17,19 @@ const { data: experiences, pending: xpPending } = await useLazyFetch<
   IExperience[]
 >("/api/experience");
 
+const filterSelected = ref("");
+
 const pendingData = computed(
   () => aboutPending.value && skillsPending.value && xpPending.value
 );
+
+const filteredSkills = computed(() => {
+  if (!filterSelected.value) return skills.value!;
+
+  return skills.value!.filter((skill) =>
+    skill.properties.Tags.includes(filterSelected.value)
+  );
+});
 
 definePageMeta({
   title: "About me",
@@ -47,11 +58,17 @@ definePageMeta({
       >Download my CV</ButtonDownload
     >
 
-    <section class="flex flex-col space-y-4">
+    <section class="flex flex-col gap-4">
       <Heading2>Skills</Heading2>
+
+      <FilterOptions
+        :filterOptions="Object.values(filterSkillsOptions)"
+        v-model="filterSelected"
+      />
+
       <GridSkills size="sm">
         <CardSkill
-          v-for="skill in skills"
+          v-for="skill in filteredSkills"
           :key="skill.id"
           :skillProps="skill.properties"
         />
@@ -60,6 +77,7 @@ definePageMeta({
 
     <section class="flex flex-col w-full space-y-4">
       <Heading2>Profesional Experience</Heading2>
+
       <CardExperience
         v-for="xp in experiences"
         :key="xp.id"
