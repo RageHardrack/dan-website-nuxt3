@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import {
-  filterProjectOptions,
-  type PortfolioPageApiResponse,
-} from "~~/interfaces";
+import { filterProjectOptions } from "~~/interfaces";
 
-const { data, pending } = await useLazyFetch<PortfolioPageApiResponse>(
-  "/api/portfolio"
+const { data, status } = await useLazyAsyncData(
+  "portfolio-page",
+  fetchPortfolioPage
 );
 
 const filterSelected = ref("");
@@ -24,7 +22,7 @@ definePageMeta({
 </script>
 
 <template>
-  <LoadingPage loadMessage="Loading Portfolio..." v-if="pending" />
+  <LoadingPage loadMessage="Loading Portfolio..." v-if="status === 'pending'" />
 
   <section v-else class="flex flex-col space-y-5">
     <header class="flex flex-col-reverse justify-between lg:flex-row">

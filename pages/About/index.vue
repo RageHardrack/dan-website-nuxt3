@@ -1,32 +1,19 @@
 <script setup lang="ts">
-import {
-  filterSkillsOptions,
-  type ApiResponseContentBlock,
-  type IExperience,
-  type ISkill,
-} from "~/interfaces";
+import { filterSkillsOptions } from "~/interfaces";
 
-const { data: about, pending: aboutPending } =
-  await useLazyFetch<ApiResponseContentBlock>("/api/about-me");
-
-const { data: skills, pending: skillsPending } = await useLazyFetch<ISkill[]>(
-  "/api/skills"
+const { data, status } = await useLazyAsyncData(
+  "about-me-page",
+  fetchAboutPage
 );
 
-const { data: experiences, pending: xpPending } = await useLazyFetch<
-  IExperience[]
->("/api/experience");
+console.log({ status: status.value });
 
 const filterSelected = ref("");
 
-const pendingData = computed(
-  () => aboutPending.value && skillsPending.value && xpPending.value
-);
-
 const filteredSkills = computed(() => {
-  if (!filterSelected.value) return skills.value!;
+  if (!filterSelected.value) return data.value!.skills;
 
-  return skills.value!.filter((skill) =>
+  return data.value!.skills.filter((skill) =>
     skill.properties.Tags.includes(filterSelected.value)
   );
 });
@@ -37,7 +24,7 @@ definePageMeta({
 </script>
 
 <template>
-  <LoadingPage loadMessage="Loading About page" v-if="pendingData" />
+  <LoadingPage loadMessage="Loading About page" v-if="status === 'pending'" />
 
   <section v-else class="flex flex-col items-center justify-center gap-y-8">
     <header
@@ -51,7 +38,7 @@ definePageMeta({
         />
       </picture>
 
-      <Markdown :content="about!.content" />
+      <Markdown :content="data!.about.content" />
     </header>
 
     <ButtonDownload url="/daniel-colmenares-cv.pdf"
@@ -79,7 +66,7 @@ definePageMeta({
       <Heading2>Profesional Experience</Heading2>
 
       <CardExperience
-        v-for="xp in experiences"
+        v-for="xp in data!.experiences"
         :key="xp.id"
         :xpProperties="xp.properties"
       />

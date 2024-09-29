@@ -11,7 +11,6 @@ import type {
   RawContentBlock,
   SkillResponse,
 } from "~~/interfaces";
-import { PropertiesTransformer } from "~~/utils";
 import { blockContentAdapter } from "~~/adapters";
 
 const { portfolioPage } = useRuntimeConfig();

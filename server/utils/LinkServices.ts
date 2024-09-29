@@ -1,7 +1,6 @@
 import { Notion, NotionClient } from "~~/vendors";
 import type { ILink, LinkNotionResponse } from "~~/interfaces";
 import { linkAdapter } from "~~/adapters";
-import { getEnvironmentId } from "~~/utils";
 
 const { linkTreePage } = useRuntimeConfig();
 

@@ -1,4 +1,3 @@
-import { LinkService } from "~~/services";
 
 export default defineEventHandler(async (_event) => {
   try {
