@@ -2,9 +2,24 @@
 
 ## Stack
 
-- Nuxt v3
-- TailwindCSS
-- Notion Client v1
+- [Nuxt v3](https://nuxt.com/)
+- [TailwindCSS (Nuxt 3 Module)](https://nuxt.com/modules/tailwindcss)
+- [Notion Client v1 as CMS](https://www.npmjs.com/package/@notionhq/client)
+- [DayJS (Nuxt 3 Module)](https://nuxt.com/modules/dayjs)
+- [@morev/Vue-transitions (Nuxt 3 Module)](https://nuxt.com/modules/vue-transitions)
+- [Nuxt Icon (Nuxt 3 Module)](https://nuxt.com/modules/icon)
+- [Pinia](https://pinia.vuejs.org/)
+
+## TODO List
+
+- [ ] Complete Home page.
+- [ ] Check for correct types in Page Content Blocks.
+- [ ] Auto fetch list of Tags for Skills and Projects.
+- [ ] Add Nuxt/Image Module.
+- [ ] Improve SSR experience.
+- [ ] Add additional functionality and info to Experience Cards.
+- [ ] Add i18n.
+- [ ] Improve SEO.
 
 ## Setup
 
@@ -48,7 +63,7 @@ pnpm build
 
 ### Build Docker Image
 
-_Please note this is a help for myself to easily build up the docker image. If you want to reply it, change 'hardrack' and the name of the repo, to your fork and personal Docker Hub user._
+_Please note this is a help for myself to easily build up the docker image. If you want to reply it, change `hardrack` and the name of the repo, to your fork and personal Docker Hub user._
 
 ```bash
 docker build -t hardrack/dragon-azul-nuxt3-website:tag .
