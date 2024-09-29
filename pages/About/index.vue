@@ -1,24 +1,22 @@
 <script setup lang="ts">
-import type {
-  ApiResponseContentBlock,
-  IExperience,
-  ISkill,
-} from "~/interfaces";
+import { filterSkillsOptions } from "~/interfaces";
 
-const { data: about, pending: aboutPending } =
-  await useLazyFetch<ApiResponseContentBlock>("/api/about-me");
-
-const { data: skills, pending: skillsPending } = await useLazyFetch<ISkill[]>(
-  "/api/skills"
+const { data, status } = await useLazyAsyncData(
+  "about-me-page",
+  fetchAboutPage
 );
 
-const { data: experiences, pending: xpPending } = await useLazyFetch<
-  IExperience[]
->("/api/experience");
+console.log({ status: status.value });
 
-const pendingData = computed(
-  () => aboutPending.value && skillsPending.value && xpPending.value
-);
+const filterSelected = ref("");
+
+const filteredSkills = computed(() => {
+  if (!filterSelected.value) return data.value!.skills;
+
+  return data.value!.skills.filter((skill) =>
+    skill.properties.Tags.includes(filterSelected.value)
+  );
+});
 
 definePageMeta({
   title: "About me",
@@ -26,7 +24,7 @@ definePageMeta({
 </script>
 
 <template>
-  <LoadingPage loadMessage="Loading About page" v-if="pendingData" />
+  <LoadingPage loadMessage="Loading About page" v-if="status === 'pending'" />
 
   <section v-else class="flex flex-col items-center justify-center gap-y-8">
     <header
@@ -40,18 +38,24 @@ definePageMeta({
         />
       </picture>
 
-      <Markdown :content="about!.content" />
+      <Markdown :content="data!.about.content" />
     </header>
 
     <ButtonDownload url="/daniel-colmenares-cv.pdf"
       >Download my CV</ButtonDownload
     >
 
-    <section class="flex flex-col space-y-4">
+    <section class="flex flex-col gap-4">
       <Heading2>Skills</Heading2>
+
+      <FilterOptions
+        :filterOptions="Object.values(filterSkillsOptions)"
+        v-model="filterSelected"
+      />
+
       <GridSkills size="sm">
         <CardSkill
-          v-for="skill in skills"
+          v-for="skill in filteredSkills"
           :key="skill.id"
           :skillProps="skill.properties"
         />
@@ -60,8 +64,9 @@ definePageMeta({
 
     <section class="flex flex-col w-full space-y-4">
       <Heading2>Profesional Experience</Heading2>
+
       <CardExperience
-        v-for="xp in experiences"
+        v-for="xp in data!.experiences"
         :key="xp.id"
         :xpProperties="xp.properties"
       />

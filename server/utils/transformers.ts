@@ -30,6 +30,7 @@ export class PropertiesTransformer {
       Name: skillProperties.Name.title[0].plain_text,
       Image_URL: skillProperties.Image_URL.url,
       Orden: skillProperties.Orden.number,
+      Tags: skillProperties.Tags.multi_select.map((tag: Tag) => tag.name),
     };
   };
 

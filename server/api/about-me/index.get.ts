@@ -1,4 +1,3 @@
-import { AboutService } from "~~/services";
 
 export default defineEventHandler(async (event) => {
   try {

@@ -47,6 +47,7 @@ export interface RawSkillProperties {
   Name: TitleProperty;
   Image_URL: UrlProperty;
   Orden: NumberProperty;
+  Tags: MultiSelectProperty;
 }
 
 export interface ISkill {
@@ -59,6 +60,7 @@ export interface ISkillProperties {
   Name: string;
   Image_URL: string;
   Orden: number;
+  Tags: string[];
 }
 
 export interface PortfolioPageApiResponse {

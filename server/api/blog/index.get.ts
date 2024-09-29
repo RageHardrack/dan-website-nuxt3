@@ -1,5 +1,3 @@
-import { BlogService } from "~~/services";
-
 export default defineEventHandler(async (event) => {
   try {
     const pages = await BlogService.findAll();

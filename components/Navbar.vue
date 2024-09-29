@@ -2,6 +2,13 @@
 import { ROUTES_LINKS } from "~~/constantes";
 
 const { toggleSideNav } = useUIStore();
+
+const route = useRoute();
+const activePage = computed(() => {
+  if (route.path) return `/${route.path.split("/")[1]}`;
+  
+  return "";
+});
 </script>
 
 <template>
@@ -19,6 +26,7 @@ const { toggleSideNav } = useUIStore();
           :key="title"
           :to="path"
           class="text-lg transition duration-300 ease-in-out hover:text-gold"
+          :class="activePage === path ? 'router-link-active' : ''"
         >
           {{ title }}
         </NuxtLink>

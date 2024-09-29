@@ -5,7 +5,6 @@ import type {
   IPost,
   RawContentBlock,
 } from "~~/interfaces";
-import { getEnvironmentId } from "~~/utils";
 import {
   postAdapter,
   postPropertiesAdapter,

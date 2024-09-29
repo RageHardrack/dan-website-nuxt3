@@ -1,5 +1,8 @@
 <script setup lang="ts">
-const { data, pending } = await useLazyFetch("/api/blog");
+const { data, status } = await useLazyAsyncData(
+  "blog-page",
+  fetchBlogPage
+);
 
 definePageMeta({
   title: "Blog",
@@ -7,7 +10,7 @@ definePageMeta({
 </script>
 
 <template>
-  <LoadingPage loadMessage="Loading posts" v-if="pending" />
+  <LoadingPage loadMessage="Loading posts" v-if="status === 'pending'" />
 
   <section v-else class="flex flex-col justify-center space-y-4 md:space-y-8">
     <Heading1 customClass="text-primary"> Última publicación </Heading1>
