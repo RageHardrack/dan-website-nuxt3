@@ -8,20 +8,23 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "@nuxt/devtools": "1.5.1",
-    "@nuxtjs/tailwindcss": "6.12.1",
+    "@iconify-json/fa": "1.2.0",
+    "@iconify-json/mdi": "1.2.1",
+    "@nuxt/devtools": "1.6.0",
+    "@nuxt/icon": "1.5.6",
+    "@nuxtjs/tailwindcss": "6.12.2",
     "@vueuse/core": "11.1.0",
     "@vueuse/nuxt": "11.1.0",
     "dayjs-nuxt": "2.1.11",
     "nuxt": "3.13.2",
-    "nuxt-icon": "0.6.10",
-    "vue": "3.5.10",
+    "vue": "3.5.12",
     "vue-router": "4.4.5"
   },
   "dependencies": {
     "@morev/vue-transitions": "3.0.2",
     "@notionhq/client": "1.0.4",
-    "@pinia/nuxt": "0.5.4",
+    "@pinia/nuxt": "0.5.5",
     "dayjs": "1.11.13"
-  }
+  },
+  "packageManager": "pnpm@9.12.2+sha512.22721b3a11f81661ae1ec68ce1a7b879425a1ca5b991c975b074ac220b187ce56c708fe5db69f4c962c989452eee76c82877f4ee80f474cebd61ee13461b6228"
 }

@@ -1,5 +1,5 @@
 export default defineAppConfig({
-  nuxtIcon: {
+  icon: {
     size: "24px",
     aliases: {
       gitHub: "mdi:github",

@@ -8,12 +8,12 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     "@vueuse/nuxt",
     "@morev/vue-transitions/nuxt",
-    "nuxt-icon",
     [
       "@pinia/nuxt",
       { autoImports: ["defineStore", ["defineStore", "definePiniaStore"]] },
     ],
     "dayjs-nuxt",
+    "@nuxt/icon",
   ],
 
   pinia: {

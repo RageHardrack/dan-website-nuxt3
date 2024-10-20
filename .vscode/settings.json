@@ -10,5 +10,6 @@
   },
   "cSpell.ignoreWords": [
     "Publicacion"
-  ]
+  ],
+  "vue3snippets.enable-compile-vue-file-on-did-save-code": true
 }
