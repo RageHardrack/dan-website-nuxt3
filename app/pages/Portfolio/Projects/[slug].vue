@@ -5,8 +5,11 @@ import type { ProjectPageApiResponse } from "~/interfaces";
 const route = useRoute();
 const { slug } = route.params;
 
+const config = useRuntimeConfig();
+const baseUrl = config.public.apiBaseUrl;
+
 const { data, pending } = await useLazyFetch<ProjectPageApiResponse>(
-  `/api/projects/${slug}`
+  `${baseUrl}/projects/${slug}`
 );
 
 watch(data, (newData) => {

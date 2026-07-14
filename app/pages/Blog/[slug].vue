@@ -4,7 +4,10 @@ import { watch } from "vue";
 const route = useRoute();
 const { slug } = route.params;
 
-const { data, pending } = await useLazyFetch<any>(`/api/blog/${slug}`);
+const config = useRuntimeConfig();
+const baseUrl = config.public.apiBaseUrl;
+
+const { data, pending } = await useLazyFetch<any>(`${baseUrl}/blog/${slug}`);
 
 watch(data, (newData) => {
   if (newData) {

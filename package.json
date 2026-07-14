@@ -24,7 +24,6 @@
   },
   "dependencies": {
     "@morev/vue-transitions": "3.0.2",
-    "@notionhq/client": "1.0.4",
     "@pinia/nuxt": "^0.9.0",
     "dayjs": "1.11.13",
     "pinia": "^3.0.4"

@@ -7,10 +7,13 @@ import type {
 } from "~/interfaces";
 
 export const fetchAboutPage = async () => {
+  const config = useRuntimeConfig();
+  const baseUrl = config.public.apiBaseUrl;
+
   const [about, skills, experiences] = await Promise.all([
-    $fetch<ApiResponseContentBlock>("/api/about-me"),
-    $fetch<ISkill[]>("/api/skills"),
-    $fetch<IExperience[]>("/api/experience"),
+    $fetch<ApiResponseContentBlock>(`${baseUrl}/about-me`),
+    $fetch<ISkill[]>(`${baseUrl}/skills`),
+    $fetch<IExperience[]>(`${baseUrl}/experience`),
   ]);
 
   return {
@@ -21,9 +24,13 @@ export const fetchAboutPage = async () => {
 };
 
 export const fetchBlogPage = async () => {
-  return $fetch<{ posts: IPost[] }>("/api/blog");
+  const config = useRuntimeConfig();
+  const baseUrl = config.public.apiBaseUrl;
+  return $fetch<{ posts: IPost[] }>(`${baseUrl}/blog`);
 };
 
 export const fetchPortfolioPage = async () => {
-  return $fetch<PortfolioPageApiResponse>("/api/portfolio");
+  const config = useRuntimeConfig();
+  const baseUrl = config.public.apiBaseUrl;
+  return $fetch<PortfolioPageApiResponse>(`${baseUrl}/portfolio`);
 };
