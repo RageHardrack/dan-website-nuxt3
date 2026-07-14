@@ -13,7 +13,7 @@ import { SOCIAL_MEDIA_LINKS, UTILS_LINKS } from "~/constantes";
         <a
           :href="UTILS_LINKS[0]?.url"
           target="_blank"
-          rel="nofollow"
+          rel="noopener noreferrer nofollow"
           class="font-semibold underline transition duration-300 text-electric hover:text-secondary"
         >
           Daniel Colmenares
@@ -25,7 +25,7 @@ import { SOCIAL_MEDIA_LINKS, UTILS_LINKS } from "~/constantes";
         <a
           v-for="{ social, url } in SOCIAL_MEDIA_LINKS"
           class="text-white"
-          rel="nofollow"
+          rel="noopener noreferrer nofollow"
           target="_blank"
           :href="url"
           :key="social"

@@ -69,6 +69,7 @@ export interface PortfolioPageApiResponse {
 }
 
 export interface ProjectPageApiResponse {
+  project: IProject;
   content: ContentBlock[];
 }
 

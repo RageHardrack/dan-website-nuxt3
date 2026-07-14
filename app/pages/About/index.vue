@@ -6,8 +6,6 @@ const { data, status } = await useLazyAsyncData(
   fetchAboutPage
 );
 
-console.log({ status: status.value });
-
 const filterSelected = ref("");
 
 const filteredSkills = computed(() => {

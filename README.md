@@ -39,10 +39,10 @@
 
 ### Install dependencies
 
-Make sure to install the dependencies using `pnpm`
+Make sure to install the dependencies using `bun`
 
 ```bash
-pnpm install
+bun install
 ```
 
 ### Development Server
@@ -50,7 +50,7 @@ pnpm install
 Start the development server on [localhost](http://localhost:3000)
 
 ```bash
-pnpm dev
+bun run dev
 ```
 
 ### Build to Production
@@ -58,7 +58,7 @@ pnpm dev
 Build the application for production:
 
 ```bash
-pnpm build
+bun run build
 ```
 
 ### Build Docker Image

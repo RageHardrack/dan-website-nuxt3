@@ -1,35 +1,44 @@
-
 export default defineEventHandler(async (event) => {
   try {
     const slug = getRouterParam(event, "slug");
 
     const portfolioDatabases = await PortfolioService.findAllChildDatabases();
 
-    const projectsDatabaseId = portfolioDatabases.find(
+    const projectsGroup = portfolioDatabases.find(
       (page) => page.title === "Projects"
-    )!.id;
-
-    const projectsDatabase = await PortfolioService.findProjects(
-      projectsDatabaseId
     );
 
-    const findProjectId = projectsDatabase.find(
-      (pro) => pro.properties.Slug == slug
-    )!.id;
-
-    if (!findProjectId) {
+    if (!projectsGroup) {
       return sendError(
         event,
         createError({
           statusCode: 404,
-          message: "Project not found!",
+          message: "No se encontró la base de datos de Proyectos",
         })
       );
     }
 
-    const content = await PortfolioService.getProjectContent(findProjectId);
+    const projectsDatabase = await PortfolioService.findProjects(
+      projectsGroup.id
+    );
 
-    return { content };
+    const currentProject = projectsDatabase.find(
+      (pro) => pro.properties.Slug === slug
+    );
+
+    if (!currentProject) {
+      return sendError(
+        event,
+        createError({
+          statusCode: 404,
+          message: "Proyecto no encontrado",
+        })
+      );
+    }
+
+    const content = await PortfolioService.getProjectContent(currentProject.id);
+
+    return { project: currentProject, content };
   } catch (error) {
     console.error(error);
     sendError(
