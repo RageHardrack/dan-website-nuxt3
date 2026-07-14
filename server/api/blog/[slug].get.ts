@@ -1,4 +1,4 @@
-import type { IPost } from "~~/interfaces";
+import type { IPost } from "~~/app/interfaces";
 
 export default defineEventHandler(async (event) => {
   try {

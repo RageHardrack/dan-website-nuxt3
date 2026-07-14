@@ -1,15 +1,16 @@
-import { Notion, NotionClient } from "~~/vendors";
+import { Notion, NotionClient } from "~~/app/vendors";
 import type {
   PostNotionResponse,
   IPageContent,
   IPost,
   RawContentBlock,
-} from "~~/interfaces";
+  ContentBlock,
+} from "~~/app/interfaces";
 import {
   postAdapter,
   postPropertiesAdapter,
   blockContentAdapter,
-} from "~~/adapters";
+} from "~~/app/adapters";
 
 const { blogPage } = useRuntimeConfig();
 
@@ -58,7 +59,7 @@ class BlogServices {
     };
   }
 
-  async getPostContent(blockId: string): Promise<IPageContent[]> {
+  async getPostContent(blockId: string): Promise<ContentBlock[]> {
     const listBlockChildren = await this.NotionClient.getPageContent<
       RawContentBlock[]
     >(blockId, {

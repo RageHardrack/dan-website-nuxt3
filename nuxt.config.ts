@@ -4,11 +4,16 @@ import { defineNuxtConfig } from "nuxt/config";
 export default defineNuxtConfig({
   devtools: { enabled: true },
 
+  // Enable Nuxt 4 behavior
+  future: {
+    compatibilityVersion: 4,
+  },
+
   modules: [
     "@nuxtjs/tailwindcss",
     "@vueuse/nuxt",
     "@morev/vue-transitions/nuxt",
-    "nuxt-icon",
+    "@nuxt/icon",
     [
       "@pinia/nuxt",
       { autoImports: ["defineStore", ["defineStore", "definePiniaStore"]] },
@@ -17,7 +22,7 @@ export default defineNuxtConfig({
   ],
 
   pinia: {
-    storesDirs: ["./stores/**"],
+    storesDirs: ["./app/stores/**"],
   },
 
   devServer: {

@@ -1,6 +1,6 @@
-import { blockContentAdapter } from "~~/adapters";
-import type { RawContentBlock, ContentBlock } from "~~/interfaces";
-import { Notion, NotionClient } from "~~/vendors";
+import { blockContentAdapter } from "~~/app/adapters";
+import type { RawContentBlock, ContentBlock } from "~~/app/interfaces";
+import { Notion, NotionClient } from "~~/app/vendors";
 
 const { aboutPage } = useRuntimeConfig();
 

@@ -6,7 +6,7 @@ import type {
   ISkillProperties,
   RawExperienceProperties,
   IExperienceProperties,
-} from "~~/interfaces";
+} from "~~/app/interfaces";
 
 export class PropertiesTransformer {
   static GetProjectProperties = (

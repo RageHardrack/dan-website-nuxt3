@@ -1,4 +1,4 @@
-import { Notion, NotionClient } from "~~/vendors";
+import { Notion, NotionClient } from "~~/app/vendors";
 import type {
   ChildDatabase,
   ContentBlock,
@@ -10,8 +10,8 @@ import type {
   ProjectResponse,
   RawContentBlock,
   SkillResponse,
-} from "~~/interfaces";
-import { blockContentAdapter } from "~~/adapters";
+} from "~~/app/interfaces";
+import { blockContentAdapter } from "~~/app/adapters";
 
 const { portfolioPage } = useRuntimeConfig();
 
@@ -26,16 +26,14 @@ class PortfolioServices {
       this.databaseId
     );
 
-    // TODO: Corregir tipo
-    const childDatabases: ChildDatabase[] = blocks.map((block) => {
-      if (block.type === "child_database")
-        return {
-          object: block.object,
-          id: block.id,
-          type: block.type,
-          title: block["child_database"].title,
-        };
-    });
+    const childDatabases: ChildDatabase[] = blocks
+      .filter((block: RawContentBlock) => block.type === "child_database")
+      .map((block: RawContentBlock) => ({
+        object: block.object,
+        id: block.id,
+        type: block.type,
+        title: block["child_database"].title,
+      }));
 
     return childDatabases;
   }
@@ -47,7 +45,7 @@ class PortfolioServices {
       sorts: [{ property: "Orden", direction: "ascending" }],
     });
 
-    const projects = projectsDatabase.map((project) => {
+    const projects = projectsDatabase.map((project: ProjectResponse) => {
       return {
         object: project.object,
         id: project.id,
@@ -80,7 +78,7 @@ class PortfolioServices {
       { sorts: [{ property: "Orden", direction: "ascending" }] }
     );
 
-    const skills = skillsDatabase.map((skill) => {
+    const skills = skillsDatabase.map((skill: SkillResponse) => {
       return {
         object: skill.object,
         id: skill.id,
@@ -96,7 +94,7 @@ class PortfolioServices {
       ExperienceNotionResponse[]
     >(blockId, { sorts: [{ property: "Orden", direction: "ascending" }] });
 
-    const experience = experienceDatabase.map((xp) => {
+    const experience = experienceDatabase.map((xp: ExperienceNotionResponse) => {
       return {
         object: xp.object,
         id: xp.id,

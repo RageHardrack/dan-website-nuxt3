@@ -1,20 +1,20 @@
-FROM --platform=linux/amd64 node:18-alpine as dev-deps
+FROM --platform=linux/amd64 oven/bun:1-alpine as dev-deps
 WORKDIR /app
-COPY package.json .
-RUN yarn install --frozen-lockfile
+COPY package.json bun.lock ./
+RUN bun install --frozen-lockfile
 
-FROM --platform=linux/amd64 node:18-alpine as builder
+FROM --platform=linux/amd64 oven/bun:1-alpine as builder
 WORKDIR /app
 COPY --from=dev-deps /app/node_modules ./node_modules
 COPY . .
-RUN yarn build
+RUN bun run build
 
-FROM --platform=linux/amd64 node:18-alpine as prod-deps
+FROM --platform=linux/amd64 oven/bun:1-alpine as prod-deps
 WORKDIR /app
-COPY package.json package.json
-RUN yarn install --frozen-lockfile
+COPY package.json bun.lock ./
+RUN bun install --frozen-lockfile --production --ignore-scripts
 
-FROM --platform=linux/amd64 node:18-alpine as prod
+FROM --platform=linux/amd64 oven/bun:1-alpine as prod
 EXPOSE 3000
 WORKDIR /app
 
@@ -30,4 +30,4 @@ ENV PRODUCTION_STAGE=${PRODUCTION_STAGE}
 
 COPY --from=prod-deps /app/node_modules ./node_modules
 COPY --from=builder /app/.output ./.output
-CMD ["node", ".output/server/index.mjs"]
+CMD ["bun", "run", ".output/server/index.mjs"]

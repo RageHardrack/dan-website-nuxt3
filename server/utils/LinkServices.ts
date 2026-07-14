@@ -1,6 +1,6 @@
-import { Notion, NotionClient } from "~~/vendors";
-import type { ILink, LinkNotionResponse } from "~~/interfaces";
-import { linkAdapter } from "~~/adapters";
+import { Notion, NotionClient } from "~~/app/vendors";
+import type { ILink, LinkNotionResponse } from "~~/app/interfaces";
+import { linkAdapter } from "~~/app/adapters";
 
 const { linkTreePage } = useRuntimeConfig();
 
