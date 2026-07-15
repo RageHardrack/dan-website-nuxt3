@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import type { IPost } from "~/interfaces";
+import type { IPost } from '~/interfaces';
+
 const dayjs = useDayjs();
 
 interface Props {
@@ -35,7 +36,7 @@ const { Image_URL, Tags, Fecha_Publicacion, Slug, Post, Brief } = post;
 
       <template #footer>
         <p class="text-black-coffee">
-          {{ dayjs(Fecha_Publicacion).format("DD MMMM YYYY") }}
+          {{ dayjs(Fecha_Publicacion).format('DD MMMM YYYY') }}
         </p>
       </template>
     </CardWide>

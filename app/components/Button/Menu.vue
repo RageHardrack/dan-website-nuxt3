@@ -1,7 +1,7 @@
 <script setup lang="ts">
-const emits = defineEmits(["pressButton"]);
+const emits = defineEmits(['pressButton']);
 
-const clicked = () => emits("pressButton");
+const clicked = () => emits('pressButton');
 </script>
 
 <template>

@@ -4,7 +4,7 @@ import type {
   IExperience,
   PortfolioPageApiResponse,
   IPost,
-} from "~/interfaces";
+} from '~/interfaces';
 
 export const fetchAboutPage = async () => {
   const config = useRuntimeConfig();

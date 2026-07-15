@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { ROUTES_LINKS } from "~/constantes";
+import { ROUTES_LINKS } from '~/constantes';
 
 const { toggleSideNav } = useUIStore();
 
 const route = useRoute();
 const activePage = computed(() => {
-  if (route.path) return `/${route.path.split("/")[1]}`;
-  
-  return "";
+  if (route.path) return `/${route.path.split('/')[1]}`;
+
+  return '';
 });
 </script>
 

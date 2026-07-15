@@ -7,8 +7,8 @@ interface Props {
 
 const { hasClick, color, hasHover } = defineProps<Props>();
 
-const hoverClass = hasHover ? "transform duration-300 hover:scale-110" : "";
-const clickClass = hasClick ? "cursor-pointer" : "cursor-auto";
+const hoverClass = hasHover ? 'transform duration-300 hover:scale-110' : '';
+const clickClass = hasClick ? 'cursor-pointer' : 'cursor-auto';
 </script>
 
 <template>

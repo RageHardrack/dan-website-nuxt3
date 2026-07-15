@@ -9,7 +9,7 @@ import type {
   CheckboxProperty,
   RelationProperty,
   IPageContent,
-} from "./Share";
+} from './Share';
 
 export interface PostNotionResponse extends NotionResponse {
   properties: PostNotionResponseProperties;

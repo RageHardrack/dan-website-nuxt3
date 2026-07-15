@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { IExperienceProperties } from "~/interfaces";
+import type { IExperienceProperties } from '~/interfaces';
 
 interface Props {
   xpProperties: IExperienceProperties;
@@ -9,8 +9,10 @@ const { xpProperties } = defineProps<Props>();
 </script>
 
 <template>
-  <article class="relative flex flex-col gap-4 px-8 py-4 overflow-hidden rounded-lg bg-bone">
-  <div class="absolute top-0 left-0 w-4 h-full bg-primary" />
+  <article
+    class="relative flex flex-col gap-4 px-8 py-4 overflow-hidden rounded-lg bg-bone"
+  >
+    <div class="absolute top-0 left-0 w-4 h-full bg-primary" />
 
     <header>
       <Heading3>

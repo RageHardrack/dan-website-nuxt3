@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { SOCIAL_MEDIA_LINKS, UTILS_LINKS } from "~/constantes";
+import { SOCIAL_MEDIA_LINKS, UTILS_LINKS } from '~/constantes';
 </script>
 
 <template>
@@ -31,7 +31,11 @@ import { SOCIAL_MEDIA_LINKS, UTILS_LINKS } from "~/constantes";
           :key="social"
           :title="social"
         >
-          <Icon :name="social" size="24px" class="transition duration-300 hover:text-gold" />
+          <Icon
+            :name="social"
+            size="24px"
+            class="transition duration-300 hover:text-gold"
+          />
         </a>
       </section>
     </article>

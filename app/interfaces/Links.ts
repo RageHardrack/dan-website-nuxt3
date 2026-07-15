@@ -5,7 +5,7 @@ import type {
   RelationProperty,
   TitleProperty,
   UrlProperty,
-} from "./Share";
+} from './Share';
 
 export interface LinkNotionResponse extends NotionResponse {
   properties: LinkNotionResponseProperties;

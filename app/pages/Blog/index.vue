@@ -1,11 +1,8 @@
 <script setup lang="ts">
-const { data, status } = await useLazyAsyncData(
-  "blog-page",
-  fetchBlogPage
-);
+const { data, status } = await useLazyAsyncData('blog-page', fetchBlogPage);
 
 definePageMeta({
-  title: "Blog",
+  title: 'Blog',
 });
 </script>
 
@@ -15,7 +12,10 @@ definePageMeta({
   <section v-else class="flex flex-col justify-center space-y-4 md:space-y-8">
     <Heading1 customClass="text-primary"> Última publicación </Heading1>
 
-    <BlogMainCard :post="data!.posts[0]!" v-if="data?.posts && data.posts.length > 0" />
+    <BlogMainCard
+      :post="data!.posts[0]!"
+      v-if="data?.posts && data.posts.length > 0"
+    />
 
     <Heading2 customClass="text-black-coffee">
       Publicaciones anteriores

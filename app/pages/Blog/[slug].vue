@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { watch } from "vue";
+import { watch } from 'vue';
 
 const route = useRoute();
 const { slug } = route.params;
@@ -9,24 +9,30 @@ const baseUrl = config.public.apiBaseUrl;
 
 const { data, pending } = await useLazyFetch<any>(`${baseUrl}/blog/${slug}`);
 
-watch(data, (newData) => {
-  if (newData) {
-    const seoMeta: any = {
-      title: `${newData.Post} - Daniel Colmenares`,
-      ogTitle: `${newData.Post} - Daniel Colmenares`,
-      description: newData.Brief || "Publicación del blog de Daniel Colmenares",
-      ogDescription: newData.Brief || "Publicación del blog de Daniel Colmenares",
-      ogImage: newData.Image_URL,
-      twitterCard: "summary_large_image",
-    };
+watch(
+  data,
+  (newData) => {
+    if (newData) {
+      const seoMeta: any = {
+        title: `${newData.Post} - Daniel Colmenares`,
+        ogTitle: `${newData.Post} - Daniel Colmenares`,
+        description:
+          newData.Brief || 'Publicación del blog de Daniel Colmenares',
+        ogDescription:
+          newData.Brief || 'Publicación del blog de Daniel Colmenares',
+        ogImage: newData.Image_URL,
+        twitterCard: 'summary_large_image',
+      };
 
-    if (newData.Prevent_Index) {
-      seoMeta.robots = "noindex, nofollow";
+      if (newData.Prevent_Index) {
+        seoMeta.robots = 'noindex, nofollow';
+      }
+
+      useSeoMeta(seoMeta);
     }
-
-    useSeoMeta(seoMeta);
-  }
-}, { immediate: true });
+  },
+  { immediate: true },
+);
 </script>
 
 <template>
@@ -41,7 +47,10 @@ watch(data, (newData) => {
         &larr; Volver al Blog
       </NuxtLink>
 
-      <picture class="w-full md:h-[400px] overflow-hidden rounded-lg shadow-md" v-if="data.Image_URL">
+      <picture
+        class="w-full md:h-[400px] overflow-hidden rounded-lg shadow-md"
+        v-if="data.Image_URL"
+      >
         <img
           :src="data.Image_URL"
           :alt="`Banner ${data.Post}`"
@@ -51,12 +60,12 @@ watch(data, (newData) => {
       <Heading1>{{ data.Post }}</Heading1>
       <p class="text-sm text-gray-500">
         Publicado el
-        {{ $dayjs(data.Fecha_Publicacion).format("DD MMMM YYYY") }}
+        {{ $dayjs(data.Fecha_Publicacion).format('DD MMMM YYYY') }}
       </p>
     </header>
 
     <Divider />
-    
+
     <main class="w-full">
       <Markdown :content="data.content" />
     </main>

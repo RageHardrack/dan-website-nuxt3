@@ -1,4 +1,4 @@
-import { defineNuxtConfig } from "nuxt/config";
+import { defineNuxtConfig } from 'nuxt/config';
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
@@ -10,19 +10,19 @@ export default defineNuxtConfig({
   },
 
   modules: [
-    "@nuxtjs/tailwindcss",
-    "@vueuse/nuxt",
-    "@morev/vue-transitions/nuxt",
-    "@nuxt/icon",
+    '@nuxtjs/tailwindcss',
+    '@vueuse/nuxt',
+    '@morev/vue-transitions/nuxt',
+    '@nuxt/icon',
     [
-      "@pinia/nuxt",
-      { autoImports: ["defineStore", ["defineStore", "definePiniaStore"]] },
+      '@pinia/nuxt',
+      { autoImports: ['defineStore', ['defineStore', 'definePiniaStore']] },
     ],
-    "dayjs-nuxt",
+    'dayjs-nuxt',
   ],
 
   pinia: {
-    storesDirs: ["./app/stores/**"],
+    storesDirs: ['./app/stores/**'],
   },
 
   devServer: {
@@ -30,9 +30,9 @@ export default defineNuxtConfig({
   },
 
   dayjs: {
-    locales: ["es", "en"],
-    plugins: ["relativeTime", "utc", "timezone"],
-    defaultLocale: "es",
+    locales: ['es', 'en'],
+    plugins: ['relativeTime', 'utc', 'timezone'],
+    defaultLocale: 'es',
   },
 
   // app: {
@@ -41,9 +41,9 @@ export default defineNuxtConfig({
   // },
   runtimeConfig: {
     public: {
-      apiBaseUrl: process.env.API_BASE_URL || "https://guilliman.local/api",
+      apiBaseUrl: process.env.API_BASE_URL || 'https://guilliman.local/api',
     },
   },
 
-  compatibilityDate: "2024-09-29",
+  compatibilityDate: '2024-09-29',
 });

@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { watch } from "vue";
-import type { ProjectPageApiResponse } from "~/interfaces";
+import { watch } from 'vue';
+
+import type { ProjectPageApiResponse } from '~/interfaces';
 
 const route = useRoute();
 const { slug } = route.params;
@@ -9,21 +10,25 @@ const config = useRuntimeConfig();
 const baseUrl = config.public.apiBaseUrl;
 
 const { data, pending } = await useLazyFetch<ProjectPageApiResponse>(
-  `${baseUrl}/projects/${slug}`
+  `${baseUrl}/projects/${slug}`,
 );
 
-watch(data, (newData) => {
-  if (newData?.project) {
-    useSeoMeta({
-      title: `${newData.project.properties.Name} - Daniel Colmenares`,
-      ogTitle: `${newData.project.properties.Name} - Daniel Colmenares`,
-      description: `Detalles y especificaciones del proyecto: ${newData.project.properties.Name}`,
-      ogDescription: `Detalles y especificaciones del proyecto: ${newData.project.properties.Name}`,
-      ogImage: newData.project.properties.Preview,
-      twitterCard: "summary_large_image",
-    });
-  }
-}, { immediate: true });
+watch(
+  data,
+  (newData) => {
+    if (newData?.project) {
+      useSeoMeta({
+        title: `${newData.project.properties.Name} - Daniel Colmenares`,
+        ogTitle: `${newData.project.properties.Name} - Daniel Colmenares`,
+        description: `Detalles y especificaciones del proyecto: ${newData.project.properties.Name}`,
+        ogDescription: `Detalles y especificaciones del proyecto: ${newData.project.properties.Name}`,
+        ogImage: newData.project.properties.Preview,
+        twitterCard: 'summary_large_image',
+      });
+    }
+  },
+  { immediate: true },
+);
 </script>
 
 <template>
@@ -38,7 +43,10 @@ watch(data, (newData) => {
         &larr; Return to Portfolio
       </NuxtLink>
 
-      <picture class="w-full md:h-[400px] overflow-hidden rounded-lg shadow-md" v-if="data.project.properties.Preview">
+      <picture
+        class="w-full md:h-[400px] overflow-hidden rounded-lg shadow-md"
+        v-if="data.project.properties.Preview"
+      >
         <img
           :src="data.project.properties.Preview"
           :alt="`Preview of ${data.project.properties.Name}`"

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { IProjectProperties } from "~/interfaces";
+import type { IProjectProperties } from '~/interfaces';
 
 interface Props {
   projectProps: IProjectProperties;
@@ -40,14 +40,14 @@ const { Name, Slug, Tags, Preview } = projectProps;
     </transition-slide>
 
     <footer
-        class="absolute bottom-0 left-0 right-0 z-10 flex flex-col justify-start gap-1 px-4 py-2 lg:hidden h-2/5 bg-primary"
-      >
-        <Heading2 customClass="text-gold">{{ Name }}</Heading2>
-        <section class="flex flex-wrap items-center justify-start gap-1">
-          <Pill v-for="(name, idx) in Tags" :key="idx">
-            {{ name }}
-          </Pill>
-        </section>
-      </footer>
+      class="absolute bottom-0 left-0 right-0 z-10 flex flex-col justify-start gap-1 px-4 py-2 lg:hidden h-2/5 bg-primary"
+    >
+      <Heading2 customClass="text-gold">{{ Name }}</Heading2>
+      <section class="flex flex-wrap items-center justify-start gap-1">
+        <Pill v-for="(name, idx) in Tags" :key="idx">
+          {{ name }}
+        </Pill>
+      </section>
+    </footer>
   </article>
 </template>

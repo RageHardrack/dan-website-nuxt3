@@ -5,18 +5,18 @@ export type Tag = {
 };
 
 export type TechTag =
-  | "VueJS"
-  | "ReactJS"
-  | "NextJS"
-  | "NuxtJS"
-  | "Frontend"
-  | "Backend"
-  | "TailwindCSS"
-  | "Typescript"
-  | "Strapi"
-  | "Pinia"
-  | "Sequelize"
-  | "PWA";
+  | 'VueJS'
+  | 'ReactJS'
+  | 'NextJS'
+  | 'NuxtJS'
+  | 'Frontend'
+  | 'Backend'
+  | 'TailwindCSS'
+  | 'Typescript'
+  | 'Strapi'
+  | 'Pinia'
+  | 'Sequelize'
+  | 'PWA';
 
 export interface IPageContent {
   type: string;
@@ -69,7 +69,7 @@ export interface TitleProperty {
       };
       plain_text: string;
       href?: string;
-    }
+    },
   ];
 }
 
@@ -93,7 +93,7 @@ export interface RichTextProperty {
       };
       plain_text: string;
       href?: string;
-    }
+    },
   ];
 }
 
@@ -148,19 +148,19 @@ export interface RelationProperty {
 
 //TODO: Change this for data from notion
 export enum filterProjectOptions {
-  FRONTEND = "Frontend",
-  BACKEND = "Backend",
-  VUEJS = "VueJS",
-  REACTJS = "ReactJS",
-  NEXTJS = "NextJS",
-  NUXTJS = "NuxtJS",
-  TYPESCRIPT = "Typescript",
+  FRONTEND = 'Frontend',
+  BACKEND = 'Backend',
+  VUEJS = 'VueJS',
+  REACTJS = 'ReactJS',
+  NEXTJS = 'NextJS',
+  NUXTJS = 'NuxtJS',
+  TYPESCRIPT = 'Typescript',
 }
 
 //TODO: Change this for data from notion
 export enum filterSkillsOptions {
-  LANGUAGE = "Language",
-  FRAMEWORK = "Framework",
-  DATABASE = "Database",
-  TOOLS = "Tools",
+  LANGUAGE = 'Language',
+  FRAMEWORK = 'Framework',
+  DATABASE = 'Database',
+  TOOLS = 'Tools',
 }

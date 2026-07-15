@@ -1,23 +1,23 @@
 <script setup lang="ts">
-import { filterSkillsOptions } from "~/interfaces";
+import { filterSkillsOptions } from '~/interfaces';
 
 const { data, status } = await useLazyAsyncData(
-  "about-me-page",
-  fetchAboutPage
+  'about-me-page',
+  fetchAboutPage,
 );
 
-const filterSelected = ref("");
+const filterSelected = ref('');
 
 const filteredSkills = computed(() => {
   if (!filterSelected.value) return data.value!.skills;
 
   return data.value!.skills.filter((skill) =>
-    skill.properties.Tags.includes(filterSelected.value)
+    skill.properties.Tags.includes(filterSelected.value),
   );
 });
 
 definePageMeta({
-  title: "About me",
+  title: 'About me',
 });
 </script>
 

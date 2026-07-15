@@ -1,3 +1,3 @@
-export * from "./linkAdapter";
-export * from "./blogAdapter";
-export * from "./blockContentAdapter";
+export * from './linkAdapter';
+export * from './blogAdapter';
+export * from './blockContentAdapter';

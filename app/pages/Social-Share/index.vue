@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import type { ILink } from "~/interfaces";
+import type { ILink } from '~/interfaces';
 
 type LinksResponse = {
   linksPages: ILink[];
 };
 
-const { data, pending } = await useLazyFetch<LinksResponse>("/api/links");
+const { data, pending } = await useLazyFetch<LinksResponse>('/api/links');
 
 definePageMeta({
-  title: "Social Links",
-  layout: "social",
+  title: 'Social Links',
+  layout: 'social',
 });
 </script>
 

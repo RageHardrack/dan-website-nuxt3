@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { TechTag } from "~/interfaces";
+import type { TechTag } from '~/interfaces';
 
 interface Props {
   techTag: TechTag;
@@ -9,10 +9,10 @@ interface Props {
 const { techTag } = defineProps<Props>();
 
 const colorsTags: Record<string, string> = {
-  VueJS: "#41B883",
-  ReactJS: "#61DBFB",
-  NextJS: "#000",
-  NuxtJS: "#35495e",
+  VueJS: '#41B883',
+  ReactJS: '#61DBFB',
+  NextJS: '#000',
+  NuxtJS: '#35495e',
   //    "Frontend":,
   //    "Backend":,
   //    "TailwindCSS":,
@@ -25,7 +25,7 @@ const colorsTags: Record<string, string> = {
 
 const colorTag = computed(() => {
   const color = colorsTags[techTag];
-  return color ? `bg-[${color}]` : "";
+  return color ? `bg-[${color}]` : '';
 });
 console.log({ colorTag: colorsTags[techTag] });
 </script>

@@ -3,7 +3,7 @@ interface Props {
   color?: string;
 }
 
-const { color = "white" } = defineProps<Props>();
+const { color = 'white' } = defineProps<Props>();
 </script>
 
 <template>

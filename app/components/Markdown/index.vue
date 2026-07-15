@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { computed } from "vue";
-import type { ContentBlock } from "~/interfaces";
+import { computed } from 'vue';
+
+import type { ContentBlock } from '~/interfaces';
 
 interface Props {
   content: ContentBlock[];
@@ -20,25 +21,25 @@ const groupedContent = computed<GroupedBlock[]>(() => {
   const result: GroupedBlock[] = [];
 
   for (const block of content) {
-    if (block.type === "bulleted_list_item") {
+    if (block.type === 'bulleted_list_item') {
       const lastBlock = result[result.length - 1];
-      if (lastBlock && lastBlock.type === "bulleted_list") {
+      if (lastBlock && lastBlock.type === 'bulleted_list') {
         lastBlock.items?.push(block.body);
       } else {
         result.push({
           id: block.id,
-          type: "bulleted_list",
+          type: 'bulleted_list',
           items: [block.body],
         });
       }
-    } else if (block.type === "numbered_list_item") {
+    } else if (block.type === 'numbered_list_item') {
       const lastBlock = result[result.length - 1];
-      if (lastBlock && lastBlock.type === "numbered_list") {
+      if (lastBlock && lastBlock.type === 'numbered_list') {
         lastBlock.items?.push(block.body);
       } else {
         result.push({
           id: block.id,
-          type: "numbered_list",
+          type: 'numbered_list',
           items: [block.body],
         });
       }
@@ -60,7 +61,7 @@ const groupedContent = computed<GroupedBlock[]>(() => {
 <template>
   <article class="flex flex-col justify-start flex-1 space-y-4 text-justify">
     <template
-      v-for="({ type, body, caption, emoji, items, id }) in groupedContent"
+      v-for="{ type, body, caption, emoji, items, id } in groupedContent"
       :key="id"
     >
       <Heading1 v-if="type === 'heading_1'">{{ body }}</Heading1>

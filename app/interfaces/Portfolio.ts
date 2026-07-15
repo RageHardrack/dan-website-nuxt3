@@ -1,4 +1,4 @@
-import type { ContentBlock } from "./ContentBlock";
+import type { ContentBlock } from './ContentBlock';
 import type {
   MultiSelectProperty,
   NotionResponse,
@@ -7,7 +7,7 @@ import type {
   SelectProperty,
   TitleProperty,
   UrlProperty,
-} from "./Share";
+} from './Share';
 
 export interface ProjectResponse extends NotionResponse {
   properties: RawProjectProperties;

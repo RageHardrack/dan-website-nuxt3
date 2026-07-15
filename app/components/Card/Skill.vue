@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ISkillProperties } from "~/interfaces";
+import type { ISkillProperties } from '~/interfaces';
 
 interface Props {
   skillProps: ISkillProperties;
@@ -18,12 +18,8 @@ const { skillProps } = defineProps<Props>();
     ref="target"
     :title="skillProps.Name"
   >
-    <img
-      :src="skillProps.Image_URL"
-      :alt="skillProps.Name"
-      class=""
-    />
-    
+    <img :src="skillProps.Image_URL" :alt="skillProps.Name" class="" />
+
     <transition-slide appear>
       <Pill v-if="!isOutside" class="absolute top-1 left-1">
         {{ skillProps.Name }}

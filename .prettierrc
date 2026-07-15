@@ -1,0 +1,17 @@
+{
+  "singleQuote": true,
+  "trailingComma": "all",
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
+  "importOrder": [
+    "^vue$",
+    "^nuxt$",
+    "^#app$",
+    "^#imports$",
+    "<THIRD_PARTY_MODULES>",
+    "^[~@]/(.*)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortByLength": "asc",
+  "importOrderParserPlugins": ["typescript", "jsx"]
+}

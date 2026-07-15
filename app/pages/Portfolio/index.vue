@@ -1,23 +1,23 @@
 <script setup lang="ts">
-import { filterProjectOptions } from "~/interfaces";
+import { filterProjectOptions } from '~/interfaces';
 
 const { data, status } = await useLazyAsyncData(
-  "portfolio-page",
-  fetchPortfolioPage
+  'portfolio-page',
+  fetchPortfolioPage,
 );
 
-const filterSelected = ref("");
+const filterSelected = ref('');
 
 const filteredProjects = computed(() => {
   if (!filterSelected.value) return data.value!.projects;
 
   return data.value!.projects.filter((project) =>
-    project.properties.Tags.includes(filterSelected.value)
+    project.properties.Tags.includes(filterSelected.value),
   );
 });
 
 definePageMeta({
-  title: "Portfolio",
+  title: 'Portfolio',
 });
 </script>
 
