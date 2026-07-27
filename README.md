@@ -1,70 +1,55 @@
-# Daniel Colmenares' personal Portfolio/Blog
+# Lascar Blog & Personal Web Portal
 
-## Stack
+**Lascar Blog** es la plataforma web pública de contenido y portafolio personal, que consume y renderiza contenido dinámico utilizando Notion API como CMS headless.
 
-- [Nuxt v3](https://nuxt.com/)
-- [TailwindCSS (Nuxt 3 Module)](https://nuxt.com/modules/tailwindcss)
-- [Notion Client v1 as CMS](https://www.npmjs.com/package/@notionhq/client)
-- [DayJS (Nuxt 3 Module)](https://nuxt.com/modules/dayjs)
-- [@morev/Vue-transitions (Nuxt 3 Module)](https://nuxt.com/modules/vue-transitions)
-- [Nuxt Icon (Nuxt 3 Module)](https://nuxt.com/modules/icon)
-- [Pinia](https://pinia.vuejs.org/)
+---
 
-## TODO List
+## 🛠️ Stack Tecnológico
 
-- [ ] Complete Home page.
-- [ ] Check for correct types in Page Content Blocks.
-- [ ] Auto fetch list of Tags for Skills and Projects.
-- [ ] Add Nuxt/Image Module.
-- [ ] Improve SSR experience.
-- [ ] Add additional functionality and info to Experience Cards.
-- [ ] Add i18n.
-- [ ] Improve SEO.
+- **Framework**: [Nuxt 4 / Nuxt v3](https://nuxt.com/) (SSR / Hybrid Rendering)
+- **CMS Headless**: [Notion API Client (`@notionhq/client`)](https://www.npmjs.com/package/@notionhq/client)
+- **Estilos**: [TailwindCSS](https://tailwindcss.com/)
+- **Iconos & Animaciones**: `@morev/vue-transitions`, `nuxt-icon`
+- **Estado**: [Pinia](https://pinia.vuejs.org/)
+- **Package Manager**: [Bun](https://bun.sh/)
+- **Runtime Producción**: Bun (`.output/server/index.mjs`)
 
-## Setup
+---
 
-### Environment Variables
+## 🚀 Inicio Rápido (Desarrollo Local)
 
-| Name                  | Description                                                                                                                  | Required |
-| --------------------- | ---------------------------------------------------------------------------------------------------------------------------- | -------- |
-| `NOTION_API_KEY`      | Api Key to connect Notion and use it as Content Manager                                                                      | YES      |
-| `APP_ENVIRONMENT`     | Set the environment as dev by default only to access to "dev" content and test it in local                                   | NO       |
-| `NOTION_HOME_ID`      | Notion's DB ID for the parent page "HOME"                                                                                    | YES      |
-| `NOTION_ABOUT_ID`     | Notion's DB ID for the parent page "ABOUT ME"                                                                                | YES      |
-| `NOTION_BLOG_ID`      | Notion's DB ID for the parent page "BLOG"                                                                                    | YES      |
-| `NOTION_PORTFOLIO_ID` | Notion's DB ID for the parent page "PORTFOLIO"                                                                               | YES      |
-| `NOTION_LINK_TREE_ID` | Notion's DB ID for the parent page "LINK TREE"                                                                               | YES      |
-| `DEVELOPMENT_STAGE`   | Notion's ID for enum "DEVELOPMENT". Using to determine which of my content in my personal Notion is set to development stage | NO       |
-| `PRODUCTION_STAGE`    | Notion's ID for enum "PRODUCTION". Using to determine which of my content in my personal Notion is set to production stage   | YES      |
-
-### Install dependencies
-
-Make sure to install the dependencies using `bun`
-
+### 1. Instalación de dependencias
 ```bash
 bun install
 ```
 
-### Development Server
+### 2. Configurar Variables de Entorno
+Copia el archivo `.env.example` a `.env` y asigna tus credenciales de Notion:
+```bash
+cp .env.example .env
+```
 
-Start the development server on [localhost](http://localhost:3000)
+Variables clave:
+- `NOTION_API_KEY`: Token de integración de Notion.
+- `NOTION_BLOG_ID`: ID de la base de datos de publicaciones.
+- `NOTION_HOME_ID`, `NOTION_ABOUT_ID`, `NOTION_PORTFOLIO_ID`: IDs de páginas/bases de datos en Notion.
 
+### 3. Ejecutar servidor de desarrollo
 ```bash
 bun run dev
 ```
 
-### Build to Production
-
-Build the application for production:
-
+### 4. Compilar para producción
 ```bash
 bun run build
 ```
 
-### Build Docker Image
+---
 
-_Please note this is a help for myself to easily build up the docker image. If you want to reply it, change `hardrack` and the name of the repo, to your fork and personal Docker Hub user._
+## 🐳 Ejecución con Docker
 
+Para construir y levantar el sitio mediante Docker:
 ```bash
-docker build -t hardrack/dragon-azul-nuxt3-website:tag .
+# Desde la raíz del workspace Lascar
+docker compose up -d blog
 ```
