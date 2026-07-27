@@ -1,10 +1,17 @@
-node_modules
-requests
-*.log
-.nuxt
-nuxt.d.ts
-.output
+# Environment variables
 .env
+.env.*
+!.env.example
 *.local
-.vercel
-dist
+
+# Dependencies & Build
+node_modules/
+.nuxt/
+nuxt.d.ts
+.output/
+dist/
+.vercel/
+
+# Logs
+*.log
+requests/
