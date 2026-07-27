@@ -2,8 +2,8 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "dev": "portless run nuxt dev",
-    "dev:http": "portless --no-tls run nuxt dev",
+    "dev": "PORTLESS_PORT=1355 PORTLESS_HTTPS=0 portless run nuxt dev",
+    "dev:http": "PORTLESS_PORT=1355 PORTLESS_HTTPS=0 portless run nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
