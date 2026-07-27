@@ -2,7 +2,8 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "portless run nuxt dev",
+    "dev:http": "portless --no-tls run nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
@@ -16,9 +17,19 @@
     "@vueuse/core": "11.1.0",
     "@vueuse/nuxt": "11.1.0",
     "dayjs-nuxt": "2.1.11",
+<<<<<<< HEAD
     "nuxt": "3.13.2",
     "vue": "3.5.12",
     "vue-router": "4.4.5"
+=======
+    "nuxt": "^4.0.0",
+    "portless": "^0.15.4",
+    "prettier": "^3.9.5",
+    "typescript": "^5.5.4",
+    "vue": "3.5.10",
+    "vue-router": "4.4.5",
+    "vue-tsc": "^2.1.6"
+>>>>>>> 04279f5 (feat(dev): integrate portless into dev scripts)
   },
   "dependencies": {
     "@morev/vue-transitions": "3.0.2",
