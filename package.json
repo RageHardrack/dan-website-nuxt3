@@ -2,7 +2,8 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "portless run nuxt dev",
+    "dev:http": "portless --no-tls run nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
@@ -19,6 +20,7 @@
     "@vueuse/nuxt": "11.1.0",
     "dayjs-nuxt": "2.1.11",
     "nuxt": "^4.0.0",
+    "portless": "^0.15.4",
     "prettier": "^3.9.5",
     "typescript": "^5.5.4",
     "vue": "3.5.10",
