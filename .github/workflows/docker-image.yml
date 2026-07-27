@@ -1,63 +1,62 @@
-name: Docker Image CI
+name: Deploy Blog to GHCR and VPS
 
 on:
   push:
     branches: ["main"]
-  pull_request:
-    branches: ["main"]
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ghcr.io/ragehardrack/lascar-blog
 
 jobs:
-  build:
+  build-and-push:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
         with:
-          fetch-depth: 0
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
+        uses: docker/setup-qemu-action@v3
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-
-      - name: Login to Docker Hub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKER_USER }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+        uses: docker/setup-buildx-action@v3
 
       - name: Build and push
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v5
         with:
           context: .
-          platforms: linux/amd64,linux/arm64
           file: ./Dockerfile
           push: true
           tags: |
-            ${{ secrets.DOCKER_USER }}/dragon-azul-nuxt3-website:1.0.8
-            ${{ secrets.DOCKER_USER }}/dragon-azul-nuxt3-website:latest
-          secrets: |
-            "NOTION_API_KEY=${{ secrets.NOTION_API_KEY }}"
-            "APP_ENVIRONMENT=prod"
-            "NOTION_HOME_ID=${{ secrets.NOTION_HOME_ID }}"
-            "NOTION_ABOUT_ID=${{ secrets.NOTION_ABOUT_ID }}"
-            "NOTION_BLOG_ID=${{ secrets.NOTION_BLOG_ID }}"
-            "NOTION_PORTFOLIO_ID=${{ secrets.NOTION_PORTFOLIO_ID }}"
-            "NOTION_LINK_TREE_ID=${{ secrets.NOTION_LINK_TREE_ID }}"
-            "DEVELOPMENT_STAGE=${{ secrets.DEVELOPMENT_STAGE }}"
-            "PRODUCTION_STAGE=${{ secrets.PRODUCTION_STAGE }}"
+            ${{ env.IMAGE_NAME }}:latest
+            ${{ env.IMAGE_NAME }}:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
-      - name: Download changes and run containers
-        uses: appleboy/ssh-action@v0.1.9
+  deploy:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Execute Deploy Command on VPS
+        uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.KEY }}
-          port: ${{ secrets.PORT }}
-          passphrase: ${{ secrets.PASSPHRASE }}
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT || 22 }}
           script: |
-            cd ~/app/dan-website-nuxt3/
-            git pull
-            docker-compose up -d --build
+            echo "${{ secrets.GITHUB_TOKEN }}" | docker login ${{ env.REGISTRY }} -u ${{ github.actor }} --password-stdin
+            cd ~/app/lascar/
+            docker compose pull blog
+            docker compose up -d blog
