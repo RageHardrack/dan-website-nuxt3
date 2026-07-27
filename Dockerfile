@@ -1,33 +1,22 @@
-FROM --platform=linux/amd64 oven/bun:1-alpine as dev-deps
+FROM oven/bun:1-alpine as dev-deps
 WORKDIR /app
 COPY package.json bun.lock ./
 RUN bun install --frozen-lockfile
 
-FROM --platform=linux/amd64 oven/bun:1-alpine as builder
+FROM oven/bun:1-alpine as builder
 WORKDIR /app
 COPY --from=dev-deps /app/node_modules ./node_modules
 COPY . .
 RUN bun run build
 
-FROM --platform=linux/amd64 oven/bun:1-alpine as prod-deps
+FROM oven/bun:1-alpine as prod-deps
 WORKDIR /app
 COPY package.json bun.lock ./
 RUN bun install --frozen-lockfile --production --ignore-scripts
 
-FROM --platform=linux/amd64 oven/bun:1-alpine as prod
+FROM oven/bun:1-alpine as prod
 EXPOSE 3000
 WORKDIR /app
-
-ENV NOTION_API_KEY=${NOTION_API_KEY}
-ENV APP_ENVIRONMENT=${APP_ENVIRONMENT}
-ENV NOTION_HOME_ID=${NOTION_HOME_ID}
-ENV NOTION_ABOUT_ID=${NOTION_ABOUT_ID}
-ENV NOTION_BLOG_ID=${NOTION_BLOG_ID}
-ENV NOTION_PORTFOLIO_ID=${NOTION_PORTFOLIO_ID}
-ENV NOTION_LINK_TREE_ID=${NOTION_LINK_TREE_ID}
-ENV DEVELOPMENT_STAGE=${DEVELOPMENT_STAGE}
-ENV PRODUCTION_STAGE=${PRODUCTION_STAGE}
-
 COPY --from=prod-deps /app/node_modules ./node_modules
 COPY --from=builder /app/.output ./.output
 CMD ["bun", "run", ".output/server/index.mjs"]
