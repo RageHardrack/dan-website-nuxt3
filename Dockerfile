@@ -1,22 +1,16 @@
-FROM oven/bun:1.4-alpine AS dev-deps
+FROM oven/bun:1.4-alpine AS builder
 WORKDIR /app
 COPY package.json bun.lock ./
 RUN bun install --frozen-lockfile
-
-FROM oven/bun:1.4-alpine AS builder
-WORKDIR /app
-COPY --from=dev-deps /app/node_modules ./node_modules
 COPY . .
 RUN bun run build
 
-FROM oven/bun:1.4-alpine AS prod-deps
+FROM oven/bun:1.4-alpine AS runner
 WORKDIR /app
-COPY package.json bun.lock ./
-RUN bun install --frozen-lockfile --production --ignore-scripts
-
-FROM oven/bun:1.4-alpine AS prod
-EXPOSE 3000
-WORKDIR /app
-COPY --from=prod-deps /app/node_modules ./node_modules
+ENV NODE_ENV=production
+ENV PORT=3000
+ENV HOST=0.0.0.0
 COPY --from=builder /app/.output ./.output
+
+EXPOSE 3000
 CMD ["bun", "run", ".output/server/index.mjs"]
