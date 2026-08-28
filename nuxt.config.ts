@@ -39,6 +39,13 @@ export default defineNuxtConfig({
   //   layoutTransition: { name: "layout", mode: "out-in" },
   //   pageTransition: { name: "page", mode: "out-in" },
   // },
+  nitro: {
+    preset: 'node-server',
+    externals: {
+      inline: ['vue', '@vue/server-renderer', '@vue/runtime-core', '@vue/runtime-dom'],
+    },
+  },
+
   runtimeConfig: {
     public: {
       apiBaseUrl: process.env.API_BASE_URL || 'https://guilliman.local/api',
