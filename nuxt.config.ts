@@ -42,7 +42,7 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      apiBaseUrl: process.env.API_BASE_URL || 'https://guilliman.local/api',
+      apiBaseUrl: process.env.API_BASE_URL || 'https://api.dragon-azul.dev/api/v1',
     },
   },
 
