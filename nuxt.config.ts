@@ -12,7 +12,6 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
     '@vueuse/nuxt',
-    '@morev/vue-transitions/nuxt',
     '@nuxt/icon',
     [
       '@pinia/nuxt',
@@ -40,9 +39,6 @@ export default defineNuxtConfig({
   //   pageTransition: { name: "page", mode: "out-in" },
   // },
 
-  nitro: {
-    noExternal: ['vue', 'vue-router'],
-  },
 
   runtimeConfig: {
     public: {

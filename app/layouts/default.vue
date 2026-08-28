@@ -13,9 +13,16 @@ useHead({
   <section class="flex flex-col justify-between min-h-screen">
     <Navbar />
 
-    <transition-slide :offset="['-100%', 0]">
+    <Transition
+      enter-active-class="transition duration-300 ease-out"
+      enter-from-class="-translate-x-full"
+      enter-to-class="translate-x-0"
+      leave-active-class="transition duration-200 ease-in"
+      leave-from-class="translate-x-0"
+      leave-to-class="-translate-x-full"
+    >
       <SideNav v-if="showSideBar" />
-    </transition-slide>
+    </Transition>
 
     <main class="container flex-1 py-4 md:py-8">
       <slot />

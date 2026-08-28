@@ -25,7 +25,14 @@ const { Name, Slug, Tags, Preview } = projectProps;
       loading="lazy"
     />
 
-    <transition-slide :offset="[0, '100%']">
+    <Transition
+      enter-active-class="transition duration-300 ease-out"
+      enter-from-class="translate-y-full"
+      enter-to-class="translate-y-0"
+      leave-active-class="transition duration-200 ease-in"
+      leave-from-class="translate-y-0"
+      leave-to-class="translate-y-full"
+    >
       <footer
         v-if="!isOutside"
         class="absolute bottom-0 left-0 right-0 z-10 flex-col justify-start hidden gap-2 px-4 py-2 lg:flex h-1/3 bg-primary"
@@ -37,7 +44,7 @@ const { Name, Slug, Tags, Preview } = projectProps;
           </Pill>
         </section>
       </footer>
-    </transition-slide>
+    </Transition>
 
     <footer
       class="absolute bottom-0 left-0 right-0 z-10 flex flex-col justify-start gap-1 px-4 py-2 lg:hidden h-2/5 bg-primary"

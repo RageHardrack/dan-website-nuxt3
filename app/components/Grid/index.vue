@@ -20,7 +20,7 @@ const sizeClass = computed(() => {
 </script>
 
 <template>
-  <transition-slide tag="section" group :class="sizeClass" :duration="500">
+  <TransitionGroup tag="section" :class="sizeClass">
     <slot />
-  </transition-slide>
+  </TransitionGroup>
 </template>
