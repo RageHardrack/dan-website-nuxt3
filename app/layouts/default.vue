@@ -1,7 +1,8 @@
 <script setup lang="ts">
 const route = useRoute();
 
-const { getShowSideBar } = useUIStore();
+const uiStore = useUIStore();
+const { showSideBar } = storeToRefs(uiStore);
 
 useHead({
   title: `Daniel Colmenares - ${route.meta.title}`,
@@ -13,7 +14,7 @@ useHead({
     <Navbar />
 
     <transition-slide :offset="['-100%', 0]">
-      <SideNav v-if="getShowSideBar" />
+      <SideNav v-if="showSideBar" />
     </transition-slide>
 
     <main class="container flex-1 py-4 md:py-8">

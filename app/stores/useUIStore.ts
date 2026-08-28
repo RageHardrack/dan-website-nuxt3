@@ -9,8 +9,8 @@ export const useUIStore = defineStore('UI', {
     showSideBar: false,
   }),
   getters: {
-    getIsModalOpen: (state: UIState) => computed(() => state.isModalOpen),
-    getShowSideBar: (state: UIState) => computed(() => state.showSideBar),
+    getIsModalOpen: (state: UIState) => state.isModalOpen,
+    getShowSideBar: (state: UIState) => state.showSideBar,
   },
   actions: {
     openModal() {
