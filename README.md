@@ -1,18 +1,19 @@
-# Lascar Blog & Personal Web Portal
+# Lascar Blog & Portal Web
 
-**Lascar Blog** es la plataforma web pública de contenido y portafolio personal, que consume y renderiza contenido dinámico utilizando Notion API como CMS headless.
+Portal web público y plataforma de portafolio/blog personal del ecosistema **Lascar**, desarrollado en **Nuxt 4**. Actúa como capa de presentación frontend desacoplada que consume los endpoints REST expuestos por el backend **Guilliman**.
 
 ---
 
 ## 🛠️ Stack Tecnológico
 
-- **Framework**: [Nuxt 4 / Nuxt v3](https://nuxt.com/) (SSR / Hybrid Rendering)
-- **CMS Headless**: [Notion API Client (`@notionhq/client`)](https://www.npmjs.com/package/@notionhq/client)
-- **Estilos**: [TailwindCSS](https://tailwindcss.com/)
-- **Iconos & Animaciones**: `@morev/vue-transitions`, `nuxt-icon`
-- **Estado**: [Pinia](https://pinia.vuejs.org/)
-- **Package Manager**: [Bun](https://bun.sh/)
-- **Runtime Producción**: Bun (`.output/server/index.mjs`)
+| Capa | Tecnología | Propósito |
+|---|---|---|
+| **Framework** | [Nuxt 4](https://nuxt.com/) (Vue 3 SSR) | Renderizado del lado del servidor y generación híbrida |
+| **Estilos** | [Tailwind CSS](https://tailwindcss.com/) | Diseño visual modular y utilitario |
+| **Estado** | [Pinia](https://pinia.vuejs.org/) | Gestión de estado reactivo y tipado |
+| **Cliente HTTP** | `$fetch` (Ofetch) | Consumo de la API REST de Guilliman (`/api/v1`) |
+| **Gestor de Paquetes** | [Bun](https://bun.sh/) | Instalación de dependencias y scripts de ejecución |
+| **Proxy Local** | [Portless](https://github.com/antfu-collective/portless) | Dominio local en puerto no privilegiado (1355) |
 
 ---
 
@@ -23,18 +24,18 @@
 bun install
 ```
 
-### 2. Configurar Variables de Entorno
-Copia el archivo `.env.example` a `.env` y asigna tus credenciales de Notion:
+### 2. Configurar variables de entorno
+Crea el archivo `.env` a partir del ejemplo:
 ```bash
 cp .env.example .env
 ```
 
-Variables clave:
-- `NOTION_API_KEY`: Token de integración de Notion.
-- `NOTION_BLOG_ID`: ID de la base de datos de publicaciones.
-- `NOTION_HOME_ID`, `NOTION_ABOUT_ID`, `NOTION_PORTFOLIO_ID`: IDs de páginas/bases de datos en Notion.
+| Variable | Descripción | Valor por Defecto |
+|---|---|---|
+| `API_BASE_URL` | URL base del backend Guilliman | `http://localhost:3000/api/v1` |
 
 ### 3. Ejecutar servidor de desarrollo
+El comando de desarrollo utiliza **Portless** en modo HTTP sin privilegios (puerto 1355):
 ```bash
 bun run dev
 ```
@@ -48,8 +49,14 @@ bun run build
 
 ## 🐳 Ejecución con Docker
 
-Para construir y levantar el sitio mediante Docker:
+El servicio se despliega dentro de la red compartida `lascar-network` utilizando la imagen precompilada de GHCR:
+
 ```bash
 # Desde la raíz del workspace Lascar
 docker compose up -d blog
 ```
+
+Variables requeridas en el `.env` raíz para el contenedor:
+- `BLOG_DOMINIO`: Dominio virtual para `nginx-proxy` y `acme-companion` (ej. `dan-colmenares.com`).
+- `API_DOMINIO`: Dominio de la API para configurar `API_BASE_URL` en tiempo de ejecución.
+
