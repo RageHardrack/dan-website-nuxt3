@@ -1,5 +1,6 @@
 {
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "nuxt build",
     "dev": "PORTLESS_PORT=1355 PORTLESS_HTTPS=0 portless run nuxt dev",
@@ -7,22 +8,33 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "format": "prettier --write \"**/*.{ts,vue,js,json}\" --ignore-path .gitignore"
+    "format": "prettier --write \"**/*.{ts,vue,js,json}\" --ignore-path .gitignore",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui"
   },
   "devDependencies": {
     "@iconify-json/fa": "^1.2.2",
     "@iconify-json/mdi": "^1.2.3",
     "@nuxt/devtools": "1.5.1",
     "@nuxt/icon": "^1.15.0",
+    "@nuxt/test-utils": "^4.2.0",
     "@nuxtjs/tailwindcss": "^6.14.0",
+    "@playwright/test": "^1.62.1",
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
+    "@vitest/coverage-v8": "^4.1.11",
+    "@vue/test-utils": "^2.5.0",
     "@vueuse/core": "11.1.0",
     "@vueuse/nuxt": "11.1.0",
     "dayjs-nuxt": "2.1.11",
+    "happy-dom": "^20.12.2",
     "nuxt": "^4.5.2",
     "portless": "^0.15.6",
     "prettier": "^3.9.6",
     "typescript": "^5.9.3",
+    "vitest": "^4.1.11",
     "vue-tsc": "^2.2.12"
   },
   "dependencies": {
