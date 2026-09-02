@@ -3,9 +3,9 @@ import { watch } from 'vue';
 
 const route = useRoute();
 const { slug } = route.params;
+const dayjs = useDayjs();
 
-const config = useRuntimeConfig();
-const baseUrl = config.public.apiBaseUrl;
+const baseUrl = useApiBase();
 
 const { data, pending } = await useLazyFetch<any>(`${baseUrl}/blog/${slug}`);
 
@@ -60,14 +60,14 @@ watch(
       <Heading1>{{ data.Post }}</Heading1>
       <p class="text-sm text-gray-500">
         Publicado el
-        {{ $dayjs(data.Fecha_Publicacion).format('DD MMMM YYYY') }}
+        {{ dayjs(data.Fecha_Publicacion).format('DD MMMM YYYY') }}
       </p>
     </header>
 
     <Divider />
 
     <main class="w-full">
-      <Markdown :content="data.content" />
+      <Markdown :content="data.content || []" />
     </main>
   </section>
 </template>

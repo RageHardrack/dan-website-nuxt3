@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import type { ILink } from '~/interfaces';
 
-type LinksResponse = {
-  linksPages: ILink[];
-};
-
-const { data, pending } = await useLazyFetch<LinksResponse>('/api/links');
+const { data, status } = await useLazyAsyncData(
+  'social-share-page',
+  fetchLinksPage,
+);
 
 definePageMeta({
   title: 'Social Links',
@@ -14,7 +13,7 @@ definePageMeta({
 </script>
 
 <template>
-  <LoadingPage loadMessage="Loading" v-if="pending" />
+  <LoadingPage loadMessage="Loading" v-if="status === 'pending'" />
 
   <section
     class="container flex flex-col items-center justify-center min-h-screen space-y-4 md:space-y-8"
@@ -43,11 +42,11 @@ definePageMeta({
 
     <ul class="flex flex-col items-center justify-center w-full space-y-4">
       <ButtonLinkExternal
-        v-for="{ Link, Name, Orden } in data!.linksPages"
-        :key="Orden"
-        :enlace="Link"
+        v-for="link in (data || [])"
+        :key="link.Orden || link.id"
+        :enlace="link.Link"
       >
-        {{ Name }}
+        {{ link.Name }}
       </ButtonLinkExternal>
     </ul>
 

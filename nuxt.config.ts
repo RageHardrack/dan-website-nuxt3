@@ -41,8 +41,12 @@ export default defineNuxtConfig({
 
 
   runtimeConfig: {
+    apiBaseUrl: process.env.NUXT_API_BASE_URL || 'http://localhost:3000/api/v1',
     public: {
-      apiBaseUrl: process.env.API_BASE_URL || 'https://api.dragon-azul.dev/api/v1',
+      apiBaseUrl:
+        process.env.NUXT_PUBLIC_API_BASE_URL ||
+        process.env.API_BASE_URL ||
+        'https://api.dragon-azul.dev/api/v1',
     },
   },
 

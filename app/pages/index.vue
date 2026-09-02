@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { UTILS_LINKS } from '~/constantes';
 
+const dayjs = useDayjs();
+
 definePageMeta({
   title: 'Daniel Colmenares',
 });
@@ -13,7 +15,7 @@ definePageMeta({
         <Heading1>Daniel Colmenares</Heading1>
         <Heading2>This page is under Construction...</Heading2>
 
-        <p>Last Update: {{ $dayjs('09-29-2024').format('MM/DD/YY') }}</p>
+        <p>Last Update: {{ dayjs('09-29-2024').format('MM/DD/YY') }}</p>
 
         <a :href="UTILS_LINKS[0]?.url" target="_blank" rel="nofollow">
           <Icon name="gitHub" size="48px" class="text-primary" />

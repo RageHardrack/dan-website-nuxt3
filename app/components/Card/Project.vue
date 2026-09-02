@@ -10,13 +10,17 @@ const { isOutside } = useMouseInElement(target);
 
 const { projectProps } = defineProps<Props>();
 const { Name, Slug, Tags, Preview } = projectProps;
+
+const handleNavigate = () => {
+  navigateTo(`/portfolio/projects/${Slug}`);
+};
 </script>
 
 <template>
   <article
     class="relative flex flex-col justify-between space-y-2 overflow-hidden duration-300 transform rounded-lg shadow-lg cursor-pointer h-80 hover:scale-105"
     ref="target"
-    @click="navigateTo(`/portfolio/projects/${Slug}`)"
+    @click="handleNavigate"
   >
     <img
       :src="Preview"

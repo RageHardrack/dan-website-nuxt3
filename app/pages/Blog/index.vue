@@ -13,17 +13,17 @@ definePageMeta({
     <Heading1 customClass="text-primary"> Última publicación </Heading1>
 
     <BlogMainCard
-      :post="data!.posts[0]!"
-      v-if="data?.posts && data.posts.length > 0"
+      v-if="data?.posts && data.posts.length > 0 && data.posts[0]"
+      :post="data.posts[0]"
     />
 
     <Heading2 customClass="text-black-coffee">
       Publicaciones anteriores
     </Heading2>
 
-    <Grid size="lg">
+    <Grid size="lg" v-if="data?.posts && data.posts.length > 1">
       <CardBlog
-        v-for="post in data!.posts.slice(1)"
+        v-for="post in data.posts.slice(1)"
         :post="post"
         :key="post.id"
       />

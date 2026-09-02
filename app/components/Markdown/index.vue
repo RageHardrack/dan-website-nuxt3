@@ -4,9 +4,11 @@ import { computed } from 'vue';
 import type { ContentBlock } from '~/interfaces';
 
 interface Props {
-  content: ContentBlock[];
+  content?: ContentBlock[];
 }
-const { content } = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {
+  content: () => [],
+});
 
 interface GroupedBlock {
   id: string;
@@ -19,8 +21,10 @@ interface GroupedBlock {
 
 const groupedContent = computed<GroupedBlock[]>(() => {
   const result: GroupedBlock[] = [];
+  if (!Array.isArray(props.content)) return result;
 
-  for (const block of content) {
+  for (const block of props.content) {
+    if (!block) continue;
     if (block.type === 'bulleted_list_item') {
       const lastBlock = result[result.length - 1];
       if (lastBlock && lastBlock.type === 'bulleted_list') {

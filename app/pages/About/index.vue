@@ -9,10 +9,11 @@ const { data, status } = await useLazyAsyncData(
 const filterSelected = ref('');
 
 const filteredSkills = computed(() => {
-  if (!filterSelected.value) return data.value!.skills;
+  const skills = data.value?.skills || [];
+  if (!filterSelected.value) return skills;
 
-  return data.value!.skills.filter((skill) =>
-    skill.properties.Tags.includes(filterSelected.value),
+  return skills.filter((skill) =>
+    skill.properties?.Tags?.includes(filterSelected.value),
   );
 });
 
@@ -36,7 +37,7 @@ definePageMeta({
         />
       </picture>
 
-      <Markdown :content="data!.about.content" />
+      <Markdown :content="data?.about || []" />
     </header>
 
     <ButtonDownload url="/daniel-colmenares-cv.pdf"
@@ -64,7 +65,7 @@ definePageMeta({
       <Heading2>Profesional Experience</Heading2>
 
       <CardExperience
-        v-for="xp in data!.experiences"
+        v-for="xp in (data?.experiences || [])"
         :key="xp.id"
         :xpProperties="xp.properties"
       />

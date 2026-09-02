@@ -6,6 +6,7 @@ interface Props {
 }
 
 const { post } = defineProps<Props>();
+const dayjs = useDayjs();
 
 const { Image_URL, Tags, Fecha_Publicacion, Slug, Post, Brief } = post;
 </script>
@@ -20,7 +21,7 @@ const { Image_URL, Tags, Fecha_Publicacion, Slug, Post, Brief } = post;
       <template #content>
         <Heading2 customClass="text-gold">{{ Post }}</Heading2>
         <p class="text-gray-400">
-          {{ $dayjs(Fecha_Publicacion).format('DD MMMM YYYY') }}
+          {{ dayjs(Fecha_Publicacion).format('DD MMMM YYYY') }}
         </p>
         <p class="text-bone">{{ Brief }}</p>
       </template>

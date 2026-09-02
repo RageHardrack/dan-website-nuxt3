@@ -6,8 +6,7 @@ import type { ProjectPageApiResponse } from '~/interfaces';
 const route = useRoute();
 const { slug } = route.params;
 
-const config = useRuntimeConfig();
-const baseUrl = config.public.apiBaseUrl;
+const baseUrl = useApiBase();
 
 const { data, pending } = await useLazyFetch<ProjectPageApiResponse>(
   `${baseUrl}/projects/${slug}`,
@@ -78,7 +77,7 @@ watch(
     <Divider />
 
     <main class="w-full">
-      <Markdown :content="data.content" />
+      <Markdown :content="data.content || []" />
     </main>
   </section>
 </template>

@@ -9,10 +9,11 @@ const { data, status } = await useLazyAsyncData(
 const filterSelected = ref('');
 
 const filteredProjects = computed(() => {
-  if (!filterSelected.value) return data.value!.projects;
+  const projects = data.value?.projects || [];
+  if (!filterSelected.value) return projects;
 
-  return data.value!.projects.filter((project) =>
-    project.properties.Tags.includes(filterSelected.value),
+  return projects.filter((project) =>
+    project.properties?.Tags?.includes(filterSelected.value),
   );
 });
 
@@ -27,7 +28,7 @@ definePageMeta({
   <section v-else class="flex flex-col space-y-5">
     <header class="flex flex-col-reverse justify-between lg:flex-row">
       <div class="w-full lg:w-3/4">
-        <Markdown :content="data!.content" />
+        <Markdown :content="data?.content || []" />
       </div>
       <picture
         class="flex items-center justify-center w-full pb-4 overflow-hidden lg:w-1/4 lg:p-4"
