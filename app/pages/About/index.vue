@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { filterSkillsOptions } from '~/interfaces';
 
-const { data, status } = await useLazyAsyncData(
+const { data, status, refresh, error } = await useLazyAsyncData(
   'about-me-page',
   fetchAboutPage,
 );
@@ -24,6 +24,11 @@ definePageMeta({
 
 <template>
   <LoadingPage loadMessage="Loading About page" v-if="status === 'pending'" />
+
+  <ErrorMessage
+    v-else-if="status === 'error' || Boolean(error) || data?.hasError"
+    @retry="refresh"
+  />
 
   <section v-else class="flex flex-col items-center justify-center gap-y-8">
     <header
@@ -65,7 +70,7 @@ definePageMeta({
       <Heading2>Profesional Experience</Heading2>
 
       <CardExperience
-        v-for="xp in (data?.experiences || [])"
+        v-for="xp in data?.experiences || []"
         :key="xp.id"
         :xpProperties="xp.properties"
       />

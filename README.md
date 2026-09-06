@@ -1,49 +1,58 @@
 # Lascar Blog & Portal Web
 
-Portal web público y plataforma de portafolio/blog personal del ecosistema **Lascar**, desarrollado en **Nuxt 4**. Actúa como capa de presentación frontend desacoplada que consume los endpoints REST expuestos por el backend **Guilliman**.
+Portal web público y plataforma de portafolio/blog personal del ecosistema **Lascar**, desarrollado en **Nuxt 4** (Vue 3 SSR). Actúa como capa de presentación frontend desacoplada que consume los endpoints REST expuestos por el backend **Guilliman** con tolerancia a fallos y resiliencia integrada.
+
+---
+
+## ⚡ Quick Path (Desarrollo Local)
+
+Para iniciar el entorno local rápidamente:
+
+1. **Instalar dependencias**:
+
+   ```bash
+   bun install
+   ```
+
+2. **Configurar entorno**:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+3. **Iniciar servidor de desarrollo (Portless puerto 1355)**:
+
+   ```bash
+   bun run dev
+   # o alternativamente:
+   bun run dev:http
+   ```
+
+4. **Verificar en el navegador**:
+   Abrir `http://localhost:1355` o el dominio asignado por Portless.
 
 ---
 
 ## 🛠️ Stack Tecnológico
 
-| Capa | Tecnología | Propósito |
-|---|---|---|
-| **Framework** | [Nuxt 4](https://nuxt.com/) (Vue 3 SSR) | Renderizado del lado del servidor y generación híbrida |
-| **Estilos** | [Tailwind CSS](https://tailwindcss.com/) | Diseño visual modular y utilitario |
-| **Estado** | [Pinia](https://pinia.vuejs.org/) | Gestión de estado reactivo y tipado |
-| **Cliente HTTP** | `$fetch` (Ofetch) | Consumo de la API REST de Guilliman (`/api/v1`) |
-| **Gestor de Paquetes** | [Bun](https://bun.sh/) | Instalación de dependencias y scripts de ejecución |
-| **Proxy Local** | [Portless](https://github.com/antfu-collective/portless) | Dominio local en puerto no privilegiado (1355) |
+| Capa                | Tecnología                                               | Versión / Detalle              | Propósito                                                                 |
+| ------------------- | -------------------------------------------------------- | ------------------------------ | ------------------------------------------------------------------------- |
+| **Framework**       | [Nuxt 4](https://nuxt.com/)                              | `^4.5.2` (Vue 3.5 SSR)         | Renderizado híbrido (SSR / Client) y enrutamiento por convenciones        |
+| **Estilos**         | [Tailwind CSS](https://tailwindcss.com/)                 | `^6.14.0`                      | Sistema modular de utilidades visuales responsive                         |
+| **Estado**          | [Pinia](https://pinia.vuejs.org/)                        | `^3.0.4` (`@pinia/nuxt`)       | Gestión reactiva de estado global de interfaz                             |
+| **Cliente HTTP**    | `$fetch` (Ofetch)                                        | Nativo de Nuxt                 | Consumo resiliente de la API REST de Guilliman                            |
+| **Package Manager** | [Bun](https://bun.sh/)                                   | `v1.4+`                        | Instalación ultra-rápida y ejecución de scripts                           |
+| **Proxy Local**     | [Portless](https://github.com/antfu-collective/portless) | Puerto `1355` (HTTP)           | Binding de desarrollo sin requerir permisos root ni puertos privilegiados |
+| **Testing**         | [Vitest](https://vitest.dev/)                            | `^4.1.11` + `@nuxt/test-utils` | Pruebas unitarias de componentes, páginas y resiliencia de fetch          |
 
 ---
 
-## 🚀 Inicio Rápido (Desarrollo Local)
+## 🛡️ Resiliencia y Manejo de Errores
 
-### 1. Instalación de dependencias
-```bash
-bun install
-```
+El portal implementa una arquitectura defensiva de dos capas contra caídas o errores 500 del backend Guilliman:
 
-### 2. Configurar variables de entorno
-Crea el archivo `.env` a partir del ejemplo:
-```bash
-cp .env.example .env
-```
-
-| Variable | Descripción | Valor por Defecto |
-|---|---|---|
-| `API_BASE_URL` | URL base del backend Guilliman | `http://localhost:3000/api/v1` |
-
-### 3. Ejecutar servidor de desarrollo
-El comando de desarrollo utiliza **Portless** en modo HTTP sin privilegios (puerto 1355):
-```bash
-bun run dev
-```
-
-### 4. Compilar para producción
-```bash
-bun run build
-```
+- **Defensive Fetch Handlers (`app/utils/fetch-handlers.ts`)**: Todas las peticiones HTTP (`fetchAboutPage`, `fetchBlogPage`, `fetchPortfolioPage`, `fetchLinksPage`) capturan excepciones de red y respuestas 5xx, devolviendo estructuras tipadas con `{ hasError: true, ...defaults }`.
+- **Inline Error State (`app/components/ErrorMessage.vue`)**: Las vistas (`/about`, `/blog`, `/portfolio`) muestran una tarjeta de alerta no fatal con botón de reintento (`@retry="refresh"`), manteniendo la barra de navegación (`Navbar`) y el pie de página (`Footer`) completamente interactivos.
 
 ---
 
@@ -56,7 +65,32 @@ El servicio se despliega dentro de la red compartida `lascar-network` utilizando
 docker compose up -d blog
 ```
 
-Variables requeridas en el `.env` raíz para el contenedor:
-- `BLOG_DOMINIO`: Dominio virtual para `nginx-proxy` y `acme-companion` (ej. `dan-colmenares.com`).
-- `API_DOMINIO`: Dominio de la API para configurar `API_BASE_URL` en tiempo de ejecución.
+### Variables de Entorno de Producción
 
+En el archivo `.env` de la raíz del monorepo Lascar:
+
+| Variable       | Propósito                                                               | Ejemplo               |
+| -------------- | ----------------------------------------------------------------------- | --------------------- |
+| `BLOG_DOMINIO` | Dominio virtual para `nginx-proxy` y `acme-companion`                   | `dan-colmenares.com`  |
+| `API_DOMINIO`  | Dominio de la API para configurar `API_BASE_URL` en tiempo de ejecución | `api.dragon-azul.dev` |
+
+---
+
+## 🧪 Pruebas y Verificación
+
+| Comando                  | Descripción                                                   |
+| ------------------------ | ------------------------------------------------------------- |
+| `bun run test`           | Ejecuta la suite completa de pruebas unitarias con Vitest     |
+| `bun run test:watch`     | Modo interactivo continuo para desarrollo TDD                 |
+| `bun run test:coverage`  | Genera reporte de cobertura de código (`@vitest/coverage-v8`) |
+| `bun x vue-tsc --noEmit` | Verificación estricta de tipos TypeScript y templates Vue     |
+| `bun run format`         | Aplica formateo consistente con Prettier                      |
+
+---
+
+## ✅ Checklist de Verificación
+
+- [ ] Las dependencias se instalan limpiamente con `bun install`.
+- [ ] La navegación a `/about`, `/blog` y `/portfolio` muestra `ErrorMessage` con opción de reintento en caídas del API.
+- [ ] La suite de pruebas de Vitest pasa al 100% (`bun run test`).
+- [ ] El chequeo de tipos no reporta errores (`bun x vue-tsc --noEmit`).

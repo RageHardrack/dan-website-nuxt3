@@ -1,5 +1,8 @@
 <script setup lang="ts">
-const { data, status } = await useLazyAsyncData('blog-page', fetchBlogPage);
+const { data, status, refresh, error } = await useLazyAsyncData(
+  'blog-page',
+  fetchBlogPage,
+);
 
 definePageMeta({
   title: 'Blog',
@@ -8,6 +11,11 @@ definePageMeta({
 
 <template>
   <LoadingPage loadMessage="Loading posts" v-if="status === 'pending'" />
+
+  <ErrorMessage
+    v-else-if="status === 'error' || Boolean(error) || data?.hasError"
+    @retry="refresh"
+  />
 
   <section v-else class="flex flex-col justify-center space-y-4 md:space-y-8">
     <Heading1 customClass="text-primary"> Última publicación </Heading1>

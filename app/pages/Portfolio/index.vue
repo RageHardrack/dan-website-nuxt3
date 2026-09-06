@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { filterProjectOptions } from '~/interfaces';
 
-const { data, status } = await useLazyAsyncData(
+const { data, status, refresh, error } = await useLazyAsyncData(
   'portfolio-page',
   fetchPortfolioPage,
 );
@@ -24,6 +24,11 @@ definePageMeta({
 
 <template>
   <LoadingPage loadMessage="Loading Portfolio..." v-if="status === 'pending'" />
+
+  <ErrorMessage
+    v-else-if="status === 'error' || Boolean(error) || data?.hasError"
+    @retry="refresh"
+  />
 
   <section v-else class="flex flex-col space-y-5">
     <header class="flex flex-col-reverse justify-between lg:flex-row">
