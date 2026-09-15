@@ -12,16 +12,22 @@ const { data, pending } = await useLazyFetch<ProjectPageApiResponse>(
   `${baseUrl}/projects/${slug}`,
 );
 
+const projectProps = computed(() => {
+  if (!data.value?.project) return null;
+  return ((data.value.project as any).properties || data.value.project) as any;
+});
+
 watch(
   data,
   (newData) => {
-    if (newData?.project) {
+    const props = (newData?.project as any)?.properties || newData?.project;
+    if (props?.Name) {
       useSeoMeta({
-        title: `${newData.project.properties.Name} - Daniel Colmenares`,
-        ogTitle: `${newData.project.properties.Name} - Daniel Colmenares`,
-        description: `Detalles y especificaciones del proyecto: ${newData.project.properties.Name}`,
-        ogDescription: `Detalles y especificaciones del proyecto: ${newData.project.properties.Name}`,
-        ogImage: newData.project.properties.Preview,
+        title: `${props.Name} - Daniel Colmenares`,
+        ogTitle: `${props.Name} - Daniel Colmenares`,
+        description: `Detalles y especificaciones del proyecto: ${props.Name}`,
+        ogDescription: `Detalles y especificaciones del proyecto: ${props.Name}`,
+        ogImage: props.Preview,
         twitterCard: 'summary_large_image',
       });
     }
@@ -33,7 +39,10 @@ watch(
 <template>
   <LoadingPage loadMessage="Loading Project" v-if="pending" />
 
-  <section v-else-if="data" class="flex flex-col justify-center space-y-8">
+  <section
+    v-else-if="data && projectProps"
+    class="flex flex-col justify-center space-y-8"
+  >
     <header class="flex flex-col w-full space-y-4">
       <NuxtLink
         to="/portfolio"
@@ -44,26 +53,26 @@ watch(
 
       <picture
         class="w-full md:h-[400px] overflow-hidden rounded-lg shadow-md"
-        v-if="data.project.properties.Preview"
+        v-if="projectProps.Preview"
       >
         <img
-          :src="data.project.properties.Preview"
-          :alt="`Preview of ${data.project.properties.Name}`"
+          :src="projectProps.Preview"
+          :alt="`Preview of ${projectProps.Name}`"
           class="object-cover object-center w-full h-full"
         />
       </picture>
 
-      <Heading1>{{ data.project.properties.Name }}</Heading1>
+      <Heading1>{{ projectProps.Name }}</Heading1>
 
       <section class="flex flex-wrap items-center justify-start gap-2">
-        <Pill v-for="(tag, idx) in data.project.properties.Tags" :key="idx">
+        <Pill v-for="(tag, idx) in projectProps.Tags" :key="idx">
           {{ tag }}
         </Pill>
       </section>
 
-      <div v-if="data.project.properties.Repository" class="pt-2">
+      <div v-if="projectProps.Repository" class="pt-2">
         <a
-          :href="data.project.properties.Repository"
+          :href="projectProps.Repository"
           target="_blank"
           rel="noopener noreferrer nofollow"
           class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold transition-all duration-300 rounded-lg bg-electric text-bone hover:opacity-90 shadow"

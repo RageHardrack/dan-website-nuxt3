@@ -12,8 +12,8 @@ const filteredSkills = computed(() => {
   const skills = data.value?.skills || [];
   if (!filterSelected.value) return skills;
 
-  return skills.filter((skill) =>
-    skill.properties?.Tags?.includes(filterSelected.value),
+  return skills.filter((skill: any) =>
+    (skill.properties?.Tags || skill.Tags)?.includes(filterSelected.value),
   );
 });
 
@@ -61,7 +61,7 @@ definePageMeta({
         <CardSkill
           v-for="skill in filteredSkills"
           :key="skill.id"
-          :skillProps="skill.properties"
+          :skillProps="(skill as any).properties || skill"
         />
       </GridSkills>
     </section>
@@ -72,7 +72,7 @@ definePageMeta({
       <CardExperience
         v-for="xp in data?.experiences || []"
         :key="xp.id"
-        :xpProperties="xp.properties"
+        :xpProperties="(xp as any).properties || xp"
       />
     </section>
   </section>

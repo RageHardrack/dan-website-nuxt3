@@ -12,8 +12,8 @@ const filteredProjects = computed(() => {
   const projects = data.value?.projects || [];
   if (!filterSelected.value) return projects;
 
-  return projects.filter((project) =>
-    project.properties?.Tags?.includes(filterSelected.value),
+  return projects.filter((project: any) =>
+    (project.properties?.Tags || project.Tags)?.includes(filterSelected.value),
   );
 });
 
@@ -58,7 +58,7 @@ definePageMeta({
         <CardProject
           v-for="project in filteredProjects"
           :key="project.id"
-          :projectProps="project.properties"
+          :projectProps="(project as any).properties || project"
         />
       </Grid>
     </section>
