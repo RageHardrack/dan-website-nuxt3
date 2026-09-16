@@ -7,11 +7,12 @@ interface Props {
 
 const { projectProps } = defineProps<Props>();
 const { Name, Slug, Tags, Preview } = projectProps;
+const localePath = useLocalePath();
 </script>
 
 <template>
   <NuxtLink
-    :to="`/portfolio/projects/${Slug}`"
+    :to="localePath(`/portfolio/projects/${Slug}`)"
     class="group relative flex flex-col justify-between space-y-2 overflow-hidden duration-300 transform rounded-lg shadow-lg cursor-pointer h-80 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
   >
     <img

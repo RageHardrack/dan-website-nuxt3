@@ -50,10 +50,12 @@ export const fetchAboutPage = async (): Promise<AboutPageData> => {
   }
 };
 
-export const fetchBlogPage = async (): Promise<BlogPageData> => {
+export const fetchBlogPage = async (lang?: string): Promise<BlogPageData> => {
   try {
     const baseUrl = useApiBase();
-    return await $fetch<{ posts: IPost[] }>(`${baseUrl}/blog`);
+    return await $fetch<{ posts: IPost[] }>(`${baseUrl}/blog`, {
+      params: lang ? { lang } : undefined,
+    });
   } catch (err) {
     console.warn('Failed to fetch blog page data:', err);
     return {
@@ -63,10 +65,14 @@ export const fetchBlogPage = async (): Promise<BlogPageData> => {
   }
 };
 
-export const fetchPortfolioPage = async (): Promise<PortfolioPageData> => {
+export const fetchPortfolioPage = async (
+  lang?: string,
+): Promise<PortfolioPageData> => {
   try {
     const baseUrl = useApiBase();
-    return await $fetch<PortfolioPageApiResponse>(`${baseUrl}/portfolio`);
+    return await $fetch<PortfolioPageApiResponse>(`${baseUrl}/portfolio`, {
+      params: lang ? { lang } : undefined,
+    });
   } catch (err) {
     console.warn('Failed to fetch portfolio page data:', err);
     return {

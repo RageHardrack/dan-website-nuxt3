@@ -35,15 +35,15 @@ Para iniciar el entorno local rápidamente:
 
 ## 🛠️ Stack Tecnológico
 
-| Capa                | Tecnología                                               | Versión / Detalle              | Propósito                                                                 |
-| ------------------- | -------------------------------------------------------- | ------------------------------ | ------------------------------------------------------------------------- |
 | **Framework**       | [Nuxt 4](https://nuxt.com/)                              | `^4.5.2` (Vue 3.5 SSR)         | Renderizado híbrido (SSR / Client) y enrutamiento por convenciones        |
+| **Internacionalización** | [@nuxtjs/i18n](https://i18n.nuxtjs.org/)          | `^10.6.0`                      | Soporte multi-idioma (es/en) con estrategia `prefix_except_default`       |
 | **Estilos**         | [Tailwind CSS](https://tailwindcss.com/)                 | `^6.14.0`                      | Sistema modular de utilidades visuales responsive                         |
 | **Estado**          | [Pinia](https://pinia.vuejs.org/)                        | `^3.0.4` (`@pinia/nuxt`)       | Gestión reactiva de estado global de interfaz                             |
-| **Cliente HTTP**    | `$fetch` (Ofetch)                                        | Nativo de Nuxt                 | Consumo resiliente de la API REST de Guilliman                            |
+| **Cliente HTTP**    | `$fetch` (Ofetch)                                        | Nativo de Nuxt                 | Consumo resiliente de la API REST de Guilliman con parámetro `?lang=`     |
 | **Package Manager** | [Bun](https://bun.sh/)                                   | `v1.4+`                        | Instalación ultra-rápida y ejecución de scripts                           |
 | **Proxy Local**     | [Portless](https://github.com/antfu-collective/portless) | Puerto `1355` (HTTP)           | Binding de desarrollo sin requerir permisos root ni puertos privilegiados |
-| **Testing**         | [Vitest](https://vitest.dev/)                            | `^4.1.11` + `@nuxt/test-utils` | Pruebas unitarias de componentes, páginas y resiliencia de fetch          |
+| **Testing Unitario**| [Vitest](https://vitest.dev/)                            | `^4.1.11` + `@nuxt/test-utils` | Pruebas unitarias de componentes, páginas y resiliencia de fetch          |
+| **Testing E2E**     | [Playwright](https://playwright.dev/)                    | `^1.62.1`                      | Pruebas End-to-End multi-viewport (Desktop & Mobile Pixel 7) e i18n       |
 
 ---
 
@@ -83,6 +83,8 @@ En el archivo `.env` de la raíz del monorepo Lascar:
 | `bun run test`           | Ejecuta la suite completa de pruebas unitarias con Vitest     |
 | `bun run test:watch`     | Modo interactivo continuo para desarrollo TDD                 |
 | `bun run test:coverage`  | Genera reporte de cobertura de código (`@vitest/coverage-v8`) |
+| `bun run test:e2e`       | Ejecuta la suite completa de pruebas E2E con Playwright (Desktop & Mobile) |
+| `bun run test:e2e:ui`    | Interfaz interactiva de Playwright para depuración visual     |
 | `bun x vue-tsc --noEmit` | Verificación estricta de tipos TypeScript y templates Vue     |
 | `bun run format`         | Aplica formateo consistente con Prettier                      |
 

@@ -27,8 +27,8 @@ describe('error.vue', () => {
     });
 
     expect(wrapper.find('h1').text()).toBe('404');
-    expect(wrapper.find('h2').text()).toBe('Page Not Found');
-    expect(wrapper.text()).toContain('Page Not Found');
+    expect(wrapper.find('h2').text()).toBe('Página no encontrada');
+    expect(wrapper.text()).toContain('Página no encontrada');
   });
 
   it('should render 500 error page details for server errors', async () => {
@@ -44,7 +44,7 @@ describe('error.vue', () => {
     });
 
     expect(wrapper.find('h1').text()).toBe('500');
-    expect(wrapper.find('h2').text()).toBe('Something went wrong');
+    expect(wrapper.find('h2').text()).toBe('Ocurrió un error inesperado');
     expect(wrapper.text()).toContain('Internal Server Error');
   });
 
@@ -56,9 +56,9 @@ describe('error.vue', () => {
     });
 
     expect(wrapper.find('h1').text()).toBe('500');
-    expect(wrapper.find('h2').text()).toBe('Something went wrong');
+    expect(wrapper.find('h2').text()).toBe('Ocurrió un error inesperado');
     expect(wrapper.text()).toContain(
-      'An unexpected error occurred while loading this page.',
+      'Ocurrió un error inesperado al cargar la página.',
     );
   });
 

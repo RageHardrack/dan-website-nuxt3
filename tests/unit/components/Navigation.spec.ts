@@ -12,8 +12,8 @@ describe('Navigation Components', () => {
       const wrapper = await mountSuspended(Navbar);
 
       expect(wrapper.text()).toContain('Blog');
-      expect(wrapper.text()).toContain('About');
-      expect(wrapper.text()).toContain('Portfolio');
+      expect(wrapper.text()).toContain('Acerca de mí');
+      expect(wrapper.text()).toContain('Portafolio');
       expect(wrapper.findComponent({ name: 'LogoReverse' }).exists()).toBe(
         true,
       );
@@ -40,8 +40,8 @@ describe('Navigation Components', () => {
       const wrapper = await mountSuspended(SideNav);
       expect(wrapper.text()).toContain('Dan Colmenares');
       expect(wrapper.text()).toContain('Blog');
-      expect(wrapper.text()).toContain('About');
-      expect(wrapper.text()).toContain('Portfolio');
+      expect(wrapper.text()).toContain('Acerca de mí');
+      expect(wrapper.text()).toContain('Portafolio');
 
       const closeButton = wrapper.find('button');
       expect(closeButton.exists()).toBe(true);
@@ -54,7 +54,7 @@ describe('Navigation Components', () => {
     it('should render author credit and social media links', async () => {
       const wrapper = await mountSuspended(Footer);
 
-      expect(wrapper.text()).toContain('Created by');
+      expect(wrapper.text()).toContain('Creado por');
       expect(wrapper.text()).toContain('Daniel Colmenares');
 
       const links = wrapper.findAll('a');

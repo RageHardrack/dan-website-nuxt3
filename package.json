@@ -38,6 +38,7 @@
     "vue-tsc": "^2.2.12"
   },
   "dependencies": {
+    "@nuxtjs/i18n": "^10.6.0",
     "@pinia/nuxt": "^0.9.0",
     "dayjs": "^1.11.13",
     "pinia": "^3.0.4",

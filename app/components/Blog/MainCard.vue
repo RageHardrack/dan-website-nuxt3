@@ -8,12 +8,13 @@ interface Props {
 }
 
 const { post } = defineProps<Props>();
+const localePath = useLocalePath();
 
 const { Image_URL, Tags, Fecha_Publicacion, Slug, Post, Brief } = post;
 </script>
 
 <template>
-  <NuxtLink :to="`/blog/${Slug}`">
+  <NuxtLink :to="localePath(`/blog/${Slug}`)">
     <CardWide :isLink="true">
       <template #aside>
         <img

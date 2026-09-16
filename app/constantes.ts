@@ -1,7 +1,7 @@
 export const ROUTES_LINKS = [
-  { title: 'About', path: '/about' },
-  { title: 'Blog', path: '/blog' },
-  { title: 'Portfolio', path: '/portfolio' },
+  { title: 'About', path: '/about', i18nKey: 'nav.about' },
+  { title: 'Blog', path: '/blog', i18nKey: 'nav.blog' },
+  { title: 'Portfolio', path: '/portfolio', i18nKey: 'nav.portfolio' },
   // { title: "Social Links", path: "/social-share" },
 ];
 

@@ -28,7 +28,7 @@ const onChangeFilterOptions = (optionSelected: string) =>
       class="px-3 py-1 transition duration-300 ease-in-out border rounded-lg border-gold hover:bg-gold"
       :class="{ 'bg-gold font-semibold': filterSelected === '' }"
     >
-      All
+      {{ $t('portfolio.all') }}
     </button>
   </header>
 </template>

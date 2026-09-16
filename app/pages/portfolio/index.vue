@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { filterProjectOptions } from '~/interfaces';
 
+const { locale } = useI18n();
+
 const { data, status, refresh, error } = await useLazyAsyncData(
   'portfolio-page',
-  fetchPortfolioPage,
+  () => fetchPortfolioPage(locale.value),
+  { watch: [locale] },
 );
 
 const filterSelected = ref('');
@@ -23,7 +26,7 @@ definePageMeta({
 </script>
 
 <template>
-  <LoadingPage loadMessage="Loading Portfolio..." v-if="status === 'pending'" />
+  <LoadingPage :loadMessage="$t('portfolio.loading')" v-if="status === 'pending'" />
 
   <ErrorMessage
     v-else-if="status === 'error' || Boolean(error) || data?.hasError"
@@ -47,7 +50,7 @@ definePageMeta({
     </header>
 
     <section class="flex flex-col space-y-4">
-      <Heading2>Projects</Heading2>
+      <Heading2>{{ $t('portfolio.projects') }}</Heading2>
 
       <FilterOptions
         :filterOptions="Object.values(filterProjectOptions)"

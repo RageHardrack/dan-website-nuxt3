@@ -150,8 +150,8 @@ describe('Card Components', () => {
 
       const link = wrapper.find('a');
       expect(link.exists()).toBe(true);
-      expect(link.attributes('href')).toBe(
-        '/portfolio/projects/portfolio-showcase',
+      expect(link.attributes('href')).toMatch(
+        /\/portfolio\/projects\/portfolio-showcase$/,
       );
     });
   });

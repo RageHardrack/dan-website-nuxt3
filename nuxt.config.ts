@@ -18,7 +18,29 @@ export default defineNuxtConfig({
       { autoImports: ['defineStore', ['defineStore', 'definePiniaStore']] },
     ],
     'dayjs-nuxt',
+    '@nuxtjs/i18n',
   ],
+
+  i18n: {
+    strategy: 'prefix_except_default',
+    defaultLocale: 'es',
+    locales: [
+      {
+        code: 'es',
+        language: 'es-ES',
+        file: 'es.json',
+        name: 'Español',
+      },
+      {
+        code: 'en',
+        language: 'en-US',
+        file: 'en.json',
+        name: 'English',
+      },
+    ],
+    detectBrowserLanguage: false,
+    lazy: true,
+  },
 
   pinia: {
     storesDirs: ['./app/stores/**'],

@@ -9,7 +9,7 @@ import { SOCIAL_MEDIA_LINKS, UTILS_LINKS } from '~/constantes';
     >
       <!-- <Logo /> -->
       <h2>
-        Created by ⚡
+        {{ $t('footer.createdBy') }} ⚡
         <a
           :href="UTILS_LINKS[0]?.url"
           target="_blank"

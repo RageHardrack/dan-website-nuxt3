@@ -106,7 +106,19 @@ describe('fetch-handlers utils', () => {
 
       const result = await fetchBlogPage();
       expect(result).toEqual(mockResponse);
-      expect(mockFetch).toHaveBeenCalledWith(expect.stringContaining('/blog'));
+      expect(mockFetch).toHaveBeenCalledWith(
+        expect.stringContaining('/blog'),
+        { params: undefined },
+      );
+    });
+
+    it('should include lang query param when provided', async () => {
+      mockFetch.mockResolvedValue({ posts: [] });
+      await fetchBlogPage('en');
+      expect(mockFetch).toHaveBeenCalledWith(
+        expect.stringContaining('/blog'),
+        { params: { lang: 'en' } },
+      );
     });
 
     it('should catch 500 or network errors and return fallback with hasError: true without throwing', async () => {
@@ -132,6 +144,16 @@ describe('fetch-handlers utils', () => {
       expect(result).toEqual(mockResponse);
       expect(mockFetch).toHaveBeenCalledWith(
         expect.stringContaining('/portfolio'),
+        { params: undefined },
+      );
+    });
+
+    it('should include lang query param when provided', async () => {
+      mockFetch.mockResolvedValue({ content: [], projects: [] });
+      await fetchPortfolioPage('en');
+      expect(mockFetch).toHaveBeenCalledWith(
+        expect.stringContaining('/portfolio'),
+        { params: { lang: 'en' } },
       );
     });
 

@@ -33,7 +33,7 @@ const onRetry = () => {
     </div>
 
     <p class="text-base font-medium text-gray-800">
-      {{ message }}
+      {{ message || $t('error.generic') }}
     </p>
 
     <button
@@ -41,7 +41,7 @@ const onRetry = () => {
       @click="onRetry"
       class="px-5 py-2 text-sm font-semibold text-white transition-colors duration-200 rounded-lg shadow bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary cursor-pointer"
     >
-      {{ retryText }}
+      {{ retryText || $t('error.retry') }}
     </button>
   </div>
 </template>

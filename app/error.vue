@@ -18,15 +18,15 @@ const handleError = () => clearError({ redirect: '/' });
     <h2 class="text-2xl font-semibold mb-2">
       {{
         props.error.statusCode === 404
-          ? 'Page Not Found'
-          : 'Something went wrong'
+          ? $t('error.notFound')
+          : $t('error.somethingWrong')
       }}
     </h2>
     <p class="text-gray-600 max-w-md mb-8">
       {{
         props.error.statusMessage ||
         props.error.message ||
-        'An unexpected error occurred while loading this page.'
+        $t('error.defaultMessage')
       }}
     </p>
     <NuxtLink
@@ -34,7 +34,7 @@ const handleError = () => clearError({ redirect: '/' });
       @click="handleError"
       class="px-6 py-3 font-semibold text-white transition duration-300 rounded-lg bg-primary hover:opacity-90 shadow-md cursor-pointer inline-block"
     >
-      Return to Home
+      {{ $t('error.returnHome') }}
     </NuxtLink>
   </div>
 </template>

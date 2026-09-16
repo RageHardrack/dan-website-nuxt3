@@ -62,9 +62,9 @@ describe('Control Components', () => {
       });
 
       const buttons = wrapper.findAll('button');
-      expect(buttons).toHaveLength(4); // Vue, React, Node, All
+      expect(buttons).toHaveLength(4); // Vue, React, Node, Todos
       expect(buttons[0].text()).toBe('Vue');
-      expect(buttons[3].text()).toBe('All');
+      expect(buttons[3].text()).toBe('Todos');
     });
 
     it('should emit update when option or All is clicked', async () => {

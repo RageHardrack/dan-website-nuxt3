@@ -7,12 +7,13 @@ interface Props {
 
 const { post } = defineProps<Props>();
 const dayjs = useDayjs();
+const localePath = useLocalePath();
 
 const { Image_URL, Tags, Fecha_Publicacion, Slug, Post, Brief } = post;
 </script>
 
 <template>
-  <NuxtLink :to="`/blog/${Slug}`">
+  <NuxtLink :to="localePath(`/blog/${Slug}`)">
     <Card :hasClick="true" :hasHover="true">
       <template #header>
         <img :src="Image_URL" :alt="`${Post} cover`" class="aspect-square" />

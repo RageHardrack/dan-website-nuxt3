@@ -1,0 +1,51 @@
+{
+  "nav": {
+    "about": "Acerca de mí",
+    "blog": "Blog",
+    "portfolio": "Portafolio",
+    "closeMenu": "Cerrar menú",
+    "openMenu": "Abrir menú"
+  },
+  "home": {
+    "title": "Daniel Colmenares",
+    "underConstruction": "Esta página está en construcción...",
+    "lastUpdate": "Última actualización"
+  },
+  "footer": {
+    "createdBy": "Creado por"
+  },
+  "about": {
+    "loading": "Cargando información personal...",
+    "cvDownload": "Descargar mi CV",
+    "skills": "Habilidades",
+    "experience": "Experiencia Profesional"
+  },
+  "portfolio": {
+    "loading": "Cargando Portafolio...",
+    "projects": "Proyectos",
+    "return": "← Volver al Portafolio",
+    "viewRepo": "Ver Repositorio",
+    "all": "Todos"
+  },
+  "blog": {
+    "loading": "Cargando publicaciones...",
+    "loadingPost": "Cargando publicación...",
+    "latestPost": "Última publicación",
+    "previousPosts": "Publicaciones anteriores",
+    "return": "← Volver al Blog",
+    "publishedOn": "Publicado el"
+  },
+  "error": {
+    "notFound": "Página no encontrada",
+    "somethingWrong": "Ocurrió un error inesperado",
+    "defaultMessage": "Ocurrió un error inesperado al cargar la página.",
+    "returnHome": "Volver al Inicio",
+    "generic": "Ocurrió un error al cargar los datos.",
+    "retry": "Reintentar"
+  },
+  "lang": {
+    "switch": "Cambiar idioma",
+    "es": "Español",
+    "en": "English"
+  }
+}

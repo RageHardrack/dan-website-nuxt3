@@ -63,8 +63,8 @@ describe('Pages Error Resilience', () => {
       await flushPromises();
 
       expect(wrapper.findComponent(ErrorMessage).exists()).toBe(false);
-      expect(wrapper.text()).toContain('Download my CV');
-      expect(wrapper.text()).toContain('Skills');
+      expect(wrapper.text()).toContain('Descargar mi CV');
+      expect(wrapper.text()).toContain('Habilidades');
     });
   });
 
@@ -166,7 +166,7 @@ describe('Pages Error Resilience', () => {
       await flushPromises();
 
       expect(wrapper.findComponent(ErrorMessage).exists()).toBe(false);
-      expect(wrapper.text()).toContain('Projects');
+      expect(wrapper.text()).toContain('Proyectos');
     });
   });
 });

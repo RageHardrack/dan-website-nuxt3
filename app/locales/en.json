@@ -1,0 +1,51 @@
+{
+  "nav": {
+    "about": "About",
+    "blog": "Blog",
+    "portfolio": "Portfolio",
+    "closeMenu": "Close menu",
+    "openMenu": "Open menu"
+  },
+  "home": {
+    "title": "Daniel Colmenares",
+    "underConstruction": "This page is under Construction...",
+    "lastUpdate": "Last Update"
+  },
+  "footer": {
+    "createdBy": "Created by"
+  },
+  "about": {
+    "loading": "Loading About page...",
+    "cvDownload": "Download my CV",
+    "skills": "Skills",
+    "experience": "Professional Experience"
+  },
+  "portfolio": {
+    "loading": "Loading Portfolio...",
+    "projects": "Projects",
+    "return": "← Return to Portfolio",
+    "viewRepo": "View Repository",
+    "all": "All"
+  },
+  "blog": {
+    "loading": "Loading posts...",
+    "loadingPost": "Loading post...",
+    "latestPost": "Latest publication",
+    "previousPosts": "Previous publications",
+    "return": "← Return to Blog",
+    "publishedOn": "Published on"
+  },
+  "error": {
+    "notFound": "Page Not Found",
+    "somethingWrong": "Something went wrong",
+    "defaultMessage": "An unexpected error occurred while loading this page.",
+    "returnHome": "Return to Home",
+    "generic": "An error occurred while loading data.",
+    "retry": "Retry"
+  },
+  "lang": {
+    "switch": "Switch language",
+    "es": "Español",
+    "en": "English"
+  }
+}

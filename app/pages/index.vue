@@ -14,10 +14,10 @@ definePageMeta({
       class="flex flex-col-reverse md:flex-row items-center justify-between w-full gap-8"
     >
       <section class="flex flex-col items-center justify-center flex-1 gap-8">
-        <Heading1>Daniel Colmenares</Heading1>
-        <Heading2>This page is under Construction...</Heading2>
+        <Heading1>{{ $t('home.title') }}</Heading1>
+        <Heading2>{{ $t('home.underConstruction') }}</Heading2>
 
-        <p>Last Update: {{ dayjs('09-29-2024').format('MM/DD/YY') }}</p>
+        <p>{{ $t('home.lastUpdate') }}: {{ dayjs('09-29-2024').format('MM/DD/YY') }}</p>
 
         <a :href="UTILS_LINKS[0]?.url" target="_blank" rel="nofollow">
           <Icon name="gitHub" size="48px" class="text-primary" />

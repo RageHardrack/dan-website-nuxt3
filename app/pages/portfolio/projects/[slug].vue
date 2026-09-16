@@ -3,6 +3,7 @@ import type { ProjectPageApiResponse } from '~/interfaces';
 
 const route = useRoute();
 const { slug } = route.params;
+const localePath = useLocalePath();
 
 const baseUrl = useApiBase();
 
@@ -38,7 +39,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <LoadingPage loadMessage="Loading Project" v-if="pending" />
+  <LoadingPage :loadMessage="$t('portfolio.loading')" v-if="pending" />
 
   <section
     v-else-if="data && projectProps"
@@ -46,10 +47,10 @@ useSeoMeta({
   >
     <header class="flex flex-col w-full space-y-4">
       <NuxtLink
-        to="/portfolio"
+        :to="localePath('/portfolio')"
         class="inline-flex items-center font-semibold underline transition duration-300 text-electric hover:text-secondary self-start"
       >
-        &larr; Return to Portfolio
+        {{ $t('portfolio.return') }}
       </NuxtLink>
 
       <picture
@@ -79,7 +80,7 @@ useSeoMeta({
           class="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold transition-all duration-300 rounded-lg bg-electric text-bone hover:opacity-90 shadow"
         >
           <Icon name="gitHub" size="20px" />
-          Ver Repositorio
+          {{ $t('portfolio.viewRepo') }}
         </a>
       </div>
     </header>

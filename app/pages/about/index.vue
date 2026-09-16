@@ -23,7 +23,7 @@ definePageMeta({
 </script>
 
 <template>
-  <LoadingPage loadMessage="Loading About page" v-if="status === 'pending'" />
+  <LoadingPage :loadMessage="$t('about.loading')" v-if="status === 'pending'" />
 
   <ErrorMessage
     v-else-if="status === 'error' || Boolean(error) || data?.hasError"
@@ -45,12 +45,12 @@ definePageMeta({
       <Markdown :content="data?.about || []" />
     </header>
 
-    <ButtonDownload url="/daniel-colmenares-cv.pdf"
-      >Download my CV</ButtonDownload
-    >
+    <ButtonDownload url="/daniel-colmenares-cv.pdf">
+      {{ $t('about.cvDownload') }}
+    </ButtonDownload>
 
     <section class="flex flex-col gap-4">
-      <Heading2>Skills</Heading2>
+      <Heading2>{{ $t('about.skills') }}</Heading2>
 
       <FilterOptions
         :filterOptions="Object.values(filterSkillsOptions)"
@@ -67,7 +67,7 @@ definePageMeta({
     </section>
 
     <section class="flex flex-col w-full space-y-4">
-      <Heading2>Profesional Experience</Heading2>
+      <Heading2>{{ $t('about.experience') }}</Heading2>
 
       <CardExperience
         v-for="xp in data?.experiences || []"

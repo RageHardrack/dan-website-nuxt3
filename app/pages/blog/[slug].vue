@@ -2,6 +2,7 @@
 const route = useRoute();
 const { slug } = route.params;
 const dayjs = useDayjs();
+const localePath = useLocalePath();
 
 const baseUrl = useApiBase();
 
@@ -27,15 +28,15 @@ useSeoMeta({
 </script>
 
 <template>
-  <LoadingPage loadMessage="Cargando Publicación" v-if="pending" />
+  <LoadingPage :loadMessage="$t('blog.loadingPost')" v-if="pending" />
 
   <section v-else-if="data" class="flex flex-col justify-center space-y-8">
     <header class="flex flex-col w-full space-y-4">
       <NuxtLink
-        to="/blog"
+        :to="localePath('/blog')"
         class="inline-flex items-center font-semibold underline transition duration-300 text-electric hover:text-secondary self-start"
       >
-        &larr; Volver al Blog
+        {{ $t('blog.return') }}
       </NuxtLink>
 
       <picture
@@ -50,7 +51,7 @@ useSeoMeta({
       </picture>
       <Heading1>{{ data.Post }}</Heading1>
       <p class="text-sm text-gray-500">
-        Publicado el
+        {{ $t('blog.publishedOn') }}
         {{ dayjs(data.Fecha_Publicacion).format('DD MMMM YYYY') }}
       </p>
     </header>
