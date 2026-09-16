@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
-import { blockContentAdapter } from '~/adapters/blockContentAdapter';
+
 import type { RawContentBlock } from '~/interfaces';
+import { blockContentAdapter } from '~/adapters/blockContentAdapter';
 
 describe('blockContentAdapter', () => {
   it('should adapt paragraph block correctly', () => {

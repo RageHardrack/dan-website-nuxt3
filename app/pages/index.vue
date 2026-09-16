@@ -10,7 +10,9 @@ definePageMeta({
 
 <template>
   <section class="flex flex-col items-center justify-center">
-    <article class="flex items-center justify-between w-full">
+    <article
+      class="flex flex-col-reverse md:flex-row items-center justify-between w-full gap-8"
+    >
       <section class="flex flex-col items-center justify-center flex-1 gap-8">
         <Heading1>Daniel Colmenares</Heading1>
         <Heading2>This page is under Construction...</Heading2>

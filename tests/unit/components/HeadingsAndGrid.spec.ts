@@ -1,11 +1,12 @@
 import { describe, it, expect } from 'vitest';
 import { mountSuspended } from '@nuxt/test-utils/runtime';
+
+import Grid from '~/components/Grid/index.vue';
 import Heading1 from '~/components/Heading/1.vue';
 import Heading2 from '~/components/Heading/2.vue';
 import Heading3 from '~/components/Heading/3.vue';
-import Grid from '~/components/Grid/index.vue';
-import GridSkills from '~/components/Grid/Skills.vue';
 import GridTechs from '~/components/Grid/Techs.vue';
+import GridSkills from '~/components/Grid/Skills.vue';
 
 describe('Heading & Grid Components', () => {
   describe('Headings', () => {

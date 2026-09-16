@@ -1,8 +1,9 @@
 import { describe, it, expect } from 'vitest';
 import { mountSuspended } from '@nuxt/test-utils/runtime';
+
+import Footer from '~/components/Footer.vue';
 import Navbar from '~/components/Navbar.vue';
 import SideNav from '~/components/SideNav.vue';
-import Footer from '~/components/Footer.vue';
 import { useUIStore } from '~/stores/useUIStore';
 
 describe('Navigation Components', () => {
@@ -13,7 +14,9 @@ describe('Navigation Components', () => {
       expect(wrapper.text()).toContain('Blog');
       expect(wrapper.text()).toContain('About');
       expect(wrapper.text()).toContain('Portfolio');
-      expect(wrapper.findComponent({ name: 'LogoReverse' }).exists()).toBe(true);
+      expect(wrapper.findComponent({ name: 'LogoReverse' }).exists()).toBe(
+        true,
+      );
     });
 
     it('should trigger toggleSideNav on mobile menu button click', async () => {

@@ -1,13 +1,20 @@
 import { describe, it, expect } from 'vitest';
+
 import { postPropertiesAdapter, postAdapter } from '~/adapters/blogAdapter';
-import type { PostNotionResponseProperties, PostNotionResponse } from '~/interfaces';
+import type {
+  PostNotionResponseProperties,
+  PostNotionResponse,
+} from '~/interfaces';
 
 describe('blogAdapter', () => {
   const mockProperties: PostNotionResponseProperties = {
     Tags: {
       id: 'tags-id',
       type: 'multi_select',
-      multi_select: [{ id: '1', name: 'TypeScript', color: 'blue' }, { id: '2', name: 'Nuxt', color: 'green' }],
+      multi_select: [
+        { id: '1', name: 'TypeScript', color: 'blue' },
+        { id: '2', name: 'Nuxt', color: 'green' },
+      ],
     },
     Image_URL: {
       id: 'img-id',

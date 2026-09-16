@@ -1,10 +1,12 @@
+import { ref } from 'vue';
+
 import { describe, it, expect } from 'vitest';
 import { mountSuspended } from '@nuxt/test-utils/runtime';
-import { ref } from 'vue';
-import ButtonDownload from '~/components/Button/Download.vue';
-import ButtonLinkExternal from '~/components/Button/LinkExternal.vue';
+
 import ButtonMenu from '~/components/Button/Menu.vue';
 import FilterOptions from '~/components/FilterOptions.vue';
+import ButtonDownload from '~/components/Button/Download.vue';
+import ButtonLinkExternal from '~/components/Button/LinkExternal.vue';
 
 describe('Control Components', () => {
   describe('ButtonDownload', () => {

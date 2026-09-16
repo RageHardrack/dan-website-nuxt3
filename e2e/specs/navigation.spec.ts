@@ -1,12 +1,16 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Navigation Flow', () => {
-  test('should render navbar and navigate between primary pages', async ({ page, isMobile }) => {
+  test('should render navbar and navigate between primary pages', async ({
+    page,
+    isMobile,
+  }) => {
     await page.goto('/');
+    await page.waitForLoadState('networkidle');
 
     if (isMobile) {
       // Open mobile menu
-      const menuButton = page.locator('header nav button');
+      const menuButton = page.locator('button[aria-label="Abrir menú"]');
       await expect(menuButton).toBeVisible();
       await menuButton.click();
 
@@ -24,7 +28,7 @@ test.describe('Navigation Flow', () => {
 
     // Navigate to About
     if (isMobile) {
-      const menuButton = page.locator('header nav button');
+      const menuButton = page.locator('button[aria-label="Abrir menú"]');
       await menuButton.click();
       const aboutLink = page.locator('aside a[href="/about"]');
       await aboutLink.click();
@@ -37,7 +41,7 @@ test.describe('Navigation Flow', () => {
 
     // Navigate to Portfolio
     if (isMobile) {
-      const menuButton = page.locator('header nav button');
+      const menuButton = page.locator('button[aria-label="Abrir menú"]');
       await menuButton.click();
       const portfolioLink = page.locator('aside a[href="/portfolio"]');
       await portfolioLink.click();
@@ -49,7 +53,9 @@ test.describe('Navigation Flow', () => {
     await expect(page).toHaveURL(/\/portfolio/);
   });
 
-  test('should verify footer credits and social media anchors', async ({ page }) => {
+  test('should verify footer credits and social media anchors', async ({
+    page,
+  }) => {
     await page.goto('/');
 
     const footer = page.locator('footer');

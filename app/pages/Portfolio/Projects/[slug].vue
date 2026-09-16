@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { watch } from 'vue';
-
 import type { ProjectPageApiResponse } from '~/interfaces';
 
 const route = useRoute();
@@ -17,23 +15,26 @@ const projectProps = computed(() => {
   return ((data.value.project as any).properties || data.value.project) as any;
 });
 
-watch(
-  data,
-  (newData) => {
-    const props = (newData?.project as any)?.properties || newData?.project;
-    if (props?.Name) {
-      useSeoMeta({
-        title: `${props.Name} - Daniel Colmenares`,
-        ogTitle: `${props.Name} - Daniel Colmenares`,
-        description: `Detalles y especificaciones del proyecto: ${props.Name}`,
-        ogDescription: `Detalles y especificaciones del proyecto: ${props.Name}`,
-        ogImage: props.Preview,
-        twitterCard: 'summary_large_image',
-      });
-    }
-  },
-  { immediate: true },
-);
+useSeoMeta({
+  title: () =>
+    projectProps.value?.Name
+      ? `${projectProps.value.Name} - Daniel Colmenares`
+      : 'Daniel Colmenares',
+  ogTitle: () =>
+    projectProps.value?.Name
+      ? `${projectProps.value.Name} - Daniel Colmenares`
+      : 'Daniel Colmenares',
+  description: () =>
+    projectProps.value?.Name
+      ? `Detalles y especificaciones del proyecto: ${projectProps.value.Name}`
+      : 'Detalles del proyecto',
+  ogDescription: () =>
+    projectProps.value?.Name
+      ? `Detalles y especificaciones del proyecto: ${projectProps.value.Name}`
+      : 'Detalles del proyecto',
+  ogImage: () => projectProps.value?.Preview,
+  twitterCard: 'summary_large_image',
+});
 </script>
 
 <template>

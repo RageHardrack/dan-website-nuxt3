@@ -5,22 +5,14 @@ interface Props {
   projectProps: IProjectProperties;
 }
 
-const target = ref();
-const { isOutside } = useMouseInElement(target);
-
 const { projectProps } = defineProps<Props>();
 const { Name, Slug, Tags, Preview } = projectProps;
-
-const handleNavigate = () => {
-  navigateTo(`/portfolio/projects/${Slug}`);
-};
 </script>
 
 <template>
-  <article
-    class="relative flex flex-col justify-between space-y-2 overflow-hidden duration-300 transform rounded-lg shadow-lg cursor-pointer h-80 hover:scale-105"
-    ref="target"
-    @click="handleNavigate"
+  <NuxtLink
+    :to="`/portfolio/projects/${Slug}`"
+    class="group relative flex flex-col justify-between space-y-2 overflow-hidden duration-300 transform rounded-lg shadow-lg cursor-pointer h-80 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold"
   >
     <img
       :src="Preview"
@@ -29,29 +21,8 @@ const handleNavigate = () => {
       loading="lazy"
     />
 
-    <Transition
-      enter-active-class="transition duration-300 ease-out"
-      enter-from-class="translate-y-full"
-      enter-to-class="translate-y-0"
-      leave-active-class="transition duration-200 ease-in"
-      leave-from-class="translate-y-0"
-      leave-to-class="translate-y-full"
-    >
-      <footer
-        v-if="!isOutside"
-        class="absolute bottom-0 left-0 right-0 z-10 flex-col justify-start hidden gap-2 px-4 py-2 lg:flex h-1/3 bg-primary"
-      >
-        <Heading2 customClass="text-gold">{{ Name }}</Heading2>
-        <section class="flex flex-wrap items-center justify-start gap-1">
-          <Pill v-for="(name, idx) in Tags" :key="idx">
-            {{ name }}
-          </Pill>
-        </section>
-      </footer>
-    </Transition>
-
     <footer
-      class="absolute bottom-0 left-0 right-0 z-10 flex flex-col justify-start gap-1 px-4 py-2 lg:hidden h-2/5 bg-primary"
+      class="absolute bottom-0 left-0 right-0 z-10 flex flex-col justify-start gap-1.5 px-4 py-2 bg-primary transition-transform duration-300 ease-out h-2/5 lg:h-1/3 lg:translate-y-full lg:group-hover:translate-y-0 lg:group-focus-within:translate-y-0"
     >
       <Heading2 customClass="text-gold">{{ Name }}</Heading2>
       <section class="flex flex-wrap items-center justify-start gap-1">
@@ -60,5 +31,5 @@ const handleNavigate = () => {
         </Pill>
       </section>
     </footer>
-  </article>
+  </NuxtLink>
 </template>

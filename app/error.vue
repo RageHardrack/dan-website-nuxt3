@@ -29,11 +29,12 @@ const handleError = () => clearError({ redirect: '/' });
         'An unexpected error occurred while loading this page.'
       }}
     </p>
-    <button
+    <NuxtLink
+      to="/"
       @click="handleError"
-      class="px-6 py-3 font-semibold text-white transition duration-300 rounded-lg bg-primary hover:opacity-90 shadow-md cursor-pointer"
+      class="px-6 py-3 font-semibold text-white transition duration-300 rounded-lg bg-primary hover:opacity-90 shadow-md cursor-pointer inline-block"
     >
       Return to Home
-    </button>
+    </NuxtLink>
   </div>
 </template>

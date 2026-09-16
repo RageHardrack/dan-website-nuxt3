@@ -1,6 +1,10 @@
 import { describe, it, expect } from 'vitest';
+
 import { linkPropertiesAdapter, linkAdapter } from '~/adapters/linkAdapter';
-import type { LinkNotionResponseProperties, LinkNotionResponse } from '~/interfaces';
+import type {
+  LinkNotionResponseProperties,
+  LinkNotionResponse,
+} from '~/interfaces';
 
 describe('linkAdapter', () => {
   const mockProperties: LinkNotionResponseProperties = {

@@ -1,13 +1,19 @@
 import { describe, it, expect, vi } from 'vitest';
 import { mountSuspended, mockNuxtImport } from '@nuxt/test-utils/runtime';
+
 import Card from '~/components/Card/index.vue';
 import CardBlog from '~/components/Card/Blog.vue';
+import CardWide from '~/components/Card/Wide.vue';
+import CardSkill from '~/components/Card/Skill.vue';
+import MainCard from '~/components/Blog/MainCard.vue';
 import CardProject from '~/components/Card/Project.vue';
 import CardExperience from '~/components/Card/Experience.vue';
-import CardSkill from '~/components/Card/Skill.vue';
-import CardWide from '~/components/Card/Wide.vue';
-import MainCard from '~/components/Blog/MainCard.vue';
-import type { IPost, IProjectProperties, IExperienceProperties, ISkillProperties } from '~/interfaces';
+import type {
+  IPost,
+  IProjectProperties,
+  IExperienceProperties,
+  ISkillProperties,
+} from '~/interfaces';
 
 const { mockNavigateTo } = vi.hoisted(() => ({
   mockNavigateTo: vi.fn(),
@@ -68,11 +74,15 @@ describe('Card Components', () => {
       });
 
       expect(wrapper.text()).toContain('Nuxt 4 Complete Guide');
-      expect(wrapper.text()).toContain('A thorough overview of Nuxt 4 features.');
+      expect(wrapper.text()).toContain(
+        'A thorough overview of Nuxt 4 features.',
+      );
       expect(wrapper.text()).toContain('Vue');
       expect(wrapper.text()).toContain('Nuxt');
       expect(wrapper.text()).toContain('Testing');
-      expect(wrapper.find('img').attributes('src')).toBe('https://example.com/nuxt.png');
+      expect(wrapper.find('img').attributes('src')).toBe(
+        'https://example.com/nuxt.png',
+      );
     });
   });
 
@@ -99,9 +109,13 @@ describe('Card Components', () => {
       });
 
       expect(wrapper.text()).toContain('Featured Architecture Post');
-      expect(wrapper.text()).toContain('Deep dive into frontend architecture patterns.');
+      expect(wrapper.text()).toContain(
+        'Deep dive into frontend architecture patterns.',
+      );
       expect(wrapper.text()).toContain('Architecture');
-      expect(wrapper.find('img').attributes('src')).toBe('https://example.com/arch.png');
+      expect(wrapper.find('img').attributes('src')).toBe(
+        'https://example.com/arch.png',
+      );
     });
   });
 
@@ -120,7 +134,7 @@ describe('Card Components', () => {
       Stage: 'live',
     };
 
-    it('should render project name, tags, and trigger navigation on click', async () => {
+    it('should render project name, tags, and be a semantic link with correct href', async () => {
       const wrapper = await mountSuspended(CardProject, {
         props: {
           projectProps: mockProjectProps,
@@ -130,10 +144,15 @@ describe('Card Components', () => {
       expect(wrapper.text()).toContain('Portfolio Showcase');
       expect(wrapper.text()).toContain('Nuxt');
       expect(wrapper.text()).toContain('TailwindCSS');
-      expect(wrapper.find('img').attributes('src')).toBe('https://example.com/preview.png');
+      expect(wrapper.find('img').attributes('src')).toBe(
+        'https://example.com/preview.png',
+      );
 
-      await wrapper.find('article').trigger('click');
-      expect(mockNavigateTo).toHaveBeenCalledWith('/portfolio/projects/portfolio-showcase');
+      const link = wrapper.find('a');
+      expect(link.exists()).toBe(true);
+      expect(link.attributes('href')).toBe(
+        '/portfolio/projects/portfolio-showcase',
+      );
     });
   });
 
@@ -155,7 +174,9 @@ describe('Card Components', () => {
 
       expect(wrapper.text()).toContain('Senior Frontend Engineer');
       expect(wrapper.text()).toContain('2022 - Present');
-      expect(wrapper.text()).toContain('Building high performance web platforms.');
+      expect(wrapper.text()).toContain(
+        'Building high performance web platforms.',
+      );
       expect(wrapper.text()).toContain('Vue');
       expect(wrapper.text()).toContain('TypeScript');
       expect(wrapper.text()).toContain('Node.js');
@@ -171,7 +192,7 @@ describe('Card Components', () => {
       Stage: 'live',
     };
 
-    it('should render skill image with correct alt and title', async () => {
+    it('should render skill image with correct alt, title and accessible name', async () => {
       const wrapper = await mountSuspended(CardSkill, {
         props: {
           skillProps: mockSkillProps,
@@ -179,7 +200,35 @@ describe('Card Components', () => {
       });
 
       expect(wrapper.attributes('title')).toBe('TypeScript');
-      expect(wrapper.find('img').attributes('src')).toBe('https://example.com/ts.png');
+      expect(wrapper.find('img').attributes('src')).toBe(
+        'https://example.com/ts.png',
+      );
+      const skillName = wrapper.find('[data-testid="skill-name"]');
+      expect(skillName.exists()).toBe(true);
+      expect(skillName.text()).toBe('TypeScript');
+    });
+
+    it('should render fallback placeholder when image triggers error', async () => {
+      const wrapper = await mountSuspended(CardSkill, {
+        props: {
+          skillProps: {
+            Name: 'GraphQL',
+            Image_URL: 'https://broken-link.com/404.png',
+            Category: 'API',
+            Level: 'Intermediate',
+            Stage: 'live',
+          },
+        },
+      });
+
+      const img = wrapper.find('img');
+      expect(img.exists()).toBe(true);
+
+      await img.trigger('error');
+
+      const fallback = wrapper.find('[data-testid="image-fallback"]');
+      expect(fallback.exists()).toBe(true);
+      expect(fallback.text()).toContain('G');
     });
   });
 

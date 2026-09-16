@@ -1,7 +1,8 @@
 import { describe, it, expect } from 'vitest';
 import { mountSuspended } from '@nuxt/test-utils/runtime';
-import Markdown from '~/components/Markdown/index.vue';
+
 import type { ContentBlock } from '~/interfaces';
+import Markdown from '~/components/Markdown/index.vue';
 
 describe('Markdown Component', () => {
   it('should render empty without content or non-array content', async () => {
@@ -25,7 +26,14 @@ describe('Markdown Component', () => {
     const content = [
       null,
       undefined,
-      { id: '1', type: 'paragraph', body: 'Valid line', caption: '', emoji: null, object: 'block' },
+      {
+        id: '1',
+        type: 'paragraph',
+        body: 'Valid line',
+        caption: '',
+        emoji: null,
+        object: 'block',
+      },
     ] as any;
 
     const wrapper = await mountSuspended(Markdown, {
@@ -37,9 +45,30 @@ describe('Markdown Component', () => {
 
   it('should render headings correctly', async () => {
     const content: ContentBlock[] = [
-      { id: '1', type: 'heading_1', body: 'Title 1', caption: '', emoji: null, object: 'block' },
-      { id: '2', type: 'heading_2', body: 'Title 2', caption: '', emoji: null, object: 'block' },
-      { id: '3', type: 'heading_3', body: 'Title 3', caption: '', emoji: null, object: 'block' },
+      {
+        id: '1',
+        type: 'heading_1',
+        body: 'Title 1',
+        caption: '',
+        emoji: null,
+        object: 'block',
+      },
+      {
+        id: '2',
+        type: 'heading_2',
+        body: 'Title 2',
+        caption: '',
+        emoji: null,
+        object: 'block',
+      },
+      {
+        id: '3',
+        type: 'heading_3',
+        body: 'Title 3',
+        caption: '',
+        emoji: null,
+        object: 'block',
+      },
     ];
 
     const wrapper = await mountSuspended(Markdown, {
@@ -53,11 +82,46 @@ describe('Markdown Component', () => {
 
   it('should group bulleted list items and numbered list items', async () => {
     const content: ContentBlock[] = [
-      { id: 'b1', type: 'bulleted_list_item', body: 'Item A', caption: '', emoji: null, object: 'block' },
-      { id: 'b2', type: 'bulleted_list_item', body: 'Item B', caption: '', emoji: null, object: 'block' },
-      { id: 'p1', type: 'paragraph', body: 'A middle paragraph', caption: '', emoji: null, object: 'block' },
-      { id: 'n1', type: 'numbered_list_item', body: 'Step 1', caption: '', emoji: null, object: 'block' },
-      { id: 'n2', type: 'numbered_list_item', body: 'Step 2', caption: '', emoji: null, object: 'block' },
+      {
+        id: 'b1',
+        type: 'bulleted_list_item',
+        body: 'Item A',
+        caption: '',
+        emoji: null,
+        object: 'block',
+      },
+      {
+        id: 'b2',
+        type: 'bulleted_list_item',
+        body: 'Item B',
+        caption: '',
+        emoji: null,
+        object: 'block',
+      },
+      {
+        id: 'p1',
+        type: 'paragraph',
+        body: 'A middle paragraph',
+        caption: '',
+        emoji: null,
+        object: 'block',
+      },
+      {
+        id: 'n1',
+        type: 'numbered_list_item',
+        body: 'Step 1',
+        caption: '',
+        emoji: null,
+        object: 'block',
+      },
+      {
+        id: 'n2',
+        type: 'numbered_list_item',
+        body: 'Step 2',
+        caption: '',
+        emoji: null,
+        object: 'block',
+      },
     ];
 
     const wrapper = await mountSuspended(Markdown, {
@@ -81,9 +145,30 @@ describe('Markdown Component', () => {
 
   it('should render quotes, callouts, and images', async () => {
     const content: ContentBlock[] = [
-      { id: 'q1', type: 'quote', body: 'Wise quote', caption: '', emoji: null, object: 'block' },
-      { id: 'c1', type: 'callout', body: 'Notice note', caption: '', emoji: '🚀', object: 'block' },
-      { id: 'i1', type: 'image', body: 'https://cdn.example.com/img.png', caption: 'Sample photo', emoji: null, object: 'block' },
+      {
+        id: 'q1',
+        type: 'quote',
+        body: 'Wise quote',
+        caption: '',
+        emoji: null,
+        object: 'block',
+      },
+      {
+        id: 'c1',
+        type: 'callout',
+        body: 'Notice note',
+        caption: '',
+        emoji: '🚀',
+        object: 'block',
+      },
+      {
+        id: 'i1',
+        type: 'image',
+        body: 'https://cdn.example.com/img.png',
+        caption: 'Sample photo',
+        emoji: null,
+        object: 'block',
+      },
     ];
 
     const wrapper = await mountSuspended(Markdown, {

@@ -1,8 +1,9 @@
 import { describe, it, expect } from 'vitest';
 import { mountSuspended } from '@nuxt/test-utils/runtime';
+
+import Logo from '~/components/Logo/index.vue';
 import Loading from '~/components/Loading/index.vue';
 import LoadingPage from '~/components/Loading/Page.vue';
-import Logo from '~/components/Logo/index.vue';
 import LogoReverse from '~/components/Logo/Reverse.vue';
 
 describe('Loading and Brand Components', () => {

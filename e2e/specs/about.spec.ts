@@ -1,7 +1,9 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('About Page', () => {
-  test('should render profile, CV download, and skills filter', async ({ page }) => {
+  test('should render profile, CV download, and skills filter', async ({
+    page,
+  }) => {
     await page.goto('/about');
 
     // Wait for content or loading indicator to resolve

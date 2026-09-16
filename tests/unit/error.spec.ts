@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { mountSuspended, mockNuxtImport } from '@nuxt/test-utils/runtime';
+
 import ErrorPage from '~/error.vue';
 
 const { mockClearError } = vi.hoisted(() => ({
@@ -56,7 +57,9 @@ describe('error.vue', () => {
 
     expect(wrapper.find('h1').text()).toBe('500');
     expect(wrapper.find('h2').text()).toBe('Something went wrong');
-    expect(wrapper.text()).toContain('An unexpected error occurred while loading this page.');
+    expect(wrapper.text()).toContain(
+      'An unexpected error occurred while loading this page.',
+    );
   });
 
   it('should trigger clearError with redirect to / when clicking button', async () => {
@@ -69,7 +72,7 @@ describe('error.vue', () => {
       props: { error: mockError },
     });
 
-    const button = wrapper.find('button');
+    const button = wrapper.find('a');
     await button.trigger('click');
 
     expect(mockClearError).toHaveBeenCalledWith({ redirect: '/' });

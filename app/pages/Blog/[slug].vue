@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { watch } from 'vue';
-
 const route = useRoute();
 const { slug } = route.params;
 const dayjs = useDayjs();
@@ -9,30 +7,23 @@ const baseUrl = useApiBase();
 
 const { data, pending } = await useLazyFetch<any>(`${baseUrl}/blog/${slug}`);
 
-watch(
-  data,
-  (newData) => {
-    if (newData) {
-      const seoMeta: any = {
-        title: `${newData.Post} - Daniel Colmenares`,
-        ogTitle: `${newData.Post} - Daniel Colmenares`,
-        description:
-          newData.Brief || 'Publicación del blog de Daniel Colmenares',
-        ogDescription:
-          newData.Brief || 'Publicación del blog de Daniel Colmenares',
-        ogImage: newData.Image_URL,
-        twitterCard: 'summary_large_image',
-      };
-
-      if (newData.Prevent_Index) {
-        seoMeta.robots = 'noindex, nofollow';
-      }
-
-      useSeoMeta(seoMeta);
-    }
-  },
-  { immediate: true },
-);
+useSeoMeta({
+  title: () =>
+    data.value?.Post
+      ? `${data.value.Post} - Daniel Colmenares`
+      : 'Daniel Colmenares',
+  ogTitle: () =>
+    data.value?.Post
+      ? `${data.value.Post} - Daniel Colmenares`
+      : 'Daniel Colmenares',
+  description: () =>
+    data.value?.Brief || 'Publicación del blog de Daniel Colmenares',
+  ogDescription: () =>
+    data.value?.Brief || 'Publicación del blog de Daniel Colmenares',
+  ogImage: () => data.value?.Image_URL,
+  twitterCard: 'summary_large_image',
+  robots: () => (data.value?.Prevent_Index ? 'noindex, nofollow' : undefined),
+});
 </script>
 
 <template>

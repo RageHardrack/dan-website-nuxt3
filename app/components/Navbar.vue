@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { ROUTES_LINKS } from '~/constantes';
 
-const { toggleSideNav } = useUIStore();
+const uiStore = useUIStore();
+const handleToggleSideNav = () => {
+  uiStore.toggleSideNav();
+};
 
 const route = useRoute();
 const activePage = computed(() => {
@@ -32,7 +35,7 @@ const activePage = computed(() => {
         </li>
       </ul>
 
-      <ButtonMenu @pressButton="toggleSideNav" class="flex md:hidden" />
+      <ButtonMenu @pressButton="handleToggleSideNav" class="flex md:hidden" />
     </nav>
   </header>
 </template>

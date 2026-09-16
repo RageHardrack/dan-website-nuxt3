@@ -1,12 +1,13 @@
-import { describe, it, expect, beforeEach } from 'vitest';
-import { mountSuspended } from '@nuxt/test-utils/runtime';
 import { setActivePinia, createPinia } from 'pinia';
-import Pill from '~/components/Pill/index.vue';
-import PillTech from '~/components/Pill/Tech.vue';
-import Modal from '~/components/Modal/index.vue';
-import Overlay from '~/components/Overlay.vue';
+import { mountSuspended } from '@nuxt/test-utils/runtime';
+import { describe, it, expect, beforeEach } from 'vitest';
+
 import Divider from '~/components/Divider.vue';
+import Overlay from '~/components/Overlay.vue';
+import Pill from '~/components/Pill/index.vue';
+import Modal from '~/components/Modal/index.vue';
 import { useUIStore } from '~/stores/useUIStore';
+import PillTech from '~/components/Pill/Tech.vue';
 
 describe('Pills, Modals & UI Elements', () => {
   beforeEach(() => {

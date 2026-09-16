@@ -8,8 +8,10 @@ test.describe('Home Page', () => {
     await expect(heading).toBeVisible();
     await expect(heading).toContainText('Daniel Colmenares');
 
-    const subHeading = page.locator('h2');
-    await expect(subHeading).toContainText('This page is under Construction...');
+    const subHeading = page.locator('main h2');
+    await expect(subHeading).toContainText(
+      'This page is under Construction...',
+    );
 
     const logo = page.locator('img[alt="Dragón Azul Logo"]');
     await expect(logo.first()).toBeVisible();

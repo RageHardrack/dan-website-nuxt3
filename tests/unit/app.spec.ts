@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { mountSuspended } from '@nuxt/test-utils/runtime';
+
 import App from '~/app.vue';
 
 describe('Root App Component', () => {

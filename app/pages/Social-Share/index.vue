@@ -42,7 +42,7 @@ definePageMeta({
 
     <ul class="flex flex-col items-center justify-center w-full space-y-4">
       <ButtonLinkExternal
-        v-for="link in (data || [])"
+        v-for="link in data || []"
         :key="link.Orden || link.id"
         :enlace="link.Link"
       >

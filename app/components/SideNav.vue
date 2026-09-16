@@ -13,7 +13,8 @@ const { toggleSideNav } = useUIStore();
 
       <button
         @click="toggleSideNav"
-        class="flex items-center justify-center p-1 rounded-full bg-black-coffee"
+        aria-label="Cerrar menú"
+        class="flex items-center justify-center p-1 rounded-full bg-black-coffee cursor-pointer"
       >
         <Icon name="cross" size="32px" class="text-gold" />
       </button>

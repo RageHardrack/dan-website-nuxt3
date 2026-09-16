@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { mountSuspended } from '@nuxt/test-utils/runtime';
+
 import IndexPage from '~/pages/index.vue';
 
 describe('Index Page', () => {
@@ -10,5 +11,13 @@ describe('Index Page', () => {
     expect(wrapper.text()).toContain('This page is under Construction...');
     expect(wrapper.text()).toContain('Last Update:');
     expect(wrapper.find('a[href*="github.com"]').exists()).toBe(true);
+  });
+
+  it('should render article container with responsive flex layout classes', async () => {
+    const wrapper = await mountSuspended(IndexPage);
+    const article = wrapper.find('article');
+
+    expect(article.classes()).toContain('flex-col-reverse');
+    expect(article.classes()).toContain('md:flex-row');
   });
 });
