@@ -2,9 +2,9 @@ import { flushPromises } from '@vue/test-utils';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { mountSuspended, mockNuxtImport } from '@nuxt/test-utils/runtime';
 
-import BlogPage from '~/pages/Blog/index.vue';
-import AboutPage from '~/pages/About/index.vue';
-import PortfolioPage from '~/pages/Portfolio/index.vue';
+import BlogPage from '~/pages/blog/index.vue';
+import AboutPage from '~/pages/about/index.vue';
+import PortfolioPage from '~/pages/portfolio/index.vue';
 import ErrorMessage from '~/components/ErrorMessage.vue';
 
 const { mockFetch } = vi.hoisted(() => ({
