@@ -2,8 +2,8 @@ import { flushPromises } from '@vue/test-utils';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { mountSuspended, mockNuxtImport } from '@nuxt/test-utils/runtime';
 
-import BlogSlugPage from '~/pages/Blog/[slug].vue';
-import ProjectSlugPage from '~/pages/Portfolio/Projects/[slug].vue';
+import BlogSlugPage from '~/pages/blog/[slug].vue';
+import ProjectSlugPage from '~/pages/portfolio/projects/[slug].vue';
 
 const { mockUseSeoMeta, mockLazyFetchData } = vi.hoisted(() => ({
   mockUseSeoMeta: vi.fn(),
