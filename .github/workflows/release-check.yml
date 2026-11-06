@@ -1,0 +1,61 @@
+name: Release Check
+
+on:
+  pull_request:
+    branches: [ main ]
+    # edited: re-check when the Spanish summary is added to the PR body later.
+    types: [ opened, synchronize, reopened, edited ]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  release-check:
+    name: Release PR is ready
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository (with tags)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check the source branch is a release branch
+        env:
+          HEAD_BRANCH: ${{ github.head_ref }}
+        run: |
+          case "$HEAD_BRANCH" in
+            dev | hotfix/*)
+              echo "Release source branch: $HEAD_BRANCH"
+              ;;
+            *)
+              echo "::error::Release PRs to main must come from dev or hotfix/*, not from '$HEAD_BRANCH'. Merge the feature branch into dev first."
+              exit 1
+              ;;
+          esac
+
+      - name: Check the CHANGELOG version and the Spanish summary
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          git fetch --tags --force
+
+          PR_BODY="${RUNNER_TEMP}/pr-body.md"
+          gh api "repos/${GITHUB_REPOSITORY}/pulls/${PR_NUMBER}" --jq '.body // ""' > "$PR_BODY"
+
+          NOTES="${RUNNER_TEMP}/notes.md"
+          VERSION=$(bash .github/scripts/release-notes.sh CHANGELOG.md "$PR_BODY" "$NOTES")
+          NEW_TAG="v${VERSION}"
+          echo "Proposed release tag: $NEW_TAG"
+
+          if git rev-parse -q --verify "refs/tags/${NEW_TAG}" >/dev/null; then
+            echo "::error::Tag ${NEW_TAG} already exists. Move the [Unreleased] entries to a new version in CHANGELOG.md."
+            exit 1
+          fi
+
+          if ! grep -q '^## Resumen (ES)$' "$NOTES"; then
+            echo "::error::The PR body needs a non-empty '## Resumen (ES)' section: it is the neutral Spanish changelog the Discord bot publishes."
+            exit 1
+          fi
