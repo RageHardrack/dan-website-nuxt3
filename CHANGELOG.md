@@ -4,6 +4,13 @@ All notable changes to this project are documented in this file. The format foll
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-11-06
+
+### Changed
+
+- **docs**: README and CHANGELOG are now in English, and the CHANGELOG history matches the published releases.
+- **ci**: releases are published from the CHANGELOG when a release PR from `dev` merges into `main`; CI (tests and build) runs on `dev` and on pull requests.
+
 ## [0.1.1] - 2026-09-26
 
 ### Changed
